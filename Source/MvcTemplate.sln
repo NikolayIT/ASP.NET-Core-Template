@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{99FC36D3-D963-4263-BF69-8BD11F801E2B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0C12FAF3-85BC-43E1-ABB2-6799213942CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{8103CD5B-2A92-401C-A854-A31E0FD44DE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A5398FDD-2BE7-452F-9808-E5D3C5B58CC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTemplate.Web", "Web\MvcTemplate.Web\MvcTemplate.Web.csproj", "{67CC40FF-4933-4F83-810E-357E6BC8B973}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67CC40FF-4933-4F83-810E-357E6BC8B973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67CC40FF-4933-4F83-810E-357E6BC8B973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67CC40FF-4933-4F83-810E-357E6BC8B973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67CC40FF-4933-4F83-810E-357E6BC8B973}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{67CC40FF-4933-4F83-810E-357E6BC8B973} = {99FC36D3-D963-4263-BF69-8BD11F801E2B}
+	EndGlobalSection
+EndGlobal
