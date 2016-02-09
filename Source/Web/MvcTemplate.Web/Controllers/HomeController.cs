@@ -1,9 +1,10 @@
-﻿using MvcTemplate.Web.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
+using MvcTemplate.Web.Models;
 
 namespace MvcTemplate.Web.Controllers
 {
@@ -13,21 +14,21 @@ namespace MvcTemplate.Web.Controllers
         {
             var db = new ApplicationDbContext();
             var usersCount = db.Users.Count();
-            return View();
+            return this.View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            this.ViewBag.Message = "Your application description page.";
 
-            return View();
+            return this.View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            this.ViewBag.Message = "Your contact page.";
 
-            return View();
+            return this.View();
         }
     }
 }

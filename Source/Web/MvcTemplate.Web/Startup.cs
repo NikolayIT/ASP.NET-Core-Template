@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin;
+
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(MvcTemplate.Web.Startup))]
@@ -8,7 +9,7 @@ namespace MvcTemplate.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            this.ConfigureAuth(app);
         }
     }
 }
