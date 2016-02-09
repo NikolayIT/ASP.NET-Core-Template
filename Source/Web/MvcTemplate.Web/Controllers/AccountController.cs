@@ -12,6 +12,8 @@ using MvcTemplate.Web.Models;
 
 namespace MvcTemplate.Web.Controllers
 {
+    using MvcTemplate.Web.ViewModels.Account;
+
     [Authorize]
     public class AccountController : Controller
     {
