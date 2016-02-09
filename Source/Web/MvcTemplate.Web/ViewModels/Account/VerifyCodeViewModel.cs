@@ -10,6 +10,7 @@ namespace MvcTemplate.Web.ViewModels.Account
         [Required]
         [Display(Name = "Code")]
         public string Code { get; set; }
+
         public string ReturnUrl { get; set; }
 
         [Display(Name = "Remember this browser?")]
