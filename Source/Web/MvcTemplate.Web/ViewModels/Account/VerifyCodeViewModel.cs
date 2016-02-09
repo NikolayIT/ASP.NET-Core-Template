@@ -1,4 +1,4 @@
-namespace MvcTemplate.Web.ViewModels.Account
+﻿namespace MvcTemplate.Web.ViewModels.Account
 {
     using System.ComponentModel.DataAnnotations;
 

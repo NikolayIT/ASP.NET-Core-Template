@@ -1,27 +1,26 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-
-using MvcTemplate.Web.Models;
-
-namespace MvcTemplate.Web.Controllers
+﻿namespace MvcTemplate.Web.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+
+    using MvcTemplate.Web.Models;
     using MvcTemplate.Web.ViewModels.Account;
 
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
+        // Used for XSRF protection when adding external logins
+        private const string XsrfKey = "XsrfId";
 
-        private ApplicationUserManager _userManager;
+        private ApplicationSignInManager signInManager;
+
+        private ApplicationUserManager userManager;
 
         public AccountController()
         {
@@ -37,12 +36,12 @@ namespace MvcTemplate.Web.Controllers
         {
             get
             {
-                return this._signInManager ?? this.HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return this.signInManager ?? this.HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
 
             private set
             {
-                this._signInManager = value;
+                this.signInManager = value;
             }
         }
 
@@ -50,14 +49,16 @@ namespace MvcTemplate.Web.Controllers
         {
             get
             {
-                return this._userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
 
             private set
             {
-                this._userManager = value;
+                this.userManager = value;
             }
         }
+
+        private IAuthenticationManager AuthenticationManager => this.HttpContext.GetOwinContext().Authentication;
 
         // GET: /Account/Login
         [AllowAnonymous]
@@ -83,9 +84,9 @@ namespace MvcTemplate.Web.Controllers
             var result =
                 await
                 this.SignInManager.PasswordSignInAsync(
-                    model.Email, 
-                    model.Password, 
-                    model.RememberMe, 
+                    model.Email,
+                    model.Password,
+                    model.RememberMe,
                     shouldLockout: false);
             switch (result)
             {
@@ -95,7 +96,7 @@ namespace MvcTemplate.Web.Controllers
                     return this.View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return this.RedirectToAction(
-                        "SendCode", 
+                        "SendCode",
                         new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
@@ -130,16 +131,16 @@ namespace MvcTemplate.Web.Controllers
                 return this.View(model);
             }
 
-            // The following code protects for brute force attacks against the two factor codes. 
-            // If a user enters incorrect codes for a specified amount of time then the user account 
-            // will be locked out for a specified amount of time. 
+            // The following code protects for brute force attacks against the two factor codes.
+            // If a user enters incorrect codes for a specified amount of time then the user account
+            // will be locked out for a specified amount of time.
             // You can configure the account lockout settings in IdentityConfig
             var result =
                 await
                 this.SignInManager.TwoFactorSignInAsync(
-                    model.Provider, 
-                    model.Code, 
-                    isPersistent: model.RememberMe, 
+                    model.Provider,
+                    model.Code,
+                    isPersistent: model.RememberMe,
                     rememberBrowser: model.RememberBrowser);
             switch (result)
             {
@@ -294,7 +295,7 @@ namespace MvcTemplate.Web.Controllers
         {
             // Request a redirect to the external login provider
             return new ChallengeResult(
-                provider, 
+                provider,
                 this.Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
@@ -334,7 +335,7 @@ namespace MvcTemplate.Web.Controllers
             }
 
             return this.RedirectToAction(
-                "VerifyCode", 
+                "VerifyCode",
                 new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
         }
 
@@ -365,7 +366,7 @@ namespace MvcTemplate.Web.Controllers
                     this.ViewBag.ReturnUrl = returnUrl;
                     this.ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
                     return this.View(
-                        "ExternalLoginConfirmation", 
+                        "ExternalLoginConfirmation",
                         new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
         }
@@ -375,7 +376,7 @@ namespace MvcTemplate.Web.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(
-            ExternalLoginConfirmationViewModel model, 
+            ExternalLoginConfirmationViewModel model,
             string returnUrl)
         {
             if (this.User.Identity.IsAuthenticated)
@@ -431,33 +432,20 @@ namespace MvcTemplate.Web.Controllers
         {
             if (disposing)
             {
-                if (this._userManager != null)
+                if (this.userManager != null)
                 {
-                    this._userManager.Dispose();
-                    this._userManager = null;
+                    this.userManager.Dispose();
+                    this.userManager = null;
                 }
 
-                if (this._signInManager != null)
+                if (this.signInManager != null)
                 {
-                    this._signInManager.Dispose();
-                    this._signInManager = null;
+                    this.signInManager.Dispose();
+                    this.signInManager = null;
                 }
             }
 
             base.Dispose(disposing);
-        }
-
-        #region Helpers
-
-        // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return this.HttpContext.GetOwinContext().Authentication;
-            }
         }
 
         private void AddErrors(IdentityResult result)
@@ -509,7 +497,5 @@ namespace MvcTemplate.Web.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, this.LoginProvider);
             }
         }
-
-        #endregion
     }
 }

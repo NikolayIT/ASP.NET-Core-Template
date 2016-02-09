@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-using MvcTemplate.Web.Models;
-
-namespace MvcTemplate.Web.Controllers
+﻿namespace MvcTemplate.Web.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using MvcTemplate.Web.Models;
+
     public class HomeController : Controller
     {
         public ActionResult Index()

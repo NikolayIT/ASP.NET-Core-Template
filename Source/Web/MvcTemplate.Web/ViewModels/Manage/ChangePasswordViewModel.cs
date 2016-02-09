@@ -1,4 +1,4 @@
-namespace MvcTemplate.Web.ViewModels.Manage
+﻿namespace MvcTemplate.Web.ViewModels.Manage
 {
     using System.ComponentModel.DataAnnotations;
 

@@ -1,25 +1,25 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-
-using MvcTemplate.Web.Models;
-
-namespace MvcTemplate.Web.Controllers
+﻿namespace MvcTemplate.Web.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+
     using MvcTemplate.Web.ViewModels.Manage;
 
     [Authorize]
     public class ManageController : Controller
     {
-        private ApplicationSignInManager _signInManager;
+        // Used for XSRF protection when adding external logins
+        private const string XsrfKey = "XsrfId";
 
-        private ApplicationUserManager _userManager;
+        private ApplicationSignInManager signInManager;
+
+        private ApplicationUserManager userManager;
 
         public ManageController()
         {
@@ -31,16 +31,33 @@ namespace MvcTemplate.Web.Controllers
             this.SignInManager = signInManager;
         }
 
+        public enum ManageMessageId
+        {
+            AddPhoneSuccess,
+
+            ChangePasswordSuccess,
+
+            SetTwoFactorSuccess,
+
+            SetPasswordSuccess,
+
+            RemoveLoginSuccess,
+
+            RemovePhoneSuccess,
+
+            Error
+        }
+
         public ApplicationSignInManager SignInManager
         {
             get
             {
-                return this._signInManager ?? this.HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return this.signInManager ?? this.HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
 
             private set
             {
-                this._signInManager = value;
+                this.signInManager = value;
             }
         }
 
@@ -48,14 +65,16 @@ namespace MvcTemplate.Web.Controllers
         {
             get
             {
-                return this._userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return this.userManager ?? this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
 
             private set
             {
-                this._userManager = value;
+                this.userManager = value;
             }
         }
+
+        private IAuthenticationManager AuthenticationManager => this.HttpContext.GetOwinContext().Authentication;
 
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
@@ -77,10 +96,10 @@ namespace MvcTemplate.Web.Controllers
             var userId = this.User.Identity.GetUserId();
             var model = new IndexViewModel
                             {
-                                HasPassword = this.HasPassword(), 
-                                PhoneNumber = await this.UserManager.GetPhoneNumberAsync(userId), 
-                                TwoFactor = await this.UserManager.GetTwoFactorEnabledAsync(userId), 
-                                Logins = await this.UserManager.GetLoginsAsync(userId), 
+                                HasPassword = this.HasPassword(),
+                                PhoneNumber = await this.UserManager.GetPhoneNumberAsync(userId),
+                                TwoFactor = await this.UserManager.GetTwoFactorEnabledAsync(userId),
+                                Logins = await this.UserManager.GetLoginsAsync(userId),
                                 BrowserRemembered =
                                     await
                                     this.AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
@@ -97,7 +116,7 @@ namespace MvcTemplate.Web.Controllers
             var result =
                 await
                 this.UserManager.RemoveLoginAsync(
-                    this.User.Identity.GetUserId(), 
+                    this.User.Identity.GetUserId(),
                     new UserLoginInfo(loginProvider, providerKey));
             if (result.Succeeded)
             {
@@ -140,7 +159,7 @@ namespace MvcTemplate.Web.Controllers
             {
                 var message = new IdentityMessage
                                   {
-                                      Destination = model.Number, 
+                                      Destination = model.Number,
                                       Body = "Your security code is: " + code
                                   };
                 await this.UserManager.SmsService.SendAsync(message);
@@ -257,8 +276,8 @@ namespace MvcTemplate.Web.Controllers
             var result =
                 await
                 this.UserManager.ChangePasswordAsync(
-                    this.User.Identity.GetUserId(), 
-                    model.OldPassword, 
+                    this.User.Identity.GetUserId(),
+                    model.OldPassword,
                     model.NewPassword);
             if (result.Succeeded)
             {
@@ -337,8 +356,8 @@ namespace MvcTemplate.Web.Controllers
         {
             // Request a redirect to the external login provider to link a login for the current user
             return new AccountController.ChallengeResult(
-                provider, 
-                this.Url.Action("LinkLoginCallback", "Manage"), 
+                provider,
+                this.Url.Action("LinkLoginCallback", "Manage"),
                 this.User.Identity.GetUserId());
         }
 
@@ -360,26 +379,13 @@ namespace MvcTemplate.Web.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && this._userManager != null)
+            if (disposing && this.userManager != null)
             {
-                this._userManager.Dispose();
-                this._userManager = null;
+                this.userManager.Dispose();
+                this.userManager = null;
             }
 
             base.Dispose(disposing);
-        }
-
-        #region Helpers
-
-        // Used for XSRF protection when adding external logins
-        private const string XsrfKey = "XsrfId";
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return this.HttpContext.GetOwinContext().Authentication;
-            }
         }
 
         private void AddErrors(IdentityResult result)
@@ -411,24 +417,5 @@ namespace MvcTemplate.Web.Controllers
 
             return false;
         }
-
-        public enum ManageMessageId
-        {
-            AddPhoneSuccess, 
-
-            ChangePasswordSuccess, 
-
-            SetTwoFactorSuccess, 
-
-            SetPasswordSuccess, 
-
-            RemoveLoginSuccess, 
-
-            RemovePhoneSuccess, 
-
-            Error
-        }
-
-        #endregion
     }
 }
