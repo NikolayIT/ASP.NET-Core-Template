@@ -8,6 +8,14 @@
 
     public class HomeController : Controller
     {
+        // private IDbRepostiory<>
+
+        public HomeController()
+        {
+
+        }
+
+
         public ActionResult Index()
         {
             var db = new ApplicationDbContext();

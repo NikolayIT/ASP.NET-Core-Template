@@ -18,6 +18,10 @@
             return new ApplicationDbContext();
         }
 
+        public IDbSet<Joke> Jokes { get; set; }
+
+        public IDbSet<JokeCategory> JokesCategories { get; set; }
+
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();
