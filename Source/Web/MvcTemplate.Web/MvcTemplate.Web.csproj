@@ -322,6 +322,10 @@
       <Project>{90fe4c4d-122a-406d-8a40-79c561fb8184}</Project>
       <Name>MvcTemplate.Services.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services\MvcTemplate.Services.Web\MvcTemplate.Services.Web.csproj">
+      <Project>{deab17a2-58c1-448c-8a66-d49c3af7fc6c}</Project>
+      <Name>MvcTemplate.Services.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MvcTemplate.Web.Infrastructure\MvcTemplate.Web.Infrastructure.csproj">
       <Project>{6813dc53-5eee-4507-8604-5301ee51a0d3}</Project>
       <Name>MvcTemplate.Web.Infrastructure</Name>
