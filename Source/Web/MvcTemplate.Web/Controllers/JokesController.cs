@@ -8,14 +8,11 @@ namespace MvcTemplate.Web.Controllers
 {
     public class JokesController : BaseController
     {
-        private IIdentifierProvider identifierProvider;
         private IJokesService jokes;
 
         public JokesController(
-            IIdentifierProvider identifierProvider,
             IJokesService jokes)
         {
-            this.identifierProvider = identifierProvider;
             this.jokes = jokes;
         }
 
