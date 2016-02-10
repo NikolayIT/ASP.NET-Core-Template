@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTemplate.Data.Models", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTemplate.Data.Common", "Data\MvcTemplate.Data.Common\MvcTemplate.Data.Common.csproj", "{EDFE3C57-EF5B-4636-9ECC-D0BACA6B6379}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTemplate.Data", "MvcTemplate.Data\MvcTemplate.Data.csproj", "{7C950CDC-9587-4B65-A204-988EFED17948}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTemplate.Data", "Data\MvcTemplate.Data\MvcTemplate.Data.csproj", "{7C950CDC-9587-4B65-A204-988EFED17948}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTemplate.Web.Infrastructure", "Web\MvcTemplate.Web.Infrastructure\MvcTemplate.Web.Infrastructure.csproj", "{6813DC53-5EEE-4507-8604-5301EE51A0D3}"
 EndProject
@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTemplate.Services.Data",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{33E0499A-81F4-4CE7-A1BF-6E7103399834}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawler", "Crawler\Crawler.csproj", "{AE824FC6-40A5-4F83-8D0F-54BEE0CD9BF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawler", "Tools\Crawler\Crawler.csproj", "{AE824FC6-40A5-4F83-8D0F-54BEE0CD9BF8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTemplate.Services.Web", "Services\MvcTemplate.Services.Web\MvcTemplate.Services.Web.csproj", "{DEAB17A2-58C1-448C-8A66-D49C3AF7FC6C}"
 EndProject

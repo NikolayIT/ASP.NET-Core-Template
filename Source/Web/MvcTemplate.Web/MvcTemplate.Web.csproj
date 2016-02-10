@@ -318,7 +318,7 @@
       <Project>{048df115-fad9-4bd4-9ba0-d99dfd32a2b2}</Project>
       <Name>MvcTemplate.Data.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\MvcTemplate.Data\MvcTemplate.Data.csproj">
+    <ProjectReference Include="..\..\Data\MvcTemplate.Data\MvcTemplate.Data.csproj">
       <Project>{7c950cdc-9587-4b65-a204-988efed17948}</Project>
       <Name>MvcTemplate.Data</Name>
     </ProjectReference>
