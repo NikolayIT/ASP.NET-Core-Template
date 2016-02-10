@@ -8,8 +8,16 @@
 
     public class HomeController : Controller
     {
+        private IService service;
+
+        public HomeController(IService service)
+        {
+            this.service = service;
+        }
+
         public ActionResult Index()
         {
+            this.service.Work();
             var db = new ApplicationDbContext();
             var usersCount = db.Users.Count();
             return this.View();
