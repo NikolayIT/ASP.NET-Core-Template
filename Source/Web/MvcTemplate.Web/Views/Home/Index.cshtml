@@ -2,16 +2,17 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
+<h1>Вицове</h1>
 <div class="row">
     @foreach (var joke in Model.Jokes)
     {
         <div class="col-md-4">
-            @joke.Content
+            @Html.Raw(joke.Content.Replace("\n", "<br />"))
             <div>@joke.Category</div>
         </div>
     }
 </div>
+<h1>Категории</h1>
 <div class="row">
     @foreach (var category in Model.Categories)
     {
