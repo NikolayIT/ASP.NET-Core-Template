@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawler", "Crawler\Crawler.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTemplate.Services.Web", "Services\MvcTemplate.Services.Web\MvcTemplate.Services.Web.csproj", "{DEAB17A2-58C1-448C-8A66-D49C3AF7FC6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTemplate.Services.Web.Tests", "Tests\MvcTemplate.Services.Web.Tests\MvcTemplate.Services.Web.Tests.csproj", "{D0D962BD-363D-4A22-9DB1-53136CE8EBF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{DEAB17A2-58C1-448C-8A66-D49C3AF7FC6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEAB17A2-58C1-448C-8A66-D49C3AF7FC6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEAB17A2-58C1-448C-8A66-D49C3AF7FC6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0D962BD-363D-4A22-9DB1-53136CE8EBF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0D962BD-363D-4A22-9DB1-53136CE8EBF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0D962BD-363D-4A22-9DB1-53136CE8EBF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0D962BD-363D-4A22-9DB1-53136CE8EBF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,5 +86,6 @@ Global
 		{90FE4C4D-122A-406D-8A40-79C561FB8184} = {A5398FDD-2BE7-452F-9808-E5D3C5B58CC3}
 		{AE824FC6-40A5-4F83-8D0F-54BEE0CD9BF8} = {33E0499A-81F4-4CE7-A1BF-6E7103399834}
 		{DEAB17A2-58C1-448C-8A66-D49C3AF7FC6C} = {A5398FDD-2BE7-452F-9808-E5D3C5B58CC3}
+		{D0D962BD-363D-4A22-9DB1-53136CE8EBF4} = {0C12FAF3-85BC-43E1-ABB2-6799213942CB}
 	EndGlobalSection
 EndGlobal
