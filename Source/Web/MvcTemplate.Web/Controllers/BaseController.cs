@@ -6,6 +6,6 @@
 
     public abstract class BaseController : Controller
     {
-        protected ICacheService Cache { get; set; }
+        public ICacheService Cache { get; set; }
     }
 }

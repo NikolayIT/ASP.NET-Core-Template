@@ -14,10 +14,10 @@
         [Test]
         public void TestRouteById()
         {
+            const string Url = "/Joke/Mjc2NS4xMjMxMjMxMzEyMw==";
             var routeCollection = new RouteCollection();
-            const string url = "/Joke/Mjc2NS4xMjMxMjMxMzEyMw==";
             RouteConfig.RegisterRoutes(routeCollection);
-            routeCollection.ShouldMap(url).To<JokesController>(c => c.ById("Mjc2NS4xMjMxMjMxMzEyMw=="));
+            routeCollection.ShouldMap(Url).To<JokesController>(c => c.ById("Mjc2NS4xMjMxMjMxMzEyMw=="));
         }
     }
 }

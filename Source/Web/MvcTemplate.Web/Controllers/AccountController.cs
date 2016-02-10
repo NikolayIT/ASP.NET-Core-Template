@@ -97,7 +97,7 @@
                 case SignInStatus.RequiresVerification:
                     return this.RedirectToAction(
                         "SendCode",
-                        new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                        new { ReturnUrl = returnUrl, model.RememberMe });
                 case SignInStatus.Failure:
                 default:
                     this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
@@ -220,7 +220,7 @@
             if (this.ModelState.IsValid)
             {
                 var user = await this.UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await this.UserManager.IsEmailConfirmedAsync(user.Id)))
+                if (user == null || !await this.UserManager.IsEmailConfirmedAsync(user.Id))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return this.View("ForgotPasswordConfirmation");
@@ -336,7 +336,7 @@
 
             return this.RedirectToAction(
                 "VerifyCode",
-                new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+                new { Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe });
         }
 
         // GET: /Account/ExternalLoginCallback
@@ -468,12 +468,7 @@
 
         internal class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri)
-                : this(provider, redirectUri, null)
-            {
-            }
-
-            public ChallengeResult(string provider, string redirectUri, string userId)
+            public ChallengeResult(string provider, string redirectUri, string userId = null)
             {
                 this.LoginProvider = provider;
                 this.RedirectUri = redirectUri;

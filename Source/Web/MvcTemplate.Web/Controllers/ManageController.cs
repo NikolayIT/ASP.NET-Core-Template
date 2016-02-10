@@ -399,23 +399,13 @@
         private bool HasPassword()
         {
             var user = this.UserManager.FindById(this.User.Identity.GetUserId());
-            if (user != null)
-            {
-                return user.PasswordHash != null;
-            }
-
-            return false;
+            return user?.PasswordHash != null;
         }
 
         private bool HasPhoneNumber()
         {
             var user = this.UserManager.FindById(this.User.Identity.GetUserId());
-            if (user != null)
-            {
-                return user.PhoneNumber != null;
-            }
-
-            return false;
+            return user?.PhoneNumber != null;
         }
     }
 }
