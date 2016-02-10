@@ -1,8 +1,9 @@
-﻿using MvcTemplate.Data.Common.Models;
-using System.Collections.Generic;
-
-namespace MvcTemplate.Data.Models
+﻿namespace MvcTemplate.Data.Models
 {
+    using System.Collections.Generic;
+
+    using MvcTemplate.Data.Common.Models;
+
     public class JokeCategory : BaseModel<int>
     {
         public JokeCategory()

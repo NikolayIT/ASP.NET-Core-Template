@@ -1,16 +1,20 @@
 ﻿namespace MvcTemplate.Web
 {
+    using System.Data.Entity;
     using System.Reflection;
     using System.Web.Mvc;
 
     using Autofac;
     using Autofac.Integration.Mvc;
+
+    using Controllers;
+
     using Data;
-    using System.Data.Entity;
     using Data.Common;
+
     using Services.Data;
     using Services.Web;
-    using Controllers;
+
     public static class AutofacConfig
     {
         public static void RegisterAutofac()

@@ -1,18 +1,18 @@
-﻿using MvcTemplate.Data.Common;
-using MvcTemplate.Data.Models;
-using MvcTemplate.Services.Web;
-using System;
-using System.Linq;
-
-namespace MvcTemplate.Services.Data
+﻿namespace MvcTemplate.Services.Data
 {
+    using System;
+    using System.Linq;
+
+    using MvcTemplate.Data.Common;
+    using MvcTemplate.Data.Models;
+    using MvcTemplate.Services.Web;
+
     public class JokesService : IJokesService
     {
-        private IDbRepository<Joke> jokes;
-        private IIdentifierProvider identifierProvider;
+        private readonly IDbRepository<Joke> jokes;
+        private readonly IIdentifierProvider identifierProvider;
 
-        public JokesService(IDbRepository<Joke> jokes,
-            IIdentifierProvider identifierProvider)
+        public JokesService(IDbRepository<Joke> jokes, IIdentifierProvider identifierProvider)
         {
             this.jokes = jokes;
             this.identifierProvider = identifierProvider;
@@ -27,9 +27,7 @@ namespace MvcTemplate.Services.Data
 
         public IQueryable<Joke> GetRandomJokes(int count)
         {
-            return this.jokes.All()
-                .OrderBy(x => Guid.NewGuid())
-                .Take(count);
+            return this.jokes.All().OrderBy(x => Guid.NewGuid()).Take(count);
         }
     }
 }

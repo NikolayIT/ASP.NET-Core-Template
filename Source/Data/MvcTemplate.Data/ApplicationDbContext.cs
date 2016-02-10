@@ -1,11 +1,15 @@
 ﻿namespace MvcTemplate.Data
 {
-    using MvcTemplate.Data.Models;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using System.Linq;
-    using Common.Models;
-    using System.Data.Entity;
     using System;
+    using System.Data.Entity;
+    using System.Linq;
+
+    using Common.Models;
+
+    using Microsoft.AspNet.Identity.EntityFramework;
+
+    using MvcTemplate.Data.Models;
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -13,14 +17,14 @@
         {
         }
 
+        public IDbSet<Joke> Jokes { get; set; }
+
+        public IDbSet<JokeCategory> JokesCategories { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
-
-        public IDbSet<Joke> Jokes { get; set; }
-
-        public IDbSet<JokeCategory> JokesCategories { get; set; }
 
         public override int SaveChanges()
         {

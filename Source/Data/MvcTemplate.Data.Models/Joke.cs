@@ -1,7 +1,7 @@
-﻿using MvcTemplate.Data.Common.Models;
-
-namespace MvcTemplate.Data.Models
+﻿namespace MvcTemplate.Data.Models
 {
+    using MvcTemplate.Data.Common.Models;
+
     public class Joke : BaseModel<int>
     {
         public string Content { get; set; }

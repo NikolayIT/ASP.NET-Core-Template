@@ -1,9 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace MvcTemplate.Data.Common.Models
+﻿namespace MvcTemplate.Data.Common.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public abstract class BaseModel<TKey> : IAuditInfo, IDeletableEntity
     {
         [Key]

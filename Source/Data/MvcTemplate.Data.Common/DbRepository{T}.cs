@@ -1,11 +1,12 @@
-﻿using MvcTemplate.Data.Common.Models;
-using System;
-using System.Data.Entity;
-using System.Linq;
-
-namespace MvcTemplate.Data.Common
+﻿namespace MvcTemplate.Data.Common
 {
-    // TODO: Why BaseModel<int> instead BaseModel<TKey>
+    using System;
+    using System.Data.Entity;
+    using System.Linq;
+
+    using MvcTemplate.Data.Common.Models;
+
+    // TODO: Why BaseModel<int> instead BaseModel<TKey>?
     public class DbRepository<T> : IDbRepository<T>
         where T : BaseModel<int>
     {

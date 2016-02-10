@@ -1,12 +1,9 @@
-﻿using MvcTemplate.Data.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MvcTemplate.Data.Common
+﻿namespace MvcTemplate.Data.Common
 {
+    using System.Linq;
+
+    using MvcTemplate.Data.Common.Models;
+
     public interface IDbRepository<T> : IDbRepository<T, int>
         where T : BaseModel<int>
     {

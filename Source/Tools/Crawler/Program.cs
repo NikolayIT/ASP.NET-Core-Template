@@ -1,12 +1,12 @@
-﻿using AngleSharp;
-using MvcTemplate.Data;
-using MvcTemplate.Data.Common;
-using MvcTemplate.Data.Models;
-using MvcTemplate.Services.Data;
-using System;
-
-namespace Crawler
+﻿namespace Crawler
 {
+    using System;
+    using AngleSharp;
+    using MvcTemplate.Data;
+    using MvcTemplate.Data.Common;
+    using MvcTemplate.Data.Models;
+    using MvcTemplate.Services.Data;
+
     public static class Program
     {
         public static void Main()
@@ -27,11 +27,10 @@ namespace Crawler
                 {
                     var categoryName = document.QuerySelector("#content_box .thecategory a").TextContent.Trim();
                     var category = categoriesService.EnsureCategory(categoryName);
-                    var joke = new Joke() { Category = category, Content = jokeContent };
+                    var joke = new Joke { Category = category, Content = jokeContent };
                     db.Jokes.Add(joke);
                     db.SaveChanges();
                     Console.WriteLine(i);
-                    // TODO: insert in db
                 }
             }
         }

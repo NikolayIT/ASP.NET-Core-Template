@@ -1,11 +1,12 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-
-namespace MvcTemplate.Web.Infrastructure.Mapping
+﻿namespace MvcTemplate.Web.Infrastructure.Mapping
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+
+    using AutoMapper;
+
     public class AutoMapperConfig
     {
         public static MapperConfiguration Configuration { get; private set; }

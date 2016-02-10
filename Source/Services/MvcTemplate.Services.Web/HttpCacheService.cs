@@ -1,9 +1,9 @@
-﻿using System;
-using System.Web;
-using System.Web.Caching;
-
-namespace MvcTemplate.Services.Web
+﻿namespace MvcTemplate.Services.Web
 {
+    using System;
+    using System.Web;
+    using System.Web.Caching;
+
     public class HttpCacheService : ICacheService
     {
         private static readonly object LockObject = new object();

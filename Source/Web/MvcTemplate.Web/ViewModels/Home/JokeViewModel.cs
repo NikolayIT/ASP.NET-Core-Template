@@ -1,11 +1,10 @@
-﻿using System;
-using AutoMapper;
-using MvcTemplate.Data.Models;
-using MvcTemplate.Web.Infrastructure.Mapping;
-using MvcTemplate.Services.Web;
-
-namespace MvcTemplate.Web.ViewModels.Home
+﻿namespace MvcTemplate.Web.ViewModels.Home
 {
+    using AutoMapper;
+    using MvcTemplate.Data.Models;
+    using MvcTemplate.Services.Web;
+    using MvcTemplate.Web.Infrastructure.Mapping;
+
     public class JokeViewModel : IMapFrom<Joke>, IHaveCustomMappings
     {
         public int Id { get; set; }
