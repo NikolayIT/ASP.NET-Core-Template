@@ -7,7 +7,8 @@
     using Microsoft.Owin;
     using Microsoft.Owin.Security.Cookies;
 
-    using MvcTemplate.Web.Models;
+    using MvcTemplate.Data;
+    using MvcTemplate.Data.Models;
 
     using Owin;
 

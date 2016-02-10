@@ -1,4 +1,4 @@
-﻿namespace MvcTemplate.Web.Models
+﻿namespace MvcTemplate.Data.Models
 {
     using System.Security.Claims;
     using System.Threading.Tasks;

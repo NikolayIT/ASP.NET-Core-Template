@@ -7,7 +7,7 @@
     using Microsoft.Owin;
     using Microsoft.Owin.Security;
 
-    using MvcTemplate.Web.Models;
+    using MvcTemplate.Data.Models;
 
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {

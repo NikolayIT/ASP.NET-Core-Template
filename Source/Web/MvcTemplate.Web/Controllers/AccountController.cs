@@ -9,7 +9,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
 
-    using MvcTemplate.Web.Models;
+    using MvcTemplate.Data.Models;
     using MvcTemplate.Web.ViewModels.Account;
 
     [Authorize]

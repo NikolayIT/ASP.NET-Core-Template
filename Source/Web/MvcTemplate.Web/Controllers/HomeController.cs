@@ -3,7 +3,8 @@
     using System.Linq;
     using System.Web.Mvc;
 
-    using MvcTemplate.Web.Models;
+    using MvcTemplate.Data;
+    using MvcTemplate.Data.Models;
 
     public class HomeController : Controller
     {
