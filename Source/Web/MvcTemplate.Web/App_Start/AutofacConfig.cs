@@ -10,6 +10,7 @@
     using Data.Common;
     using Services.Data;
     using Services.Web;
+    using Controllers;
     public static class AutofacConfig
     {
         public static void RegisterAutofac()
@@ -55,6 +56,9 @@
             builder.RegisterGeneric(typeof(DbRepository<>))
                 .As(typeof(IDbRepository<>))
                 .InstancePerRequest();
+
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+                .AssignableTo<BaseController>().PropertiesAutowired();
         }
     }
 }
