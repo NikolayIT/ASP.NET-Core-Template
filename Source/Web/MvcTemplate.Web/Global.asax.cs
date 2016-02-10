@@ -2,7 +2,9 @@
 {
     using Data;
     using Data.Migrations;
+    using Infrastructure.Mapping;
     using System.Data.Entity;
+    using System.Reflection;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Optimization;
@@ -20,6 +22,9 @@
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            var autoMapperConfig = new AutoMapperConfig();
+            autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
         }
     }
 }
