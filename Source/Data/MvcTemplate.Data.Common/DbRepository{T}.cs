@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace MvcTemplate.Data.Common
 {
-
+    // TODO: Why BaseModel<int> instead BaseModel<TKey>
     public class DbRepository<T> : IDbRepository<T>
         where T : BaseModel<int>
     {
