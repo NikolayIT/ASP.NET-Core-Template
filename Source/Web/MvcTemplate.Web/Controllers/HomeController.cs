@@ -9,14 +9,16 @@
     using Data.Common;
     using ViewModels.Home;
     using Infrastructure.Mapping;
+    using Services.Data;
+
     public class HomeController : Controller
     {
-        private IDbRepository<Joke> jokes;
-        private IDbRepository<JokeCategory> jokeCategories;
+        private IJokesService jokes;
+        private ICategoriesService jokeCategories;
 
         public HomeController(
-            IDbRepository<Joke> jokes,
-            IDbRepository<JokeCategory> jokeCategories)
+            IJokesService jokes,
+            ICategoriesService jokeCategories)
         {
             this.jokes = jokes;
             this.jokeCategories = jokeCategories;
@@ -24,10 +26,15 @@
 
         public ActionResult Index()
         {
-            var jokes = this.jokes.All()
-                .OrderBy(x => Guid.NewGuid()).Take(3)
-                .To<JokeViewModel>().ToList();
-            return this.View(jokes);
+            var jokes = this.jokes.GetRandomJokes(3).To<JokeViewModel>().ToList();
+            var categories = this.jokeCategories.GetAll().To<JokeCategoryViewModel>().ToList();
+            var viewModel = new IndexViewModel
+            {
+                Jokes = jokes,
+                Categories = categories
+            };
+
+            return this.View(viewModel);
         }
     }
 }
