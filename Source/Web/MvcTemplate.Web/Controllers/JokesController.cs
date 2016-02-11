@@ -19,7 +19,7 @@
         public ActionResult ById(string id)
         {
             var joke = this.jokes.GetById(id);
-            var viewModel = AutoMapperConfig.Configuration.CreateMapper().Map<JokeViewModel>(joke);
+            var viewModel = this.Mapper.Map<JokeViewModel>(joke);
             return this.View(viewModel);
         }
     }
