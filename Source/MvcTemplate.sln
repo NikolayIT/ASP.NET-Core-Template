@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTemplate.Web.Routes.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTemplate.Web.Controllers.Tests", "Tests\MvcTemplate.Web.Controllers.Tests\MvcTemplate.Web.Controllers.Tests.csproj", "{7C55353F-CB74-4E8E-B272-42DA1C9C2194}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTemplate.Common", "MvcTemplate.Common\MvcTemplate.Common.csproj", "{701F322F-AA01-4DDC-90B6-6935981C1E73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{7C55353F-CB74-4E8E-B272-42DA1C9C2194}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C55353F-CB74-4E8E-B272-42DA1C9C2194}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C55353F-CB74-4E8E-B272-42DA1C9C2194}.Release|Any CPU.Build.0 = Release|Any CPU
+		{701F322F-AA01-4DDC-90B6-6935981C1E73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{701F322F-AA01-4DDC-90B6-6935981C1E73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{701F322F-AA01-4DDC-90B6-6935981C1E73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{701F322F-AA01-4DDC-90B6-6935981C1E73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
