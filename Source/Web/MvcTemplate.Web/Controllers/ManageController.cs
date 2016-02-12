@@ -239,7 +239,9 @@
             return this.View(model);
         }
 
-        // GET: /Manage/RemovePhoneNumber
+        // POST: /Manage/RemovePhoneNumber
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemovePhoneNumber()
         {
             var result = await this.UserManager.SetPhoneNumberAsync(this.User.Identity.GetUserId(), null);
