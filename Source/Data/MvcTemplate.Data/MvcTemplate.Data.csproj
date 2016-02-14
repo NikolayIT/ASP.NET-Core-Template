@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201602100922285_JokesAndJokesCategories.Designer.cs">
       <DependentUpon>201602100922285_JokesAndJokesCategories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602141611379_ApplicationUserFixToWorkWithRepositories.cs" />
+    <Compile Include="Migrations\201602141611379_ApplicationUserFixToWorkWithRepositories.Designer.cs">
+      <DependentUpon>201602141611379_ApplicationUserFixToWorkWithRepositories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -95,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602100922285_JokesAndJokesCategories.resx">
       <DependentUpon>201602100922285_JokesAndJokesCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602141611379_ApplicationUserFixToWorkWithRepositories.resx">
+      <DependentUpon>201602141611379_ApplicationUserFixToWorkWithRepositories.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
