@@ -9,5 +9,7 @@
         IQueryable<Joke> GetRandomJokes(int count);
 
         Joke GetById(string id);
+
+        void Save();
     }
 }

@@ -9,6 +9,15 @@
     {
         public int Id { get; set; }
 
+        public string EncodedId
+        {
+            get
+            {
+                IIdentifierProvider identifier = new IdentifierProvider();
+                return $"{identifier.EncodeId(this.Id)}";
+            }
+        }
+
         public string Content { get; set; }
 
         public string Category { get; set; }

@@ -25,6 +25,11 @@
             return joke;
         }
 
+        public void Save()
+        {
+            this.jokes.Save();
+        }
+
         public IQueryable<Joke> GetRandomJokes(int count)
         {
             return this.jokes.All().OrderBy(x => Guid.NewGuid()).Take(count);

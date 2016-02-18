@@ -18,7 +18,7 @@
             var configuration = Configuration.Default.WithDefaultLoader();
             var browsingContext = BrowsingContext.New(configuration);
 
-            for (int i = 1; i <= 500; i++)
+            for (int i = 1; i <= 100; i++)
             {
                 var url = $"http://vicove.com/vic-{i}";
                 var document = browsingContext.OpenAsync(url).Result;
