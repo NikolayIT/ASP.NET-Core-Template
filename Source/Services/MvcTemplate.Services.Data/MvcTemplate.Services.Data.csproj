@@ -32,6 +32,8 @@
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,10 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoriesService.cs" />
-    <Compile Include="ICategoriesService.cs" />
-    <Compile Include="IJokesService.cs" />
-    <Compile Include="JokesService.cs" />
+    <Compile Include="Common\BaseDataService{T}.cs" />
+    <Compile Include="Common\BaseDataWithCreatorService{T}.cs" />
+    <Compile Include="Common\Contracts\IBaseDataService{T}.cs" />
+    <Compile Include="Common\Contracts\IBaseDataWithCreatorService{T}.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +58,10 @@
     <ProjectReference Include="..\..\Data\MvcTemplate.Data.Models\MvcTemplate.Data.Models.csproj">
       <Project>{048df115-fad9-4bd4-9ba0-d99dfd32a2b2}</Project>
       <Name>MvcTemplate.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MvcTemplate.Common\MvcTemplate.Common.csproj">
+      <Project>{701f322f-aa01-4ddc-90b6-6935981c1e73}</Project>
+      <Name>MvcTemplate.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\MvcTemplate.Services.Web\MvcTemplate.Services.Web.csproj">
       <Project>{deab17a2-58c1-448c-8a66-d49c3af7fc6c}</Project>

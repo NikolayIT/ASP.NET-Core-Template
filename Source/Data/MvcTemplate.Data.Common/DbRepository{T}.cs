@@ -6,7 +6,6 @@
 
     using MvcTemplate.Data.Common.Models;
 
-    // TODO: Why BaseModel<int> instead BaseModel<TKey>?
     public class DbRepository<T> : IDbRepository<T>
         where T : class, IAuditInfo, IDeletableEntity
     {
@@ -65,6 +64,11 @@
         public void Save()
         {
             this.Context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            this.Context.Dispose();
         }
     }
 }

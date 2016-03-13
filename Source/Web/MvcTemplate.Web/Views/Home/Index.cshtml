@@ -1,25 +1,4 @@
-﻿@model MvcTemplate.Web.ViewModels.Home.IndexViewModel
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
-<h1>Вицове</h1>
-<div class="row">
-    @foreach (var joke in Model.Jokes)
-    {
-        <div class="col-md-4">
-            <a href="/joke/@joke.EncodedId">
-                @Html.Raw(joke.Content.Replace("\n", "<br />"))
-            </a>
-            <div>@joke.Category</div>
-        </div>
-    }
-</div>
-<h1>Категории</h1>
-<div class="row">
-    @foreach (var category in Model.Categories)
-    {
-        <div class="col-md-2">
-            @category.Name
-        </div>
-    }
-</div>
+<h1>Welcome</h1>
