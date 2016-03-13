@@ -6,12 +6,17 @@
 
     public static class Program
     {
-        private const string OriginalName = "MvcTemplate";
-
         public static void Main()
         {
             Console.WriteLine("ASP.NET MVC Template Renamer v1.0");
             Console.WriteLine("Working in: " + Environment.CurrentDirectory);
+
+            var oldName = string.Empty;
+            while (string.IsNullOrWhiteSpace(oldName))
+            {
+                Console.Write("What is your project's old name ([a-zA-z]): ");
+                oldName = Console.ReadLine();
+            }
 
             var newName = string.Empty;
             while (string.IsNullOrWhiteSpace(newName))
@@ -21,15 +26,15 @@
             }
 
             Console.WriteLine("Renaming directories...");
-            RenameDirectories(Environment.CurrentDirectory, OriginalName, newName);
+            RenameDirectories(Environment.CurrentDirectory, oldName, newName);
             Console.WriteLine("Directories renamed.");
 
             Console.WriteLine("Renaming files...");
-            RenameFiles(Environment.CurrentDirectory, OriginalName, newName);
+            RenameFiles(Environment.CurrentDirectory, oldName, newName);
             Console.WriteLine("Files renamed.");
 
             Console.WriteLine("Renaming file contents...");
-            RenameFileContents(Environment.CurrentDirectory, OriginalName, newName);
+            RenameFileContents(Environment.CurrentDirectory, oldName, newName);
             Console.WriteLine("File contents renamed.");
 
             Console.WriteLine("Done!");
