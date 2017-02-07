@@ -17,10 +17,31 @@
                 cfg =>
                 {
                     var types = assembly.GetExportedTypes();
+                    LoadBothWaysMapping(types, cfg);
                     LoadStandardMappings(types, cfg);
                     LoadReverseMappings(types, cfg);
                     LoadCustomMappings(types, cfg);
                 });
+        }
+
+        private static void LoadBothWaysMapping(IEnumerable<Type> types, IMapperConfiguration mapperConfiguration)
+        {
+            var maps = (from t in types
+                        from i in t.GetInterfaces()
+                        where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapBothWays<>) &&
+                              !t.IsAbstract &&
+                              !t.IsInterface
+                        select new
+                        {
+                            Source = i.GetGenericArguments()[0],
+                            Destination = t
+                        }).ToArray();
+
+            foreach (var map in maps)
+            {
+                mapperConfiguration.CreateMap(map.Source, map.Destination);
+                mapperConfiguration.CreateMap(map.Destination, map.Source);
+            }
         }
 
         private static void LoadStandardMappings(IEnumerable<Type> types, IMapperConfiguration mapperConfiguration)

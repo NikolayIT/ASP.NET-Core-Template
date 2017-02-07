@@ -60,13 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\201602100916387_InitialCreate.cs" />
-    <Compile Include="Migrations\201602100916387_InitialCreate.Designer.cs">
-      <DependentUpon>201602100916387_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602100922285_JokesAndJokesCategories.cs" />
-    <Compile Include="Migrations\201602100922285_JokesAndJokesCategories.Designer.cs">
-      <DependentUpon>201602100922285_JokesAndJokesCategories.cs</DependentUpon>
+    <Compile Include="Migrations\201603131613050_Initial.cs" />
+    <Compile Include="Migrations\201603131613050_Initial.Designer.cs">
+      <DependentUpon>201603131613050_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,14 +86,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602100916387_InitialCreate.resx">
-      <DependentUpon>201602100916387_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602100922285_JokesAndJokesCategories.resx">
-      <DependentUpon>201602100922285_JokesAndJokesCategories.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
@@ -106,6 +94,11 @@
     <AdditionalFiles Include="..\..\stylecop.json">
       <Link>stylecop.json</Link>
     </AdditionalFiles>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603131613050_Initial.resx">
+      <DependentUpon>201603131613050_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

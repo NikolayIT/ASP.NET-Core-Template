@@ -17,10 +17,6 @@
         {
         }
 
-        public IDbSet<Joke> Jokes { get; set; }
-
-        public IDbSet<JokeCategory> JokesCategories { get; set; }
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

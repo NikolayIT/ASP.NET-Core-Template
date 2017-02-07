@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\IHaveCustomMappings.cs" />
+    <Compile Include="Mapping\IMapBothWays{T}.cs" />
     <Compile Include="Mapping\IMapFrom{T}.cs" />
     <Compile Include="Mapping\IMapTo{T}.cs" />
     <Compile Include="Mapping\QueryableExtensions.cs" />
