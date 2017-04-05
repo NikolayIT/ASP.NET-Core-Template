@@ -1,4 +1,4 @@
-namespace MvcTemplate.Data.Migrations
+﻿namespace MvcTemplate.Data.Migrations
 {
     using System.Data.Entity.Migrations;
 
