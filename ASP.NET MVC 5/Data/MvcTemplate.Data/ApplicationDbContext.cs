@@ -17,11 +17,6 @@
         {
         }
 
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
-
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();
