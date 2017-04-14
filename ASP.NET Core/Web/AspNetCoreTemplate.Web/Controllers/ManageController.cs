@@ -126,7 +126,7 @@
 
             var code = await this.userManager.GenerateChangePhoneNumberTokenAsync(user, model.PhoneNumber);
             await this.smsSender.SendSmsAsync(model.PhoneNumber, "Your security code is: " + code);
-            return this.RedirectToAction(nameof(this.VerifyPhoneNumber), new { PhoneNumber = model.PhoneNumber });
+            return this.RedirectToAction(nameof(this.VerifyPhoneNumber), new { model.PhoneNumber });
         }
 
         // POST: /Manage/EnableTwoFactorAuthentication
@@ -171,7 +171,7 @@
                 return this.View("Error");
             }
 
-            var code = await this.userManager.GenerateChangePhoneNumberTokenAsync(user, phoneNumber);
+            await this.userManager.GenerateChangePhoneNumberTokenAsync(user, phoneNumber);
 
             // Send an SMS to verify the phone number
             return phoneNumber == null

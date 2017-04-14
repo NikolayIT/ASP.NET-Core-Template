@@ -73,7 +73,7 @@
 
                 if (result.RequiresTwoFactor)
                 {
-                    return this.RedirectToAction(nameof(this.SendCode), new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return this.RedirectToAction(nameof(this.SendCode), new { ReturnUrl = returnUrl, model.RememberMe });
                 }
 
                 if (result.IsLockedOut)
@@ -391,7 +391,7 @@
                 await this.smsSender.SendSmsAsync(await this.userManager.GetPhoneNumberAsync(user), message);
             }
 
-            return this.RedirectToAction(nameof(this.VerifyCode), new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+            return this.RedirectToAction(nameof(this.VerifyCode), new { Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe });
         }
 
         // GET: /Account/VerifyCode
