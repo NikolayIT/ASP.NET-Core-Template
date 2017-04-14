@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Web.Models
+﻿namespace AspNetCoreTemplate.Data.Models
 {
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 

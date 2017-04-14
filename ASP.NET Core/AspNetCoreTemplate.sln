@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Web", "W
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{ACBE44C4-E198-45E2-BA02-6655250A0006}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Data.Models", "Data\AspNetCoreTemplate.Data.Models\AspNetCoreTemplate.Data.Models.csproj", "{E9FDB52F-52DC-48B2-86E1-0176377BB53F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,11 +21,16 @@ Global
 		{B90D1067-FE4C-400E-BA78-5413E30AB9ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B90D1067-FE4C-400E-BA78-5413E30AB9ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B90D1067-FE4C-400E-BA78-5413E30AB9ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9FDB52F-52DC-48B2-86E1-0176377BB53F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9FDB52F-52DC-48B2-86E1-0176377BB53F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9FDB52F-52DC-48B2-86E1-0176377BB53F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9FDB52F-52DC-48B2-86E1-0176377BB53F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B90D1067-FE4C-400E-BA78-5413E30AB9ED} = {E389DEB6-5F90-444B-A054-12A10D39C76F}
+		{E9FDB52F-52DC-48B2-86E1-0176377BB53F} = {ACBE44C4-E198-45E2-BA02-6655250A0006}
 	EndGlobalSection
 EndGlobal

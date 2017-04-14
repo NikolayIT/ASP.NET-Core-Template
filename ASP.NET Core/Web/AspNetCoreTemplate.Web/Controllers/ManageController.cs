@@ -3,6 +3,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using AspNetCoreTemplate.Data.Models;
     using AspNetCoreTemplate.Web.Models;
     using AspNetCoreTemplate.Web.Models.ManageViewModels;
     using AspNetCoreTemplate.Web.Services;

@@ -1,5 +1,6 @@
 ﻿namespace AspNetCoreTemplate.Web
 {
+    using AspNetCoreTemplate.Data.Models;
     using AspNetCoreTemplate.Web.Data;
     using AspNetCoreTemplate.Web.Models;
     using AspNetCoreTemplate.Web.Services;
