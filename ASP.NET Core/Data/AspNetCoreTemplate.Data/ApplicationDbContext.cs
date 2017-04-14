@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Web.Data
+﻿namespace AspNetCoreTemplate.Data
 {
     using AspNetCoreTemplate.Data.Models;
 
@@ -7,6 +7,10 @@
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public ApplicationDbContext()
+        {
+        }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

@@ -1,8 +1,8 @@
 ﻿namespace AspNetCoreTemplate.Web
 {
+    using AspNetCoreTemplate.Data;
     using AspNetCoreTemplate.Data.Models;
     using AspNetCoreTemplate.Services.Messaging;
-    using AspNetCoreTemplate.Web.Data;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -69,7 +69,6 @@
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                app.UseBrowserLink();
             }
             else
             {

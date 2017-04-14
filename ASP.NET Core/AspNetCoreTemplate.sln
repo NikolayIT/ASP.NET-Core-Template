@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Services
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Services.Messaging", "Services\AspNetCoreTemplate.Services.Messaging\AspNetCoreTemplate.Services.Messaging.csproj", "{43FDC0C4-F250-45DE-93F8-3CA8A9247CC9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Data", "Data\AspNetCoreTemplate.Data\AspNetCoreTemplate.Data.csproj", "{4B844ECB-E845-49A6-8B31-85E577933598}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{43FDC0C4-F250-45DE-93F8-3CA8A9247CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43FDC0C4-F250-45DE-93F8-3CA8A9247CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43FDC0C4-F250-45DE-93F8-3CA8A9247CC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B844ECB-E845-49A6-8B31-85E577933598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B844ECB-E845-49A6-8B31-85E577933598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B844ECB-E845-49A6-8B31-85E577933598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B844ECB-E845-49A6-8B31-85E577933598}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +56,6 @@ Global
 		{E9FDB52F-52DC-48B2-86E1-0176377BB53F} = {ACBE44C4-E198-45E2-BA02-6655250A0006}
 		{8522212F-F01E-4E20-9975-FCF5E10D71DB} = {516E002B-9E6E-4456-B7F6-EAA353966DE6}
 		{43FDC0C4-F250-45DE-93F8-3CA8A9247CC9} = {516E002B-9E6E-4456-B7F6-EAA353966DE6}
+		{4B844ECB-E845-49A6-8B31-85E577933598} = {ACBE44C4-E198-45E2-BA02-6655250A0006}
 	EndGlobalSection
 EndGlobal
