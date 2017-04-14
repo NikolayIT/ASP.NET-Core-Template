@@ -1,7 +1,6 @@
 ﻿namespace AspNetCoreTemplate.Web.Data
 {
     using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Web.Models;
 
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;

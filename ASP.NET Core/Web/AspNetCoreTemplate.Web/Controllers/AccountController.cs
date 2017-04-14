@@ -5,9 +5,8 @@
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Web.Models;
+    using AspNetCoreTemplate.Services.Messaging;
     using AspNetCoreTemplate.Web.Models.AccountViewModels;
-    using AspNetCoreTemplate.Web.Services;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
