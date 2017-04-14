@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Rendering;
-
-namespace AspNetCoreTemplate.Web.Models.AccountViewModels
+﻿namespace AspNetCoreTemplate.Web.Models.AccountViewModels
 {
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Mvc.Rendering;
+
     public class SendCodeViewModel
     {
         public string SelectedProvider { get; set; }

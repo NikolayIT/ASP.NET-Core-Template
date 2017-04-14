@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
-namespace AspNetCoreTemplate.Web.Models
+﻿namespace AspNetCoreTemplate.Web.Models
 {
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {

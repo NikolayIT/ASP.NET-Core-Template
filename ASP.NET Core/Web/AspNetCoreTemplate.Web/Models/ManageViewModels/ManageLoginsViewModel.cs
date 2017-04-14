@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http.Authentication;
-using Microsoft.AspNetCore.Identity;
-
-namespace AspNetCoreTemplate.Web.Models.ManageViewModels
+﻿namespace AspNetCoreTemplate.Web.Models.ManageViewModels
 {
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Http.Authentication;
+    using Microsoft.AspNetCore.Identity;
+
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
