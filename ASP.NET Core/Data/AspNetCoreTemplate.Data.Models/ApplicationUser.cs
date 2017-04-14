@@ -1,9 +1,24 @@
 ﻿namespace AspNetCoreTemplate.Data.Models
 {
+    using System;
+
+    using AspNetCoreTemplate.Data.Common.Models;
+
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-    // Add profile data for application users by adding properties to the ApplicationUser class
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
+        public ApplicationUser()
+        {
+            this.CreatedOn = DateTime.UtcNow;
+        }
+
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

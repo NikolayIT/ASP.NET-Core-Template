@@ -1,5 +1,9 @@
 ﻿namespace AspNetCoreTemplate.Data
 {
+    using System;
+    using System.Linq;
+
+    using AspNetCoreTemplate.Data.Common.Models;
     using AspNetCoreTemplate.Data.Models;
 
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -16,13 +20,30 @@
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        public override int SaveChanges()
         {
-            base.OnModelCreating(builder);
+            this.ApplyAuditInfoRules();
+            return base.SaveChanges();
+        }
 
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
+        private void ApplyAuditInfoRules()
+        {
+            var changedEntries = this.ChangeTracker.Entries()
+                .Where(
+                    e => e.Entity is IAuditInfo && (e.State == EntityState.Added || e.State == EntityState.Modified));
+
+            foreach (var entry in changedEntries)
+            {
+                var entity = (IAuditInfo)entry.Entity;
+                if (entry.State == EntityState.Added && entity.CreatedOn == default(DateTime))
+                {
+                    entity.CreatedOn = DateTime.UtcNow;
+                }
+                else
+                {
+                    entity.ModifiedOn = DateTime.UtcNow;
+                }
+            }
         }
     }
 }
