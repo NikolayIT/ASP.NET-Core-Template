@@ -1,6 +1,7 @@
 ﻿namespace AspNetCoreTemplate.Web
 {
     using AspNetCoreTemplate.Data;
+    using AspNetCoreTemplate.Data.Common.Repositories;
     using AspNetCoreTemplate.Data.Models;
     using AspNetCoreTemplate.Services.Messaging;
 
@@ -57,6 +58,9 @@
             // Add application services.
             services.AddTransient<IEmailSender, DoNothingMessageSender>();
             services.AddTransient<ISmsSender, DoNothingMessageSender>();
+
+            // Data
+            services.AddScoped(typeof(IDbRepository<>), typeof(DbRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
