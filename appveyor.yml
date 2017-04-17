@@ -1,6 +1,0 @@
-version: 1.0.{build}
-before_build:
-- cmd: nuget restore "ASP.NET MVC 5/MvcTemplate.sln"
-build:
-  project: ASP.NET MVC 5/MvcTemplate.sln
-  verbosity: minimal
