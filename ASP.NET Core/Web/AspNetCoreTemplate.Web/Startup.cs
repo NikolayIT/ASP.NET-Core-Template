@@ -27,7 +27,6 @@
 
             if (env.IsDevelopment())
             {
-                // For more details on using the user secret store see https://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets<Startup>();
             }
 
@@ -98,14 +97,10 @@
 
             app.UseIdentity();
 
-            //// Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
-
             app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+                {
+                    routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+                });
         }
     }
 }
