@@ -2,7 +2,7 @@
 {
     using AspNetCoreTemplate.Data.Common.Models;
 
-    public class Setting : BaseModel<string>
+    public class Setting : BaseModel<int>
     {
         public string Name { get; set; }
 

@@ -11,7 +11,7 @@
     public class DbRepository<T> : IDbRepository<T>
         where T : class, IAuditInfo, IDeletableEntity
     {
-        public DbRepository(DbContext context)
+        public DbRepository(ApplicationDbContext context)
         {
             if (context == null)
             {

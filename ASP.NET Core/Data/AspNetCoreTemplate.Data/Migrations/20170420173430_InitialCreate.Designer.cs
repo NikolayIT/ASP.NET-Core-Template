@@ -8,7 +8,7 @@ using AspNetCoreTemplate.Data;
 namespace AspNetCoreTemplate.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170420165746_InitialCreate")]
+    [Migration("20170420173430_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -108,7 +108,7 @@ namespace AspNetCoreTemplate.Data.Migrations
 
             modelBuilder.Entity("AspNetCoreTemplate.Data.Models.Setting", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreatedOn");

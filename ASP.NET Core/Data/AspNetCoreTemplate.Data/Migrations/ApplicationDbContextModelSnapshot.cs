@@ -108,7 +108,7 @@
 
             modelBuilder.Entity("AspNetCoreTemplate.Data.Models.Setting", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreatedOn");
