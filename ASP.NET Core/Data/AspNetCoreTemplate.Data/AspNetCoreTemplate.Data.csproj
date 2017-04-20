@@ -40,6 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\AspNetCoreTemplate.Common\AspNetCoreTemplate.Common.csproj" />
     <ProjectReference Include="..\AspNetCoreTemplate.Data.Common\AspNetCoreTemplate.Data.Common.csproj" />
     <ProjectReference Include="..\AspNetCoreTemplate.Data.Models\AspNetCoreTemplate.Data.Models.csproj" />
   </ItemGroup>

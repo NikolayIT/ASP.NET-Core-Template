@@ -41,7 +41,7 @@
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(
+            services.AddIdentity<ApplicationUser, ApplicationRole>(
                     options =>
                     {
                         options.Password.RequireDigit = false;
