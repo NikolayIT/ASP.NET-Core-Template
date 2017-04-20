@@ -50,5 +50,6 @@
     <ProjectReference Include="..\..\Data\AspNetCoreTemplate.Data\AspNetCoreTemplate.Data.csproj" />
     <ProjectReference Include="..\..\Services\AspNetCoreTemplate.Services.Messaging\AspNetCoreTemplate.Services.Messaging.csproj" />
     <ProjectReference Include="..\..\Services\AspNetCoreTemplate.Services\AspNetCoreTemplate.Services.csproj" />
+    <ProjectReference Include="..\AspNetCoreTemplate.Web.Infrastructure\AspNetCoreTemplate.Web.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

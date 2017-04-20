@@ -1,13 +1,16 @@
 ﻿namespace AspNetCoreTemplate.Web
 {
+    using System.Reflection;
+
     using AspNetCoreTemplate.Data;
     using AspNetCoreTemplate.Data.Common.Repositories;
     using AspNetCoreTemplate.Data.Models;
     using AspNetCoreTemplate.Services.Messaging;
+    using AspNetCoreTemplate.Web.Infrastructure.Mapping;
+    using AspNetCoreTemplate.Web.Models.AccountViewModels;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -38,8 +41,8 @@
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(
+                options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, ApplicationRole>(
                     options =>
@@ -55,17 +58,29 @@
 
             services.AddMvc();
 
+            // Data
+            services.AddScoped(typeof(IDbRepository<>), typeof(DbRepository<>));
+
             // Add application services.
             services.AddTransient<IEmailSender, DoNothingMessageSender>();
             services.AddTransient<ISmsSender, DoNothingMessageSender>();
-
-            // Data
-            services.AddScoped(typeof(IDbRepository<>), typeof(DbRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            AutoMapperConfig.RegisterMappings(
+                typeof(LoginViewModel).GetTypeInfo().Assembly,
+                typeof(LoginViewModel).GetTypeInfo().Assembly);
+
+            // Seed data on application startup
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var db = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                var seeder = new ApplicationDbContextSeeder();
+                seeder.Seed(db, app.ApplicationServices);
+            }
+
             loggerFactory.AddConsole(this.Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
