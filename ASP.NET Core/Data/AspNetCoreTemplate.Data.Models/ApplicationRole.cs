@@ -9,12 +9,14 @@
     public class ApplicationRole : IdentityRole, IAuditInfo, IDeletableEntity
     {
         public ApplicationRole()
+            : this(null)
         {
         }
 
         public ApplicationRole(string name)
             : base(name)
         {
+            this.CreatedOn = DateTime.UtcNow;
         }
 
         public DateTime CreatedOn { get; set; }
