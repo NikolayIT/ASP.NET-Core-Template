@@ -11,9 +11,9 @@
 
     public class SettingsController : Controller
     {
-        private readonly IDbRepository<Setting> repository;
+        private readonly IDeletableEntityRepository<Setting> repository;
 
-        public SettingsController(IDbRepository<Setting> repository)
+        public SettingsController(IDeletableEntityRepository<Setting> repository)
         {
             this.repository = repository;
         }

@@ -58,7 +58,8 @@
             services.AddMvc();
 
             // Data
-            services.AddScoped(typeof(IDbRepository<>), typeof(DbRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(DbRepository<>));
 
             // Add application services.
             services.AddTransient<IEmailSender, DoNothingMessageSender>();

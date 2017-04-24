@@ -8,7 +8,7 @@
 
     using Microsoft.EntityFrameworkCore;
 
-    public class DbRepository<T> : IDbRepository<T>
+    public class DbRepository<T> : IDeletableEntityRepository<T>
         where T : class, IAuditInfo, IDeletableEntity
     {
         public DbRepository(ApplicationDbContext context)
@@ -36,7 +36,7 @@
             return this.DbSet;
         }
 
-        public T GetById(object id)
+        public T GetById(params object[] id)
         {
             var item = this.DbSet.Find(id);
             if (item.IsDeleted)
