@@ -1,4 +1,4 @@
-{
+﻿{
   "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
   "settings": {
     "layoutRules": {
@@ -9,7 +9,7 @@
       "allowedHungarianPrefixes": [ "db", "at", "or", "up", "it", "un", "x", "y", "id", "ip", "bg" ]
     },
     "documentationRules": {
-      "companyName": "AspNetCoreTemplate",
+      "companyName": "AspNetCoreAngularTemplate",
       "copyrightText": "Copyright (c) {companyName}. All Rights Reserved.",
       "documentInterfaces": false,
       "documentInternalElements": false

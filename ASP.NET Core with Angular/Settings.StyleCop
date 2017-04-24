@@ -1,4 +1,4 @@
-<StyleCopSettings Version="105">
+﻿<StyleCopSettings Version="105">
   <Parsers>
     <Parser ParserId="StyleCop.CSharp.CsParser">
       <ParserSettings>
