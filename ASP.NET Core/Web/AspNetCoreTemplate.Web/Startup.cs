@@ -6,6 +6,7 @@
     using AspNetCoreTemplate.Data.Common.Repositories;
     using AspNetCoreTemplate.Data.Models;
     using AspNetCoreTemplate.Data.Repositories;
+    using AspNetCoreTemplate.Data.Seeding;
     using AspNetCoreTemplate.Services.Messaging;
     using AspNetCoreTemplate.Web.Infrastructure.Mapping;
     using AspNetCoreTemplate.Web.Models.AccountViewModels;
