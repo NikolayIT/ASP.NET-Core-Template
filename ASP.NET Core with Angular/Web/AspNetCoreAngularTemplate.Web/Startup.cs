@@ -12,10 +12,11 @@
     using AspNetCoreAngularTemplate.Data.Models;
     using AspNetCoreAngularTemplate.Data.Repositories;
     using AspNetCoreAngularTemplate.Data.Seeding;
+    using AspNetCoreAngularTemplate.Services.Data;
     using AspNetCoreAngularTemplate.Services.Messaging;
     using AspNetCoreAngularTemplate.Web.Infrastructure.Mapping;
     using AspNetCoreAngularTemplate.Web.Infrastructure.Middlewares.Auth;
-    using AspNetCoreAngularTemplate.Web.Models.AccountViewModels;
+    using AspNetCoreAngularTemplate.Web.Models;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -66,7 +67,9 @@
                 .AddRoleStore<ApplicationRoleStore>()
                 .AddDefaultTokenProviders();
 
+            // Core services
             services.AddMvc();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             // Data
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
@@ -75,6 +78,7 @@
             // Add application services.
             services.AddTransient<IEmailSender, DoNothingMessageSender>();
             services.AddTransient<ISmsSender, DoNothingMessageSender>();
+            services.AddTransient<IUsersService, UsersService>();
 
             // Identity stores
             services.AddTransient<IUserStore<ApplicationUser>, ApplicationUserStore>();
@@ -85,8 +89,8 @@
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             AutoMapperConfig.RegisterMappings(
-                typeof(LoginViewModel).GetTypeInfo().Assembly,
-                typeof(LoginViewModel).GetTypeInfo().Assembly);
+                typeof(CurrentUserModel).GetTypeInfo().Assembly,
+                typeof(CurrentUserModel).GetTypeInfo().Assembly);
 
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())

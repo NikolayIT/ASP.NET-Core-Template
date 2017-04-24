@@ -48,6 +48,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\AspNetCoreAngularTemplate.Data.Models\AspNetCoreAngularTemplate.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\AspNetCoreAngularTemplate.Data\AspNetCoreAngularTemplate.Data.csproj" />
+    <ProjectReference Include="..\..\Services\AspNetCoreAngularTemplate.Services.Data\AspNetCoreAngularTemplate.Services.Data.csproj" />
     <ProjectReference Include="..\..\Services\AspNetCoreAngularTemplate.Services.Messaging\AspNetCoreAngularTemplate.Services.Messaging.csproj" />
     <ProjectReference Include="..\..\Services\AspNetCoreAngularTemplate.Services\AspNetCoreAngularTemplate.Services.csproj" />
     <ProjectReference Include="..\AspNetCoreAngularTemplate.Web.Infrastructure\AspNetCoreAngularTemplate.Web.Infrastructure.csproj" />
