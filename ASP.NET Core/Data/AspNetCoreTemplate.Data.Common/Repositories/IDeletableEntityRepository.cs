@@ -4,11 +4,13 @@
 
     using AspNetCoreTemplate.Data.Common.Models;
 
-    public interface IDeletableEntityRepository<T> : IRepository<T>
-        where T : class, IAuditInfo, IDeletableEntity
+    public interface IDeletableEntityRepository<TEntity> : IRepository<TEntity>
+        where TEntity : class, IDeletableEntity
     {
-        IQueryable<T> AllWithDeleted();
+        IQueryable<TEntity> AllWithDeleted();
 
-        void HardDelete(T entity);
+        void HardDelete(TEntity entity);
+
+        void Undelete(TEntity entity);
     }
 }

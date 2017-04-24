@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Common.Repositories;
 
@@ -27,7 +28,7 @@
 
         public virtual IQueryable<TEntity> All() => this.DbSet.AsQueryable();
 
-        public virtual TEntity GetById(params object[] id) => this.DbSet.Find(id);
+        public Task<TEntity> GetByIdAsync(params object[] id) => this.DbSet.FindAsync(id);
 
         public virtual void Add(TEntity entity)
         {
@@ -40,6 +41,17 @@
             {
                 this.DbSet.Add(entity);
             }
+        }
+
+        public virtual void Update(TEntity entity)
+        {
+            var entry = this.Context.Entry(entity);
+            if (entry.State == EntityState.Detached)
+            {
+                this.DbSet.Attach(entity);
+            }
+
+            entry.State = EntityState.Modified;
         }
 
         public virtual void Delete(TEntity entity)
@@ -56,7 +68,7 @@
             }
         }
 
-        public void Save() => this.Context.SaveChanges();
+        public Task<int> SaveChangesAsync() => this.Context.SaveChangesAsync();
 
         public void Dispose() => this.Context.Dispose();
     }
