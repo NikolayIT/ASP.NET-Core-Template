@@ -1,0 +1,7 @@
+﻿@model AspNetCoreTemplate.Web.Models.Settings.SettingsListViewModel
+<h1>Settings</h1>
+
+@foreach (var setting in Model.Settings)
+{
+    <div>@setting.Id: @setting.Name = @setting.Value</div>
+}
