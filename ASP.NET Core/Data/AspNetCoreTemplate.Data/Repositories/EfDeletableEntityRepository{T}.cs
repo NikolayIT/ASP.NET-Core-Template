@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Data
+﻿namespace AspNetCoreTemplate.Data.Repositories
 {
     using System;
     using System.Linq;
@@ -8,10 +8,10 @@
 
     using Microsoft.EntityFrameworkCore;
 
-    public class DbRepository<T> : IDeletableEntityRepository<T>
+    public class EfDeletableEntityRepository<T> : IDeletableEntityRepository<T>
         where T : class, IAuditInfo, IDeletableEntity
     {
-        public DbRepository(ApplicationDbContext context)
+        public EfDeletableEntityRepository(ApplicationDbContext context)
         {
             if (context == null)
             {

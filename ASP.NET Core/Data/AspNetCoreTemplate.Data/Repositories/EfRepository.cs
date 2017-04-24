@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Data
+﻿namespace AspNetCoreTemplate.Data.Repositories
 {
     using System;
     using System.Linq;

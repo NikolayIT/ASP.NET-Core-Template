@@ -5,6 +5,7 @@
     using AspNetCoreTemplate.Data;
     using AspNetCoreTemplate.Data.Common.Repositories;
     using AspNetCoreTemplate.Data.Models;
+    using AspNetCoreTemplate.Data.Repositories;
     using AspNetCoreTemplate.Services.Messaging;
     using AspNetCoreTemplate.Web.Infrastructure.Mapping;
     using AspNetCoreTemplate.Web.Models.AccountViewModels;
@@ -58,8 +59,8 @@
             services.AddMvc();
 
             // Data
+            services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-            services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(DbRepository<>));
 
             // Add application services.
             services.AddTransient<IEmailSender, DoNothingMessageSender>();
