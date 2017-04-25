@@ -14,7 +14,7 @@
     using Microsoft.Extensions.Options;
 
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;

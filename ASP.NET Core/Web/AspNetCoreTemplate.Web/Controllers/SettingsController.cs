@@ -11,7 +11,7 @@
 
     using Microsoft.AspNetCore.Mvc;
 
-    public class SettingsController : Controller
+    public class SettingsController : BaseController
     {
         private readonly IDeletableEntityRepository<Setting> repository;
 
