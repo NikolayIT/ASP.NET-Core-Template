@@ -13,6 +13,7 @@
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -54,7 +55,8 @@
                         options.Password.RequireNonAlphanumeric = false;
                         options.Password.RequiredLength = 6;
                     })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddUserStore<ApplicationUserStore>()
+                .AddRoleStore<ApplicationRoleStore>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
@@ -66,6 +68,10 @@
             // Add application services.
             services.AddTransient<IEmailSender, DoNothingMessageSender>();
             services.AddTransient<ISmsSender, DoNothingMessageSender>();
+
+            // Identity stores
+            services.AddTransient<IUserStore<ApplicationUser>, ApplicationUserStore>();
+            services.AddTransient<IRoleStore<ApplicationRole>, ApplicationRoleStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
