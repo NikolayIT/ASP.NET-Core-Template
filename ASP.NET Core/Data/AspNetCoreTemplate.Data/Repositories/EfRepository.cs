@@ -28,7 +28,7 @@
 
         public virtual IQueryable<TEntity> All() => this.DbSet.AsQueryable();
 
-        public Task<TEntity> GetByIdAsync(params object[] id) => this.DbSet.FindAsync(id);
+        public virtual Task<TEntity> GetByIdAsync(params object[] id) => this.DbSet.FindAsync(id);
 
         public virtual void Add(TEntity entity)
         {
