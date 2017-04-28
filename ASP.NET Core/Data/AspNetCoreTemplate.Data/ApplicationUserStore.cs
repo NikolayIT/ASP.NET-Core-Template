@@ -7,8 +7,15 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-    public class ApplicationUserStore : UserStore<ApplicationUser, ApplicationRole, ApplicationDbContext, string,
-        IdentityUserClaim<string>, IdentityUserRole<string>, IdentityUserLogin<string>, IdentityUserToken<string>>
+    public class ApplicationUserStore : UserStore<
+        ApplicationUser,
+        ApplicationRole,
+        ApplicationDbContext,
+        string,
+        IdentityUserClaim<string>,
+        IdentityUserRole<string>,
+        IdentityUserLogin<string>,
+        IdentityUserToken<string>>
     {
         public ApplicationUserStore(ApplicationDbContext context, IdentityErrorDescriber describer = null)
             : base(context, describer)
@@ -43,12 +50,12 @@
             string value)
         {
             var token = new IdentityUserToken<string>
-                        {
-                            UserId = user.Id,
-                            LoginProvider = loginProvider,
-                            Name = name,
-                            Value = value
-                        };
+            {
+                UserId = user.Id,
+                LoginProvider = loginProvider,
+                Name = name,
+                Value = value
+            };
             return token;
         }
     }

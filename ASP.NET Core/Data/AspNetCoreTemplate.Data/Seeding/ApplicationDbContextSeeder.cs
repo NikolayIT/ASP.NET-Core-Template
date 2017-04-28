@@ -9,9 +9,9 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
 
-    public class ApplicationDbContextSeeder
+    public static class ApplicationDbContextSeeder
     {
-        public void Seed(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
+        public static void Seed(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
             if (dbContext == null)
             {
@@ -24,20 +24,30 @@
             }
 
             var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
-            this.Seed(dbContext, roleManager);
+            Seed(dbContext, roleManager);
         }
 
-        public void Seed(ApplicationDbContext dbContext, RoleManager<ApplicationRole> roleManager)
+        public static void Seed(ApplicationDbContext dbContext, RoleManager<ApplicationRole> roleManager)
         {
-            this.SeedRoles(roleManager);
+            if (dbContext == null)
+            {
+                throw new ArgumentNullException(nameof(dbContext));
+            }
+
+            if (roleManager == null)
+            {
+                throw new ArgumentNullException(nameof(roleManager));
+            }
+
+            SeedRoles(roleManager);
         }
 
-        private void SeedRoles(RoleManager<ApplicationRole> roleManager)
+        private static void SeedRoles(RoleManager<ApplicationRole> roleManager)
         {
-            this.SeedRole(GlobalConstants.AdministratorRoleName, roleManager);
+            SeedRole(GlobalConstants.AdministratorRoleName, roleManager);
         }
 
-        private void SeedRole(string roleName, RoleManager<ApplicationRole> roleManager)
+        private static void SeedRole(string roleName, RoleManager<ApplicationRole> roleManager)
         {
             var role = roleManager.FindByNameAsync(roleName).GetAwaiter().GetResult();
             if (role == null)

@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Web.Models.ManageViewModels
+﻿namespace AspNetCoreTemplate.Web.ViewModels.Manage
 {
     using System.Collections.Generic;
 

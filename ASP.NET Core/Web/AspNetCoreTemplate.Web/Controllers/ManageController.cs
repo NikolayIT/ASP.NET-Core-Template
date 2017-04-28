@@ -5,7 +5,7 @@
 
     using AspNetCoreTemplate.Data.Models;
     using AspNetCoreTemplate.Services.Messaging;
-    using AspNetCoreTemplate.Web.Models.ManageViewModels;
+    using AspNetCoreTemplate.Web.ViewModels.Manage;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;

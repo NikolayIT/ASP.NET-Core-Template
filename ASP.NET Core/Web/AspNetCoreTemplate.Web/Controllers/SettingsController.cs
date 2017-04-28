@@ -7,7 +7,7 @@
     using AspNetCoreTemplate.Data.Common.Repositories;
     using AspNetCoreTemplate.Data.Models;
     using AspNetCoreTemplate.Web.Infrastructure.Mapping;
-    using AspNetCoreTemplate.Web.Models.Settings;
+    using AspNetCoreTemplate.Web.ViewModels.Settings;
 
     using Microsoft.AspNetCore.Mvc;
 

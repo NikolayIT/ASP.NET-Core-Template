@@ -7,8 +7,12 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-    public class ApplicationRoleStore : RoleStore<ApplicationRole, ApplicationDbContext, string,
-        IdentityUserRole<string>, IdentityRoleClaim<string>>
+    public class ApplicationRoleStore : RoleStore<
+        ApplicationRole,
+        ApplicationDbContext,
+        string,
+        IdentityUserRole<string>,
+        IdentityRoleClaim<string>>
     {
         public ApplicationRoleStore(ApplicationDbContext context, IdentityErrorDescriber describer = null)
             : base(context, describer)
