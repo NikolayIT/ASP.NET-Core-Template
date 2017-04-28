@@ -23,7 +23,7 @@
         {
             var entity = await base.GetByIdAsync(id);
 
-            if (entity != null && entity.IsDeleted)
+            if (entity?.IsDeleted ?? false)
             {
                 entity = null;
             }
