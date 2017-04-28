@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Web.Models.Settings
+﻿namespace AspNetCoreTemplate.Web.ViewModels.Settings
 {
     using AspNetCoreTemplate.Data.Models;
     using AspNetCoreTemplate.Web.Infrastructure.Mapping;

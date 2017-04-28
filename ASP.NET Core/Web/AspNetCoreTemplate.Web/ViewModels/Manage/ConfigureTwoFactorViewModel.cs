@@ -1,17 +1,13 @@
-﻿namespace AspNetCoreTemplate.Web.Models.AccountViewModels
+﻿namespace AspNetCoreTemplate.Web.ViewModels.Manage
 {
     using System.Collections.Generic;
 
     using Microsoft.AspNetCore.Mvc.Rendering;
 
-    public class SendCodeViewModel
+    public class ConfigureTwoFactorViewModel
     {
         public string SelectedProvider { get; set; }
 
         public ICollection<SelectListItem> Providers { get; set; }
-
-        public string ReturnUrl { get; set; }
-
-        public bool RememberMe { get; set; }
     }
 }

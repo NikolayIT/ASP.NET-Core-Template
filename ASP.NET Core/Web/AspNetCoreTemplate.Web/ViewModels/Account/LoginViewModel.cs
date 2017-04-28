@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Web.Models.AccountViewModels
+﻿namespace AspNetCoreTemplate.Web.ViewModels.Account
 {
     using System.ComponentModel.DataAnnotations;
 

@@ -9,7 +9,7 @@
     using AspNetCoreTemplate.Data.Seeding;
     using AspNetCoreTemplate.Services.Messaging;
     using AspNetCoreTemplate.Web.Infrastructure.Mapping;
-    using AspNetCoreTemplate.Web.Models.AccountViewModels;
+    using AspNetCoreTemplate.Web.ViewModels.Account;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
