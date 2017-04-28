@@ -16,7 +16,7 @@
         public ApplicationRole(string name)
             : base(name)
         {
-            this.CreatedOn = DateTime.UtcNow;
+            this.Id = Guid.NewGuid().ToString();
         }
 
         public DateTime CreatedOn { get; set; }
