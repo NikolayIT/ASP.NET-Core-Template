@@ -13,7 +13,13 @@
         {
         }
 
-        public SendGridMessage(SendGridEmail to, string subject, SendGridEmail from, string message, IEnumerable<SendGridEmail> bcc = null, string type = TypeHtml)
+        public SendGridMessage(
+            SendGridEmail to,
+            string subject,
+            SendGridEmail from,
+            string message,
+            IEnumerable<SendGridEmail> bcc = null,
+            string type = TypeHtml)
         {
             this.Personalizations = new List<SendGridPersonalization>
             {

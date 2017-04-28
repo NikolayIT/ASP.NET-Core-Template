@@ -12,26 +12,20 @@
 
     using Newtonsoft.Json;
 
+    // Documentation: https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html
     public class SendGridEmailSender : IEmailSender
     {
         private const string AuthenticationScheme = "Bearer";
-
         private const string BaseUrl = "https://api.sendgrid.com/v3/";
-
         private const string SendEmailUrlPath = "mail/send";
 
         private readonly string fromAddress;
-
         private readonly string fromName;
-
         private readonly HttpClient httpClient;
-
         private readonly ILogger logger;
 
         public SendGridEmailSender(ILoggerFactory loggerFactory, string apiKey, string fromAddress, string fromName)
         {
-            this.fromAddress = fromAddress;
-            this.fromName = fromName;
             if (loggerFactory == null)
             {
                 throw new ArgumentNullException(nameof(loggerFactory));
@@ -42,11 +36,23 @@
                 throw new ArgumentOutOfRangeException(nameof(apiKey));
             }
 
+            if (string.IsNullOrWhiteSpace(fromAddress))
+            {
+                throw new ArgumentOutOfRangeException(nameof(fromAddress));
+            }
+
+            if (string.IsNullOrWhiteSpace(fromName))
+            {
+                throw new ArgumentOutOfRangeException(nameof(fromName));
+            }
+
+            this.logger = loggerFactory.CreateLogger<SendGridEmailSender>();
             this.httpClient = new HttpClient();
             this.httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue(AuthenticationScheme, apiKey);
             this.httpClient.BaseAddress = new Uri(BaseUrl);
-            this.logger = loggerFactory.CreateLogger<SendGridEmailSender>();
+            this.fromAddress = fromAddress;
+            this.fromName = fromName;
         }
 
         public async Task SendEmailAsync(string email, string subject, string message)
@@ -75,8 +81,8 @@
             {
                 var json = JsonConvert.SerializeObject(msg);
                 var response = await this.httpClient.PostAsync(
-                                   SendEmailUrlPath,
-                                   new StringContent(json, Encoding.UTF8, "application/json"));
+                    SendEmailUrlPath,
+                    new StringContent(json, Encoding.UTF8, "application/json"));
 
                 if (!response.IsSuccessStatusCode)
                 {
