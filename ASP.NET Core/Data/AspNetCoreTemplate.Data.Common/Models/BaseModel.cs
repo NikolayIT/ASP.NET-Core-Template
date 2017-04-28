@@ -12,7 +12,6 @@
 
         public DateTime? ModifiedOn { get; set; }
 
-        // TODO: [Index]
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
