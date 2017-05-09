@@ -1,5 +1,5 @@
 {
-  "name": "asp.net",
+  "name": "AspNetCoreTemplate",
   "private": true,
   "dependencies": {
     "jQuery": "3.2.1",
