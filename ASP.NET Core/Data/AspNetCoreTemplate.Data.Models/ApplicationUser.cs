@@ -4,7 +4,7 @@
 
     using AspNetCoreTemplate.Data.Common.Models;
 
-    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.AspNetCore.Identity;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {

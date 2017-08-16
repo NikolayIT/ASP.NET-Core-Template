@@ -3,13 +3,14 @@
     using System.IO;
 
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Infrastructure;
+    using Microsoft.EntityFrameworkCore.Design;
+    using Microsoft.EntityFrameworkCore.Diagnostics;
     using Microsoft.Extensions.Configuration;
 
     // TODO: Remove. (part of the workaround for https://github.com/aspnet/EntityFramework/issues/5320)
-    public class TemporaryDbContextFactory : IDbContextFactory<ApplicationDbContext>
+    public class TemporaryDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
     {
-        public ApplicationDbContext Create(DbContextFactoryOptions options)
+        public ApplicationDbContext CreateDbContext(string[] args)
         {
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
