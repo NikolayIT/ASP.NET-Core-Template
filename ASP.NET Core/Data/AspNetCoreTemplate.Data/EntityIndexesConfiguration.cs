@@ -1,7 +1,6 @@
 ﻿namespace AspNetCoreTemplate.Data
 {
     using System.Linq;
-    using System.Reflection;
 
     using AspNetCoreTemplate.Data.Common.Models;
 
