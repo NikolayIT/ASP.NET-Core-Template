@@ -44,6 +44,7 @@
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequiredLength = 6;
                 })
+                .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddUserStore<ApplicationUserStore>()
                 .AddRoleStore<ApplicationRoleStore>()
                 .AddDefaultTokenProviders();
@@ -74,7 +75,7 @@
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                ApplicationDbContextSeeder.Seed(dbContext, app.ApplicationServices);
+                ApplicationDbContextSeeder.Seed(dbContext, serviceScope.ServiceProvider);
             }
 
             loggerFactory.AddConsole(this.configuration.GetSection("Logging"));
