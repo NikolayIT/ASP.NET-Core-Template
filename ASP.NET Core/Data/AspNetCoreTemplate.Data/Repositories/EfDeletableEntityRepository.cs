@@ -7,6 +7,8 @@
     using AspNetCoreTemplate.Data.Common.Models;
     using AspNetCoreTemplate.Data.Common.Repositories;
 
+    using Microsoft.EntityFrameworkCore;
+
     public class EfDeletableEntityRepository<TEntity> : EfRepository<TEntity>, IDeletableEntityRepository<TEntity>
         where TEntity : class, IDeletableEntity
     {
@@ -19,7 +21,7 @@
 
         public override IQueryable<TEntity> AllAsNoTracking() => base.AllAsNoTracking().Where(x => !x.IsDeleted);
 
-        public IQueryable<TEntity> AllWithDeleted() => base.All();
+        public IQueryable<TEntity> AllWithDeleted() => base.All().IgnoreQueryFilters();
 
         public override async Task<TEntity> GetByIdAsync(params object[] id)
         {
@@ -33,7 +35,12 @@
             return entity;
         }
 
-        public Task<TEntity> GetByIdWithDeletedAsync(params object[] id) => base.GetByIdAsync(id);
+        public Task<TEntity> GetByIdWithDeletedAsync(params object[] id)
+        {
+            var byIdPredicate = EfExpressionHelper.BuildByIdPredicate<TEntity>(this.Context, id);
+
+            return this.AllWithDeleted().FirstOrDefaultAsync(byIdPredicate);
+        }
 
         public void HardDelete(TEntity entity)
         {
