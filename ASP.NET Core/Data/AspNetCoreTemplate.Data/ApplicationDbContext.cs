@@ -44,6 +44,8 @@
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 
+            ConfigureUserIdentityRelations(builder);
+
             EntityIndexesConfiguration.Configure(builder);
 
             // Disable cascade delete
@@ -54,6 +56,30 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+        }
+
+        private static void ConfigureUserIdentityRelations(ModelBuilder builder)
+        {
+            builder.Entity<ApplicationUser>()
+                .HasMany(e => e.Claims)
+                .WithOne()
+                .HasForeignKey(e => e.UserId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<ApplicationUser>()
+                .HasMany(e => e.Logins)
+                .WithOne()
+                .HasForeignKey(e => e.UserId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<ApplicationUser>()
+                .HasMany(e => e.Roles)
+                .WithOne()
+                .HasForeignKey(e => e.UserId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         private void ApplyAuditInfoRules()

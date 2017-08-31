@@ -231,7 +231,7 @@ namespace AspNetCoreTemplate.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.HasOne("AspNetCoreTemplate.Data.Models.ApplicationUser")
-                        .WithMany()
+                        .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
@@ -239,7 +239,7 @@ namespace AspNetCoreTemplate.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.HasOne("AspNetCoreTemplate.Data.Models.ApplicationUser")
-                        .WithMany()
+                        .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
@@ -252,7 +252,7 @@ namespace AspNetCoreTemplate.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("AspNetCoreTemplate.Data.Models.ApplicationUser")
-                        .WithMany()
+                        .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
