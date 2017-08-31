@@ -8,12 +8,12 @@
     using AspNetCoreTemplate.Services.Messaging;
     using AspNetCoreTemplate.Web.ViewModels.Account;
 
+    using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Options;
 
     [Authorize]
     public class AccountController : BaseController
@@ -23,19 +23,16 @@
         private readonly IEmailSender emailSender;
         private readonly ISmsSender smsSender;
         private readonly ILogger logger;
-        private readonly string externalCookieScheme;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
             ISmsSender smsSender,
             ILoggerFactory loggerFactory)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
-            this.externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
             this.emailSender = emailSender;
             this.smsSender = smsSender;
             this.logger = loggerFactory.CreateLogger<AccountController>();
@@ -47,7 +44,7 @@
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
-            await this.HttpContext.Authentication.SignOutAsync(this.externalCookieScheme);
+            await this.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             this.ViewData["ReturnUrl"] = returnUrl;
             return this.View();

@@ -15,7 +15,8 @@
         IdentityUserClaim<string>,
         IdentityUserRole<string>,
         IdentityUserLogin<string>,
-        IdentityUserToken<string>>
+        IdentityUserToken<string>,
+        IdentityRoleClaim<string>>
     {
         public ApplicationUserStore(ApplicationDbContext context, IdentityErrorDescriber describer = null)
             : base(context, describer)

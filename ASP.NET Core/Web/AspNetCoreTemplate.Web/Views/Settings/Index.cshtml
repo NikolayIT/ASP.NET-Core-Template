@@ -1,5 +1,10 @@
 ﻿@model AspNetCoreTemplate.Web.ViewModels.Settings.SettingsListViewModel
-<h1>Settings</h1>
+
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<h1>@ViewData["Title"]</h1>
 
 @foreach (var setting in Model.Settings)
 {
