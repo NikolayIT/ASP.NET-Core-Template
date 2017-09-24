@@ -1,4 +1,5 @@
-﻿namespace AspNetCoreTemplate.Data.Models
+﻿// ReSharper disable VirtualMemberCallInConstructor
+namespace AspNetCoreTemplate.Data.Models
 {
     using System;
     using System.Collections.Generic;

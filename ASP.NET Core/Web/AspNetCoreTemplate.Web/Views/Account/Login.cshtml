@@ -4,14 +4,14 @@
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
-    ViewData["Title"] = "Log in";
+    this.ViewData["Title"] = "Log in";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2>@this.ViewData["Title"]</h2>
 <div class="row">
     <div class="col-md-4">
         <section>
-            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+            <form asp-route-returnurl="@this.ViewData["ReturnUrl"]" method="post">
                 <h4>Use a local account to log in.</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
@@ -29,7 +29,7 @@
                     <div class="checkbox">
                         <label asp-for="RememberMe">
                             <input asp-for="RememberMe" />
-                            @Html.DisplayNameFor(m => m.RememberMe)
+                            @this.Html.DisplayNameFor(m => m.RememberMe)
                         </label>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                         <a asp-action="ForgotPassword">Forgot your password?</a>
                     </p>
                     <p>
-                        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+                        <a asp-action="Register" asp-route-returnurl="@this.ViewData["ReturnUrl"]">Register as a new user?</a>
                     </p>
                 </div>
             </form>
@@ -52,7 +52,7 @@
             <h4>Use another service to log in.</h4>
             <hr />
             @{
-                var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+                var loginProviders = (await this.SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
                 if (loginProviders.Count == 0)
                 {
                     <div>
@@ -64,7 +64,7 @@
                 }
                 else
                 {
-                    <form asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                    <form asp-action="ExternalLogin" asp-route-returnurl="@this.ViewData["ReturnUrl"]" method="post" class="form-horizontal">
                         <div>
                             <p>
                                 @foreach (var provider in loginProviders)
@@ -81,5 +81,5 @@
 </div>
 
 @section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
+    @await this.Html.PartialAsync("_ValidationScriptsPartial")
 }

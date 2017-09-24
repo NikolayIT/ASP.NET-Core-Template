@@ -1,14 +1,14 @@
 ﻿@model AspNetCoreTemplate.Web.ViewModels.Manage.VerifyPhoneNumberViewModel
 @{
-    ViewData["Title"] = "Verify Phone Number";
+    this.ViewData["Title"] = "Verify Phone Number";
 }
 
-<h2>@ViewData["Title"].</h2>
+<h2>@this.ViewData["Title"].</h2>
 
-<form asp-controller="Manage" asp-action="VerifyPhoneNumber" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+<form asp-controller="Manage" asp-action="VerifyPhoneNumber" asp-route-returnurl="@this.ViewData["ReturnUrl"]" method="post" class="form-horizontal">
     <input asp-for="PhoneNumber" type="hidden" />
     <h4>Add a phone number.</h4>
-    <h5>@ViewData["Status"]</h5>
+    <h5>@this.ViewData["Status"]</h5>
     <hr />
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
@@ -26,5 +26,5 @@
 </form>
 
 @section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    @{ await this.Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

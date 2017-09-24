@@ -1,10 +1,10 @@
 ﻿@model AspNetCoreTemplate.Web.ViewModels.Manage.IndexViewModel
 @{
-    ViewData["Title"] = "Manage your account";
+    this.ViewData["Title"] = "Manage your account";
 }
 
-<h2>@ViewData["Title"].</h2>
-<p class="text-success">@ViewData["StatusMessage"]</p>
+<h2>@this.ViewData["Title"].</h2>
+<p class="text-success">@this.ViewData["StatusMessage"]</p>
 
 <div>
     <h4>Change your account settings</h4>
@@ -12,7 +12,7 @@
     <dl class="dl-horizontal">
         <dt>Password:</dt>
         <dd>
-            @if (Model.HasPassword)
+            @if (this.Model.HasPassword)
             {
                 <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">Change</a>
             }
@@ -24,7 +24,7 @@
         <dt>External Logins:</dt>
         <dd>
 
-            @Model.Logins.Count <a asp-controller="Manage" asp-action="ManageLogins" class="btn-bracketed">Manage</a>
+            @this.Model.Logins.Count <a asp-controller="Manage" asp-action="ManageLogins" class="btn-bracketed">Manage</a>
         </dd>
         <dt>Phone Number:</dt>
         <dd>

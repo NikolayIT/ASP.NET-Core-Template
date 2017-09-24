@@ -1,9 +1,9 @@
 ﻿@model AspNetCoreTemplate.Web.ViewModels.Manage.AddPhoneNumberViewModel
 @{
-    ViewData["Title"] = "Add Phone Number";
+    this.ViewData["Title"] = "Add Phone Number";
 }
 
-<h2>@ViewData["Title"].</h2>
+<h2>@this.ViewData["Title"].</h2>
 <form asp-controller="Manage" asp-action="AddPhoneNumber" method="post" class="form-horizontal">
     <h4>Add a phone number.</h4>
     <hr />
@@ -23,5 +23,5 @@
 </form>
 
 @section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    @{ await this.Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
