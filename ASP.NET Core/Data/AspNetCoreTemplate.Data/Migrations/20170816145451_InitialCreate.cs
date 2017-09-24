@@ -1,4 +1,5 @@
-﻿namespace AspNetCoreTemplate.Data.Migrations
+﻿// ReSharper disable RedundantArgumentDefaultValue
+namespace AspNetCoreTemplate.Data.Migrations
 {
     using System;
 

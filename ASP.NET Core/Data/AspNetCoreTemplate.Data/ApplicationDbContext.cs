@@ -54,7 +54,7 @@
 
             EntityIndexesConfiguration.Configure(builder);
 
-            var entityTypes = builder.Model.GetEntityTypes();
+            var entityTypes = builder.Model.GetEntityTypes().ToList();
 
             // Set global query filter for not deleted entities only
             var deletableEntityTypes = entityTypes
