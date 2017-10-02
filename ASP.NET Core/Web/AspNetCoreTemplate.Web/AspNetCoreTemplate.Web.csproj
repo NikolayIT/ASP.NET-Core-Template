@@ -10,10 +10,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <UserSecretsId>aspnet-AspNetCoreTemplate.Web-c00cf37c-d292-440c-bc05-66a69e3157e0</UserSecretsId>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
