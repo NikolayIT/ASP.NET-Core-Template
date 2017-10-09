@@ -1,0 +1,10 @@
+{
+  "name": "AspNetCoreWithAngularTemplate",
+  "private": true,
+  "dependencies": {
+    "jquery": "3.2.1",
+    "bootstrap": "3.3.7",
+    "jquery-validation": "1.17.0",
+    "jquery-validation-unobtrusive": "3.2.6"
+  }
+}

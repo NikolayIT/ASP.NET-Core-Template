@@ -1,0 +1,21 @@
+﻿@model AspNetCoreTemplate.Web.ViewModels.Account.SendCodeViewModel
+@{
+    this.ViewData["Title"] = "Send Verification Code";
+}
+
+<h2>@this.ViewData["Title"].</h2>
+
+<form asp-controller="Account" asp-action="SendCode" asp-route-returnurl="@this.Model.ReturnUrl" method="post" class="form-horizontal">
+    <input asp-for="RememberMe" type="hidden" />
+    <div class="row">
+        <div class="col-md-8">
+            Select Two-Factor Authentication Provider:
+            <select asp-for="SelectedProvider" asp-items="Model.Providers"></select>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await this.Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
