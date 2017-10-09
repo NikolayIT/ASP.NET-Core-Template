@@ -9,7 +9,7 @@
     using AspNetCoreWithAngularTemplate.Data.Seeding;
     using AspNetCoreWithAngularTemplate.Services.Messaging;
     using AspNetCoreWithAngularTemplate.Web.Infrastructure.Mapping;
-    using AspNetCoreWithAngularTemplate.Web.ViewModels.Account;
+    using AspNetCoreWithAngularTemplate.Web.ViewModels.Settings;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -69,7 +69,7 @@
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            AutoMapperConfig.RegisterMappings(typeof(LoginViewModel).GetTypeInfo().Assembly);
+            AutoMapperConfig.RegisterMappings(typeof(SettingViewModel).GetTypeInfo().Assembly);
 
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())

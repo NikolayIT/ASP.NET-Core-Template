@@ -20,13 +20,14 @@
             this.repository = repository;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult All()
         {
             var settings = this.repository.All().To<SettingViewModel>().ToList();
-            var model = new SettingsListViewModel { Settings = settings };
-            return this.View(model);
+            return this.Ok(settings);
         }
 
+        [HttpPost]
         public async Task<IActionResult> InsertSetting()
         {
             var random = new Random();
@@ -35,7 +36,7 @@
 
             await this.repository.SaveChangesAsync();
 
-            return this.RedirectToAction(nameof(this.Index));
+            return this.Ok(new { id = setting.Id });
         }
     }
 }

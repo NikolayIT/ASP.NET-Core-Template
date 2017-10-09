@@ -12,6 +12,7 @@
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" />
   </ItemGroup>
@@ -25,14 +26,11 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\images\" />
-    <Folder Include="wwwroot\lib\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\Data\AspNetCoreWithAngularTemplate.Data.Models\AspNetCoreWithAngularTemplate.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\AspNetCoreWithAngularTemplate.Data\AspNetCoreWithAngularTemplate.Data.csproj" />
     <ProjectReference Include="..\..\Services\AspNetCoreWithAngularTemplate.Services.Messaging\AspNetCoreWithAngularTemplate.Services.Messaging.csproj" />
     <ProjectReference Include="..\..\Services\AspNetCoreWithAngularTemplate.Services\AspNetCoreWithAngularTemplate.Services.csproj" />
     <ProjectReference Include="..\AspNetCoreWithAngularTemplate.Web.Infrastructure\AspNetCoreWithAngularTemplate.Web.Infrastructure.csproj" />
   </ItemGroup>
+  
 </Project>
