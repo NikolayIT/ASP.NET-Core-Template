@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Services.Messaging
+﻿namespace AspNetCoreWithAngularTemplate.Services.Messaging
 {
     using System.Threading.Tasks;
 

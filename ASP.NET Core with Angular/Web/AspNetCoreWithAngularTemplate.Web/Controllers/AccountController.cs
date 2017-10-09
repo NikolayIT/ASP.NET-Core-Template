@@ -1,12 +1,12 @@
-﻿namespace AspNetCoreTemplate.Web.Controllers
+﻿namespace AspNetCoreWithAngularTemplate.Web.Controllers
 {
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
-    using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Services.Messaging;
-    using AspNetCoreTemplate.Web.ViewModels.Account;
+    using AspNetCoreWithAngularTemplate.Data.Models;
+    using AspNetCoreWithAngularTemplate.Services.Messaging;
+    using AspNetCoreWithAngularTemplate.Web.ViewModels.Account;
 
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;

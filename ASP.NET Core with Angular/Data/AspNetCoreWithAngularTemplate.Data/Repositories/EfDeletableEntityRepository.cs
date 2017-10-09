@@ -1,11 +1,11 @@
-﻿namespace AspNetCoreTemplate.Data.Repositories
+﻿namespace AspNetCoreWithAngularTemplate.Data.Repositories
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
 
-    using AspNetCoreTemplate.Data.Common.Models;
-    using AspNetCoreTemplate.Data.Common.Repositories;
+    using AspNetCoreWithAngularTemplate.Data.Common.Models;
+    using AspNetCoreWithAngularTemplate.Data.Common.Repositories;
 
     using Microsoft.EntityFrameworkCore;
 

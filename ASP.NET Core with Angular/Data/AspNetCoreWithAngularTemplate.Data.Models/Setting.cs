@@ -1,6 +1,6 @@
-﻿namespace AspNetCoreTemplate.Data.Models
+﻿namespace AspNetCoreWithAngularTemplate.Data.Models
 {
-    using AspNetCoreTemplate.Data.Common.Models;
+    using AspNetCoreWithAngularTemplate.Data.Common.Models;
 
     public class Setting : BaseModel<int>
     {

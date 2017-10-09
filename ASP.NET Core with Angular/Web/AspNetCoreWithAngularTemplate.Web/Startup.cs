@@ -1,15 +1,15 @@
-﻿namespace AspNetCoreTemplate.Web
+﻿namespace AspNetCoreWithAngularTemplate.Web
 {
     using System.Reflection;
 
-    using AspNetCoreTemplate.Data;
-    using AspNetCoreTemplate.Data.Common.Repositories;
-    using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Data.Repositories;
-    using AspNetCoreTemplate.Data.Seeding;
-    using AspNetCoreTemplate.Services.Messaging;
-    using AspNetCoreTemplate.Web.Infrastructure.Mapping;
-    using AspNetCoreTemplate.Web.ViewModels.Account;
+    using AspNetCoreWithAngularTemplate.Data;
+    using AspNetCoreWithAngularTemplate.Data.Common.Repositories;
+    using AspNetCoreWithAngularTemplate.Data.Models;
+    using AspNetCoreWithAngularTemplate.Data.Repositories;
+    using AspNetCoreWithAngularTemplate.Data.Seeding;
+    using AspNetCoreWithAngularTemplate.Services.Messaging;
+    using AspNetCoreWithAngularTemplate.Web.Infrastructure.Mapping;
+    using AspNetCoreWithAngularTemplate.Web.ViewModels.Account;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;

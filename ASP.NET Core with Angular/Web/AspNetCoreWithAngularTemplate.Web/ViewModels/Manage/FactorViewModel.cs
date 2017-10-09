@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Web.ViewModels.Manage
+﻿namespace AspNetCoreWithAngularTemplate.Web.ViewModels.Manage
 {
     public class FactorViewModel
     {

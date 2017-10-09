@@ -1,10 +1,10 @@
-﻿namespace AspNetCoreTemplate.Data.Seeding
+﻿namespace AspNetCoreWithAngularTemplate.Data.Seeding
 {
     using System;
     using System.Linq;
 
-    using AspNetCoreTemplate.Common;
-    using AspNetCoreTemplate.Data.Models;
+    using AspNetCoreWithAngularTemplate.Common;
+    using AspNetCoreWithAngularTemplate.Data.Models;
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;

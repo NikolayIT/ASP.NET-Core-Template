@@ -1,8 +1,8 @@
-﻿namespace AspNetCoreTemplate.Data
+﻿namespace AspNetCoreWithAngularTemplate.Data
 {
     using System.Linq;
 
-    using AspNetCoreTemplate.Data.Common.Models;
+    using AspNetCoreWithAngularTemplate.Data.Common.Models;
 
     using Microsoft.EntityFrameworkCore;
 

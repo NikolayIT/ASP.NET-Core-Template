@@ -1,9 +1,9 @@
-﻿namespace AspNetCoreTemplate.Data.Common.Repositories
+﻿namespace AspNetCoreWithAngularTemplate.Data.Common.Repositories
 {
     using System.Linq;
     using System.Threading.Tasks;
 
-    using AspNetCoreTemplate.Data.Common.Models;
+    using AspNetCoreWithAngularTemplate.Data.Common.Models;
 
     public interface IDeletableEntityRepository<TEntity> : IRepository<TEntity>
         where TEntity : class, IDeletableEntity

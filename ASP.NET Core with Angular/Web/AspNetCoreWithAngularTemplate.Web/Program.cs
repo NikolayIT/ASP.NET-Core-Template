@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Web
+﻿namespace AspNetCoreWithAngularTemplate.Web
 {
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;

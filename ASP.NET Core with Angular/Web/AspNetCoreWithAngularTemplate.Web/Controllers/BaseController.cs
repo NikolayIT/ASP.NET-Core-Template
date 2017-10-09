@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Web.Controllers
+﻿namespace AspNetCoreWithAngularTemplate.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
 

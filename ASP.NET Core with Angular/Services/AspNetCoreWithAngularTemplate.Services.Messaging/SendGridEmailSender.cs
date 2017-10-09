@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Services.Messaging
+﻿namespace AspNetCoreWithAngularTemplate.Services.Messaging
 {
     using System;
     using System.Net.Http;
@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    using AspNetCoreTemplate.Services.Messaging.SendGrid;
+    using AspNetCoreWithAngularTemplate.Services.Messaging.SendGrid;
 
     using Microsoft.Extensions.Logging;
 

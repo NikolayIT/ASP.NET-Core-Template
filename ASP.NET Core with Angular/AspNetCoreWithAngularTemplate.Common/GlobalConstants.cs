@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Common
+﻿namespace AspNetCoreWithAngularTemplate.Common
 {
     public static class GlobalConstants
     {

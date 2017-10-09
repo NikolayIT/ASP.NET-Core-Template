@@ -1,5 +1,5 @@
 ﻿// ReSharper disable RedundantArgumentDefaultValue
-namespace AspNetCoreTemplate.Data.Migrations
+namespace AspNetCoreWithAngularTemplate.Data.Migrations
 {
     using System;
 

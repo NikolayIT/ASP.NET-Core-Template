@@ -1,8 +1,8 @@
-﻿namespace AspNetCoreTemplate.Data
+﻿namespace AspNetCoreWithAngularTemplate.Data
 {
     using System.Security.Claims;
 
-    using AspNetCoreTemplate.Data.Models;
+    using AspNetCoreWithAngularTemplate.Data.Models;
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;

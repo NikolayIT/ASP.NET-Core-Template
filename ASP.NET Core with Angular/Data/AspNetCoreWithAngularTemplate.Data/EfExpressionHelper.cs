@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Data
+﻿namespace AspNetCoreWithAngularTemplate.Data
 {
     using System;
     using System.Collections.Generic;

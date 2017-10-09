@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Services.Messaging.SendGrid
+﻿namespace AspNetCoreWithAngularTemplate.Services.Messaging.SendGrid
 {
     using System.Collections.Generic;
 
