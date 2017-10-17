@@ -1,0 +1,49 @@
+{
+  "version": "1.0.0",
+  "name": "aspnetcorewithangulartemplate",
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~4.4.4",
+    "@angular/common": "~4.4.4",
+    "@angular/compiler": "~4.4.4",
+    "@angular/core": "~4.4.4",
+    "@angular/forms": "~4.4.4",
+    "@angular/http": "~4.4.4",
+    "@angular/platform-browser": "~4.4.4",
+    "@angular/platform-browser-dynamic": "~4.4.4",
+    "@angular/router": "~4.4.4",
+    "bootstrap": "3.3.7",
+    "core-js": "2.5.1",
+    "jquery": "3.2.1",
+    "reflect-metadata": "0.1.10",
+    "rxjs": "5.4.3",
+    "systemjs": "0.20.19",
+    "zone.js": "0.8.18"
+  },
+  "devDependencies": {
+    "del": "3.0.0",
+    "delete-empty": "1.0.1",
+    "gulp": "3.9.1",
+    "gulp-concat": "2.6.1",
+    "gulp-html-minifier": "0.1.8",
+    "gulp-html-replace": "1.6.2",
+    "gulp-rename": "1.2.2",
+    "gulp-inline-ng2-template": "4.0.0",
+    "gulp-clean-css": "3.9.0",
+    "gulp-sequence": "0.4.6",
+    "gulp-sourcemaps": "2.6.1",
+    "gulp-typescript": "3.2.2",
+    "gulp-uglify": "3.0.0",
+    "html-minifier": "3.5.5",
+    "gulp-useref": "3.1.2",
+    "gulp-replace": "0.6.1",
+    "merge": "1.2.0",
+    "systemjs-builder": "0.16.11",
+    "tsconfig-glob": "0.4.3",
+    "typescript": "2.5.3",
+    "typings": "2.1.1"
+  },
+  "scripts": {
+    "postinstall": "typings install"
+  }
+}
