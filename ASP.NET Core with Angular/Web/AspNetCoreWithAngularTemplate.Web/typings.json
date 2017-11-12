@@ -1,7 +1,0 @@
-﻿{
-  "globalDependencies": {
-    "core-js": "registry:dt/core-js",
-    "node": "registry:dt/node",
-    "jquery": "registry:dt/jquery"
-  }
-}

@@ -1,7 +1,9 @@
 ﻿namespace AspNetCoreWithAngularTemplate.Web
 {
+    using System.Net;
     using System.Reflection;
 
+    using AspNetCoreWithAngularTemplate.Common;
     using AspNetCoreWithAngularTemplate.Data;
     using AspNetCoreWithAngularTemplate.Data.Common.Repositories;
     using AspNetCoreWithAngularTemplate.Data.Models;
@@ -12,12 +14,16 @@
     using AspNetCoreWithAngularTemplate.Web.ViewModels.Settings;
 
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Diagnostics;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+
+    using Newtonsoft.Json;
 
     public class Startup
     {
@@ -84,27 +90,31 @@
                 ApplicationDbContextSeeder.Seed(dbContext, serviceScope.ServiceProvider);
             }
 
-            loggerFactory.AddConsole(this.configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler(application =>
+                {
+                    application.Run(async context =>
+                    {
+                        context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                        context.Response.ContentType = GlobalConstants.JsonContentType;
+
+                        var ex = context.Features.Get<IExceptionHandlerFeature>();
+                        if (ex != null)
+                        {
+                            await context.Response
+                                .WriteAsync(JsonConvert.SerializeObject(new { ex.Error?.Message, ex.Error?.StackTrace }))
+                                .ConfigureAwait(continueOnCapturedContext: false);
+                        }
+                    });
+                });
             }
 
-            app.UseStaticFiles();
+            app.UseFileServer();
 
             app.UseAuthentication();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc(routes => routes.MapRoute("default", "api/{controller}/{action}/{id?}"));
         }
     }
 }

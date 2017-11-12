@@ -111,15 +111,14 @@ gulp.task('setup-libs-app', function (done) {
     }).concat([
         'node_modules/**/@angular/core/bundles/core.umd.min.js',
         'node_modules/**/@angular/common/bundles/common.umd.min.js',
+        'node_modules/**/@angular/common/bundles/common-http.umd.min.js',
         'node_modules/**/@angular/compiler/bundles/compiler.umd.min.js',
         'node_modules/**/@angular/platform-browser/bundles/platform-browser.umd.min.js',
         'node_modules/**/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.min.js',
-        'node_modules/**/@angular/http/bundles/http.umd.min.js',
         'node_modules/**/@angular/router/bundles/router.umd.min.js',
         'node_modules/**/@angular/forms/bundles/forms.umd.min.js',
 
-        'node_modules/**/rxjs/**/*.js',
-        'node_modules/**/rxjs/**/*.js.map'
+        'node_modules/**/rxjs/**/*.js'
     ]);
 
     return gulp.src(appJs).pipe(gulp.dest(paths.lib.js));
