@@ -3,7 +3,9 @@
     var map = {
         'app': 'app',
         'rxjs': 'lib/rxjs',
+        'tslib': 'lib/tslib/tslib.js',
         '@angular': 'lib/@angular',
+        '@angular/common/http': 'lib/@angular/common/bundles/common-http.umd.min.js',
         'zone.js': 'lib/zone.js/dist'
     };
 

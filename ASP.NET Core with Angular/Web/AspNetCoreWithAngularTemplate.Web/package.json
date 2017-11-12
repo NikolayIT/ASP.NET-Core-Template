@@ -17,6 +17,7 @@
     "reflect-metadata": "0.1.10",
     "rxjs": "5.5.2",
     "systemjs": "0.20.19",
+    "tslib": "1.8.0",
     "zone.js": "0.8.18"
   },
   "devDependencies": {

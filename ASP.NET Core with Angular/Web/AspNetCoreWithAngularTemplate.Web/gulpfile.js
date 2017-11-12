@@ -118,7 +118,9 @@ gulp.task('setup-libs-app', function (done) {
         'node_modules/**/@angular/router/bundles/router.umd.min.js',
         'node_modules/**/@angular/forms/bundles/forms.umd.min.js',
 
-        'node_modules/**/rxjs/**/*.js'
+        'node_modules/**/rxjs/**/*.js',
+
+        'node_modules/**/tslib/tslib.js'
     ]);
 
     return gulp.src(appJs).pipe(gulp.dest(paths.lib.js));
@@ -454,7 +456,6 @@ gulp.task('index-uglify', function (done) {
         }))
         .pipe(gulp.dest(paths.index.dest));
 });
-
 
 /*
     Clean after release tasks

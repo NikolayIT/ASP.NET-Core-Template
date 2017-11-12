@@ -10,11 +10,15 @@ import { APP_SERVICES } from './services/index';
 
 import { APP_COMPONENTS, AppComponent } from './components/index';
 
+import { SharedModule } from './components/shared/shared.module';
+
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         HttpClientModule,
+
+        SharedModule,
 
         AppRoutingModule
     ],

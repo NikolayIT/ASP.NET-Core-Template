@@ -1,10 +1,10 @@
 ﻿import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AppComponent } from './components/index';
+import { HomeComponent } from './components/index';
 
 export const APP_ROUTES: Routes = [
-    { path: '', component: AppComponent, pathMatch: 'full' }
+    { path: '', component: HomeComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
