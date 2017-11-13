@@ -2,10 +2,10 @@
 {
     using AspNetCoreWithAngularTemplate.Data.Common.Models;
 
-    public class Setting : BaseModel<int>
+    public class TodoItem : BaseModel<int>
     {
-        public string Name { get; set; }
+        public string Title { get; set; }
 
-        public string Value { get; set; }
+        public bool IsDone { get; set; }
     }
 }

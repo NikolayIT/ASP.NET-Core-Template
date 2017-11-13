@@ -1,7 +1,13 @@
 ﻿namespace AspNetCoreWithAngularTemplate.Web
 {
+    using System;
+    using System.Linq;
     using System.Net;
     using System.Reflection;
+    using System.Security.Claims;
+    using System.Security.Principal;
+    using System.Text;
+    using System.Threading.Tasks;
 
     using AspNetCoreWithAngularTemplate.Common;
     using AspNetCoreWithAngularTemplate.Data;
@@ -11,6 +17,7 @@
     using AspNetCoreWithAngularTemplate.Data.Seeding;
     using AspNetCoreWithAngularTemplate.Services.Messaging;
     using AspNetCoreWithAngularTemplate.Web.Infrastructure.Mapping;
+    using AspNetCoreWithAngularTemplate.Web.Infrastructure.Middlewares.Auth;
     using AspNetCoreWithAngularTemplate.Web.ViewModels.Settings;
 
     using Microsoft.AspNetCore.Builder;
@@ -22,6 +29,8 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Options;
+    using Microsoft.IdentityModel.Tokens;
 
     using Newtonsoft.Json;
 
@@ -41,19 +50,32 @@
             services.AddDbContextPool<ApplicationDbContext>(
                 options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, ApplicationRole>(
-                options =>
+            var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.configuration["JwtTokenValidation:Secret"]));
+
+            services.Configure<TokenProviderOptions>(opts =>
+            {
+                opts.Audience = this.configuration["JwtTokenValidation:Audience"];
+                opts.Issuer = this.configuration["JwtTokenValidation:Issuer"];
+                opts.Path = "/api/account/login";
+                opts.Expiration = TimeSpan.FromDays(15);
+                opts.SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
+            });
+
+            services
+                .AddAuthentication()
+                .AddJwtBearer(opts =>
                 {
-                    options.Password.RequireDigit = false;
-                    options.Password.RequireLowercase = false;
-                    options.Password.RequireUppercase = false;
-                    options.Password.RequireNonAlphanumeric = false;
-                    options.Password.RequiredLength = 6;
-                })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddUserStore<ApplicationUserStore>()
-                .AddRoleStore<ApplicationRoleStore>()
-                .AddDefaultTokenProviders();
+                    opts.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = signingKey,
+                        ValidateIssuer = true,
+                        ValidIssuer = this.configuration["JwtTokenValidation:Issuer"],
+                        ValidateAudience = true,
+                        ValidAudience = this.configuration["JwtTokenValidation:Audience"],
+                        ValidateLifetime = true
+                    };
+                });
 
             services.AddMvc();
 
@@ -75,7 +97,7 @@
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            AutoMapperConfig.RegisterMappings(typeof(SettingViewModel).GetTypeInfo().Assembly);
+            AutoMapperConfig.RegisterMappings(typeof(TodoItemViewModel).GetTypeInfo().Assembly);
 
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())
@@ -112,9 +134,38 @@
 
             app.UseFileServer();
 
-            app.UseAuthentication();
+            app.UseJwtBearerTokens(
+                app.ApplicationServices.GetRequiredService<IOptions<TokenProviderOptions>>(),
+                PrincipalResolver);
 
             app.UseMvc(routes => routes.MapRoute("default", "api/{controller}/{action}/{id?}"));
+        }
+
+        private static async Task<GenericPrincipal> PrincipalResolver(HttpContext context)
+        {
+            var email = context.Request.Form["email"];
+
+            var userManager = context.RequestServices.GetRequiredService<UserManager<ApplicationUser>>();
+            var user = await userManager.FindByEmailAsync(email);
+            if (user == null || user.IsDeleted)
+            {
+                return null;
+            }
+
+            var password = context.Request.Form["password"];
+
+            var isValidPassword = await userManager.CheckPasswordAsync(user, password);
+            if (!isValidPassword)
+            {
+                return null;
+            }
+
+            var roles = await userManager.GetRolesAsync(user);
+
+            var identity = new GenericIdentity(email, "Token");
+            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
+
+            return new GenericPrincipal(identity, roles.ToArray());
         }
     }
 }

@@ -3,12 +3,12 @@
     using AspNetCoreWithAngularTemplate.Data.Models;
     using AspNetCoreWithAngularTemplate.Web.Infrastructure.Mapping;
 
-    public class SettingViewModel : IMapFrom<Setting>
+    public class TodoItemViewModel : IMapFrom<TodoItem>
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Title { get; set; }
 
-        public string Value { get; set; }
+        public bool IsDone { get; set; }
     }
 }

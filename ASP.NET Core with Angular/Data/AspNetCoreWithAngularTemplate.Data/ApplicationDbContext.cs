@@ -24,7 +24,7 @@
         {
         }
 
-        public DbSet<Setting> Settings { get; set; }
+        public DbSet<TodoItem> TodoItems { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

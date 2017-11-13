@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <TypeScriptToolsVersion>latest</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <PropertyGroup>
