@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 
-import 'rxjs/add/operator/do';
+import { tap } from 'rxjs/operators/tap';
 import { Observable } from 'rxjs/Observable';
 
 import { RouterService } from '../router.service';
@@ -13,7 +13,7 @@ export class AuthErrorsInterceptorService implements HttpInterceptor {
     constructor(private routerService: RouterService) { }
 
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(request).do(
+        return next.handle(request).pipe(tap(
             () => { },
             (err: any) => {
                 if (err instanceof HttpErrorResponse) {
@@ -23,6 +23,6 @@ export class AuthErrorsInterceptorService implements HttpInterceptor {
                         this.routerService.redirectToHome();
                     }
                 }
-            });
+            }));
     }
 }

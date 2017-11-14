@@ -1,7 +1,8 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { map, catchError } from 'rxjs/operators';
+import { map } from 'rxjs/operators/map';
+import { catchError } from 'rxjs/operators/catchError';
 import { Observable } from 'rxjs/Observable';
 import { EmptyObservable } from 'rxjs/observable/EmptyObservable';
 
@@ -48,7 +49,7 @@ export class AuthService {
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
         return this.httpClient.post(AuthService.URLS.LOGIN, payload, { headers: headers }).pipe(
-            map(data => {
+            map((data: any) => {
                 this.identityService.setToken(data['access_token'], data['expires_in']);
                 this.identityService.setRoles(data['roles']);
                 this.identityService.setEmail(userLogin.email);
