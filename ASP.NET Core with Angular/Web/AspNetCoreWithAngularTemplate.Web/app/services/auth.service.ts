@@ -14,7 +14,7 @@ import { UserLogin, UserRegister } from '../domain/index';
 
 @Injectable()
 export class AuthService {
-    private static readonly URLS: any = {
+    public static readonly URLS: any = {
         LOGIN: 'api/account/login',
         REGISTER: 'api/account/register'
     };

@@ -1,26 +1,30 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { Injectable, Injector } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 import { tap } from 'rxjs/operators/tap';
 import { Observable } from 'rxjs/Observable';
 
-import { RouterService } from '../router.service';
+import { IdentityService } from '../identity.service';
 
 import { STATUS_CODES } from '../../app.constants';
 
 @Injectable()
 export class AuthErrorsInterceptorService implements HttpInterceptor {
-    constructor(private routerService: RouterService) { }
-
+    constructor(private injector: Injector, private router: Router) { }
+    
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(tap(
             () => { },
             (err: any) => {
                 if (err instanceof HttpErrorResponse) {
+                    const identityService = this.injector.get(IdentityService);
+
                     if (err.status === STATUS_CODES.UNAUTHORIZED) {
-                        this.routerService.redirectToLogin();
+                        identityService.removeIdentity();
+                        this.router.navigateByUrl('/account/login');
                     } else if (err.status === STATUS_CODES.FORBIDDEN) {
-                        this.routerService.redirectToHome();
+                        this.router.navigateByUrl('/');
                     }
                 }
             }));

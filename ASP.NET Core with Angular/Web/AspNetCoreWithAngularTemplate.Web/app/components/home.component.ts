@@ -1,9 +1,22 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
+
+import { TodoItemsDataService } from '../services/index';
+
+import { TodoItem } from '../domain/index';
 
 @Component({
     moduleId: module.id,
     selector: 'home',
-    template: '<h1>Hello, World!</h1>'
+    templateUrl: 'home.component.html', 
 })
 
-export class HomeComponent { }
+export class HomeComponent implements OnInit {
+    constructor(private todoItemsDataService: TodoItemsDataService) { }
+
+    public todoItems: TodoItem[] = [];
+
+    ngOnInit() {
+        this.todoItemsDataService.getAll().subscribe(
+            data => this.todoItems = data);
+    }
+}

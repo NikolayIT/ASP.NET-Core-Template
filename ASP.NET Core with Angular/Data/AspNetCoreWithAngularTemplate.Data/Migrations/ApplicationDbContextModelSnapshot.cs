@@ -17,7 +17,7 @@ namespace AspNetCoreWithAngularTemplate.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
+                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("AspNetCoreWithAngularTemplate.Data.Models.ApplicationRole", b =>
@@ -115,7 +115,7 @@ namespace AspNetCoreWithAngularTemplate.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("AspNetCoreWithAngularTemplate.Data.Models.Setting", b =>
+            modelBuilder.Entity("AspNetCoreWithAngularTemplate.Data.Models.TodoItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -126,17 +126,18 @@ namespace AspNetCoreWithAngularTemplate.Data.Migrations
 
                     b.Property<bool>("IsDeleted");
 
+                    b.Property<bool>("IsDone");
+
                     b.Property<DateTime?>("ModifiedOn");
 
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Value");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Settings");
+                    b.ToTable("TodoItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

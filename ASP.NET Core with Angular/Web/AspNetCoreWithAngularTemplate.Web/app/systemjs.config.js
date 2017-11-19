@@ -1,4 +1,6 @@
-﻿(function (global) {
+﻿'use strict';
+
+(function (global) {
     // where to look for things
     var map = {
         '@angular': 'lib/@angular',

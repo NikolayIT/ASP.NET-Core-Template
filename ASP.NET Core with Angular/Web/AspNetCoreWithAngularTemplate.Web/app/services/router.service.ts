@@ -1,4 +1,4 @@
-﻿import { Injectable, Injector } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
@@ -6,7 +6,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 @Injectable()
 export class RouterService {
-    constructor(private router: Router, private injector: Injector) {
+    constructor(private router: Router) {
         this.router.events.subscribe((e: any) => {
             if (e instanceof NavigationStart) {
                 this.routes[e.url] = true;

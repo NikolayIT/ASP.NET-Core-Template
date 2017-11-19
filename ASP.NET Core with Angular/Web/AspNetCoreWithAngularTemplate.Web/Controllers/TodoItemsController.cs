@@ -22,7 +22,7 @@
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        // [AllowAnonymous]
         public IActionResult All()
         {
             var todoItems = this.repository.All().To<TodoItemViewModel>().ToList();
