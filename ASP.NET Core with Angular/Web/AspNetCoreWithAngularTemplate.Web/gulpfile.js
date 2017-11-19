@@ -40,7 +40,7 @@ paths = {
         root: paths.dest,
         config: paths.dest + 'systemjs.config.js',
         main: 'app/main',
-        modules: ['shared'], // Angular modules
+        modules: ['account', 'shared'], // Angular modules
         dest: paths.dest + 'app.min.js'
     },
     index: {

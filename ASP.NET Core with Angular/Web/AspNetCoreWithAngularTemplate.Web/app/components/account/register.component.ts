@@ -1,11 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿import { Component } from '@angular/core';
 
-namespace AspNetCoreWithAngularTemplate.Web.app.components.account
-{
-    public class register
-    {
+import { AuthService } from '../../services/index';
+
+import { UserRegister } from '../../domain/index';
+
+@Component({
+    moduleId: module.id,
+    selector: 'register',
+    templateUrl: 'register.component.html'
+})
+
+export class RegisterComponent {
+    constructor(private authService: AuthService) { }
+
+    public userRegister: UserRegister = new UserRegister();
+    public registerErrorMessage: string = null;
+
+    public register(): void {
+        this.authService.register(this.userRegister).subscribe(
+            () => { },
+            error => { debugger; this.registerErrorMessage = error; });
     }
 }

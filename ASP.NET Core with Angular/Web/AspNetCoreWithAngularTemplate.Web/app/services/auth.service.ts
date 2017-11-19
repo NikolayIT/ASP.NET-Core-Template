@@ -64,4 +64,8 @@ export class AuthService {
     public logout() {
         this.identityService.removeIdentity();
     }
+
+    public isAuthorized(): boolean {
+        return this.identityService.getToken() !== null;
+    }
 }

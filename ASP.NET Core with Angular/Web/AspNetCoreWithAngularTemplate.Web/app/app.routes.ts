@@ -4,7 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/index';
 
 export const APP_ROUTES: Routes = [
-    { path: '', component: HomeComponent, pathMatch: 'full' }
+    { path: '', component: HomeComponent, pathMatch: 'full' },
+
+    { path: 'account', loadChildren: 'app/components/account/account.module#AccountModule' }
 ];
 
 @NgModule({
