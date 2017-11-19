@@ -1,4 +1,5 @@
 ﻿import { Component } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { AuthService } from '../../services/index';
 
@@ -19,6 +20,6 @@ export class RegisterComponent {
     public register(): void {
         this.authService.register(this.userRegister).subscribe(
             () => { },
-            error => { debugger; this.registerErrorMessage = error; });
+            (error: HttpErrorResponse) => this.registerErrorMessage = error.error || 'Invalid registration.');
     }
 }

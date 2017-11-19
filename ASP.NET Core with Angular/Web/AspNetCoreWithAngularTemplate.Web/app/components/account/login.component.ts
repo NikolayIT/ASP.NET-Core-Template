@@ -1,4 +1,5 @@
 ﻿import { Component } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { AuthService } from '../../services/index';
 
@@ -19,6 +20,6 @@ export class LoginComponent {
     public login(): void {
         this.authService.login(this.userLogin).subscribe(
             () => { },
-            error => { debugger; this.loginErrorMessage = error; });
+            (error: HttpErrorResponse) => this.loginErrorMessage = error.error || 'Invalid login.');
     }
 }

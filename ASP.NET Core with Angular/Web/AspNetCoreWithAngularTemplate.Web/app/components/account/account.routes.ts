@@ -17,8 +17,8 @@ const ACCOUNT_ROUTES: Routes = [
         canActivateChild: [AuthNoGuardService],
         children: [
             { path: '', redirectTo: '/account/login', pathMatch: 'full' },
-            { path: 'register', component: RegisterComponent },
-            { path: 'login', component: LoginComponent }
+            { path: 'login', component: LoginComponent },
+            { path: 'register', component: RegisterComponent }
         ]
     }
 ];

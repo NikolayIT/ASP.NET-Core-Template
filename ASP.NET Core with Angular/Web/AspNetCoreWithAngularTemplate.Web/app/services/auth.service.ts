@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators/map';
 import { catchError } from 'rxjs/operators/catchError';
 import { Observable } from 'rxjs/Observable';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { EmptyObservable } from 'rxjs/observable/EmptyObservable';
 
 import { IdentityService } from './identity.service';
@@ -27,7 +28,7 @@ export class AuthService {
     { }
 
     public register(userRegister: UserRegister) {
-        return this.httpClient.post(AuthService.URLS.REGISTER, userRegister).pipe(
+        return this.httpClient.post(AuthService.URLS.REGISTER, userRegister, { responseType: 'text' }).pipe(
             map(() => {
                 const userLogin = new UserLogin();
                 userLogin.email = userRegister.email;
@@ -37,7 +38,7 @@ export class AuthService {
                     () => { },
                     error => this.loggerService.error(error));
             }),
-            catchError(err => Observable.throw(err)));
+            catchError(err => ErrorObservable.create(err)));
     }
 
     public login(userLogin: UserLogin): Observable<any> {
@@ -54,11 +55,11 @@ export class AuthService {
                 this.identityService.setRoles(data['roles']);
                 this.identityService.setEmail(userLogin.email);
 
-                this.routerService.navigateByUrl('/manager');
+                this.routerService.redirectToHome();
 
-                return new EmptyObservable();
+                return EmptyObservable.create();
             }),
-            catchError(err => Observable.throw(err)));
+            catchError(err => ErrorObservable.create(err)));
     }
 
     public logout() {

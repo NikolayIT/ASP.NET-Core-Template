@@ -1,4 +1,4 @@
-﻿import { Injectable, Injector } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 
 import { tap } from 'rxjs/operators/tap';
@@ -11,21 +11,18 @@ import { STATUS_CODES } from '../../app.constants';
 
 @Injectable()
 export class AuthErrorsInterceptorService implements HttpInterceptor {
-    constructor(private injector: Injector) { }
+    constructor(private identityService: IdentityService, private routerService: RouterService) { }
 
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(tap(
             () => { },
             (err: any) => {
                 if (err instanceof HttpErrorResponse) {
-                    const identityService = this.injector.get(IdentityService);
-                    const routerService = this.injector.get(RouterService);
-
                     if (err.status === STATUS_CODES.UNAUTHORIZED) {
-                        identityService.removeIdentity();
-                        routerService.redirectToLogin();
+                        this.identityService.removeIdentity();
+                        this.routerService.redirectToLogin();
                     } else if (err.status === STATUS_CODES.FORBIDDEN) {
-                        routerService.redirectToHome();
+                        this.routerService.redirectToHome();
                     }
                 }
             }));
