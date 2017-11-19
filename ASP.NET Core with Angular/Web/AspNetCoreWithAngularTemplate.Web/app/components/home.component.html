@@ -1,5 +1,9 @@
-﻿<h1>Hello world!</h1>
+﻿<h1>TODO list</h1>
 
 <div class="container">
-    <div *ngFor="let todoItem of todoItems">{{todoItem.title}}</div>
+    <div *ngFor="let todoItem of todoItems" class="row">
+        <div class="col-md-8">{{todoItem.title}}</div>
+        <div class="col-md-4">{{todoItem.isDone}}</div>
+    </div>
+    <h4 *ngIf="!todoItems.length">No TODO items...</h4>
 </div>

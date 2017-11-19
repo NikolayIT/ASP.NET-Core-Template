@@ -7,11 +7,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <!-- TODO: <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">AspNetCoreTemplate.Web</a>-->
+            <a routerLink="/" class="navbar-brand">AspNetCoreWithAngularTemplate.Web</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <!-- TODO: <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>-->
+                <li><a routerLink="/">Home</a></li>
+            </ul>
+
+            <ul *ngIf="isUserAuthorized" class="nav navbar-nav navbar-right">
+                <li>
+                    <button (click)="logout()" class="btn btn-link navbar-btn navbar-link">Log out</button>
+                </li>
+            </ul>
+
+            <ul *ngIf="!isUserAuthorized" class="nav navbar-nav navbar-right">
+                <li><a routerLink="/account/register">Register</a></li>
+                <li><a routerLink="/account/login">Log in</a></li>
             </ul>
         </div>
     </div>

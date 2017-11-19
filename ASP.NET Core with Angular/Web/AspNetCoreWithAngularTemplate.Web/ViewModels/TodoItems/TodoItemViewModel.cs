@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreWithAngularTemplate.Web.ViewModels.Settings
+﻿namespace AspNetCoreWithAngularTemplate.Web.ViewModels.TodoItems
 {
     using AspNetCoreWithAngularTemplate.Data.Models;
     using AspNetCoreWithAngularTemplate.Web.Infrastructure.Mapping;

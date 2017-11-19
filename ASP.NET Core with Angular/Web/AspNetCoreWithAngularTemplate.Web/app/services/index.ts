@@ -11,6 +11,7 @@ import { IdentityService } from './identity.service';
 import { LoggerService } from './logger.service';
 import { RouterService } from './router.service';
 import { StorageService } from './storage.service';
+import { WindowRefService } from './window-ref.service';
 
 export * from './data/todo-items-data.service';
 
@@ -25,6 +26,7 @@ export * from './identity.service';
 export * from './logger.service';
 export * from './router.service';
 export * from './storage.service';
+export * from './window-ref.service';
 
 export const APP_SERVICES = [
     TodoItemsDataService,
@@ -39,5 +41,6 @@ export const APP_SERVICES = [
     IdentityService,
     LoggerService,
     RouterService,
-    StorageService
+    StorageService,
+    WindowRefService
 ];

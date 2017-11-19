@@ -18,7 +18,7 @@
     using AspNetCoreWithAngularTemplate.Services.Messaging;
     using AspNetCoreWithAngularTemplate.Web.Infrastructure.Mapping;
     using AspNetCoreWithAngularTemplate.Web.Infrastructure.Middlewares.Auth;
-    using AspNetCoreWithAngularTemplate.Web.ViewModels.Settings;
+    using AspNetCoreWithAngularTemplate.Web.ViewModels.TodoItems;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Diagnostics;

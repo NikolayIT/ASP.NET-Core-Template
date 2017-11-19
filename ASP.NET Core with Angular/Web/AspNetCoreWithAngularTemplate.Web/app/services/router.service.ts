@@ -4,9 +4,11 @@ import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationErr
 import { Subscription } from 'rxjs/Subscription';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
+import { WindowRefService } from './window-ref.service';
+
 @Injectable()
 export class RouterService {
-    constructor(private router: Router) {
+    constructor(private router: Router, private windowRefService: WindowRefService) {
         this.router.events.subscribe((e: any) => {
             if (e instanceof NavigationStart) {
                 this.routes[e.url] = true;

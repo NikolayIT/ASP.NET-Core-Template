@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using AspNetCoreWithAngularTemplate.Data.Models;
+    using AspNetCoreWithAngularTemplate.Web.Infrastructure.Extensions;
     using AspNetCoreWithAngularTemplate.Web.ViewModels.Account;
 
     using Microsoft.AspNetCore.Authorization;
@@ -25,8 +26,7 @@
         {
             if (model == null || !this.ModelState.IsValid)
             {
-                var firstError = this.ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage)).FirstOrDefault();
-                return this.BadRequest(firstError);
+                return this.BadRequest(this.ModelState.GetFirstError());
             }
 
             var user = new ApplicationUser { Email = model.Email, UserName = model.Email };
@@ -37,7 +37,7 @@
                 return this.Ok();
             }
 
-            return this.BadRequest(result.Errors.Select(e => e.Description).FirstOrDefault());
+            return this.BadRequest(result.GetFirstError());
         }
     }
 }

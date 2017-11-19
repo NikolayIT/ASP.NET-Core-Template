@@ -1,13 +1,15 @@
 ﻿namespace AspNetCoreWithAngularTemplate.Web.Controllers
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
     using AspNetCoreWithAngularTemplate.Data.Common.Repositories;
     using AspNetCoreWithAngularTemplate.Data.Models;
+    using AspNetCoreWithAngularTemplate.Web.Infrastructure.Extensions;
     using AspNetCoreWithAngularTemplate.Web.Infrastructure.Mapping;
-    using AspNetCoreWithAngularTemplate.Web.ViewModels.Settings;
+    using AspNetCoreWithAngularTemplate.Web.ViewModels.TodoItems;
+
+    using AutoMapper;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -22,7 +24,7 @@
         }
 
         [HttpGet]
-        // [AllowAnonymous]
+        [AllowAnonymous]
         public IActionResult All()
         {
             var todoItems = this.repository.All().To<TodoItemViewModel>().ToList();
@@ -30,9 +32,18 @@
         }
 
         [HttpPost]
-        public Task<IActionResult> Create()
+        public async Task<IActionResult> Create([FromBody]TodoItemBindingModel model)
         {
-            throw new NotImplementedException();
+            if (model == null || !this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState.GetFirstError());
+            }
+
+            var todoItem = Mapper.Map<TodoItem>(model);
+            this.repository.Add(todoItem);
+            await this.repository.SaveChangesAsync();
+
+            return this.Json(Mapper.Map<TodoItemViewModel>(todoItem));
         }
     }
 }
