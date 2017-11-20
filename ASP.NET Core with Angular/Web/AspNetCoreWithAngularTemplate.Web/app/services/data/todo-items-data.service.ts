@@ -7,7 +7,7 @@ import { TodoItem } from '../../domain/todo-item';
 
 @Injectable()
 export class TodoItemsDataService {
-    public static readonly URLS = {
+    private static readonly URLS = {
         ALL: 'api/todoitems/all',
         CREATE: 'api/todoitems/create',
         MARK_AS_DONE: 'api/todoitems/markasdone/'
@@ -24,6 +24,6 @@ export class TodoItemsDataService {
     }
 
     public markAsDone(id: number): Observable<any> {
-        return this.httpClient.post(`${TodoItemsDataService.URLS.MARK_AS_DONE}/${id}`, null);
+        return this.httpClient.post(`${TodoItemsDataService.URLS.MARK_AS_DONE}${id}`, null, { responseType: 'text' });
     }
 }

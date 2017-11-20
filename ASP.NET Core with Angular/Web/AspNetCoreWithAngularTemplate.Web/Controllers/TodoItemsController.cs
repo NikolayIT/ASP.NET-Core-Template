@@ -11,6 +11,7 @@
 
     using AutoMapper;
 
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Mvc;
 
     public class TodoItemsController : BaseController
@@ -51,18 +52,25 @@
         [HttpPost]
         public async Task<IActionResult> MarkAsDone(int id)
         {
-            var userId = this.User.GetId();
-            var todoItem = this.repository.All().FirstOrDefault(t => t.Id == id && t.AuthorId == userId);
+            var todoItem = await this.repository.GetByIdAsync(id);
 
             if (todoItem == null)
             {
                 return this.NotFound();
             }
 
-            todoItem.IsDone = true;
+            if (todoItem.AuthorId != this.User.GetId())
+            {
+                return this.Forbid(JwtBearerDefaults.AuthenticationScheme);
+            }
 
-            this.repository.Update(todoItem);
-            await this.repository.SaveChangesAsync();
+            if (!todoItem.IsDone)
+            {
+                todoItem.IsDone = true;
+
+                this.repository.Update(todoItem);
+                await this.repository.SaveChangesAsync();
+            }
 
             return this.Ok();
         }

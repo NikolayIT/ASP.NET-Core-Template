@@ -15,11 +15,11 @@ export class TodoItemCreateComponent {
     constructor(private todoItemsDataService: TodoItemsDataService, private routerService: RouterService) { }
 
     public todoItem: TodoItem = new TodoItem();
-    public todoItemErrorMessage: string = null;
+    public errorMessage: string = null;
 
     public create(): void {
         this.todoItemsDataService.create(this.todoItem).subscribe(
             () => this.routerService.navigateByUrl('/user/todo-items'),
-            (error: HttpErrorResponse) => this.todoItemErrorMessage = error.error || 'Create TODO item failed.');
+            (error: HttpErrorResponse) => this.errorMessage = error.error || 'Create TODO item failed.');
     }
 }

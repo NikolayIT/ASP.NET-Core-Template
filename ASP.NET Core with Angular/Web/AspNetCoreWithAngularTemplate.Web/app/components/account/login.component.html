@@ -5,7 +5,7 @@
             <form ngNativeValidate #loginForm="ngForm">
                 <h4>Use a local account to log in.</h4>
                 <hr />
-                <div *ngIf="loginErrorMessage" class="text-danger">{{loginErrorMessage}}</div>
+                <div *ngIf="errorMessage" class="text-danger">{{errorMessage}}</div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" [(ngModel)]="userLogin.email"

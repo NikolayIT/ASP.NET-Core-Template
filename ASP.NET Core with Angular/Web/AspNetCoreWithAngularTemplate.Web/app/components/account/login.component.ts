@@ -15,11 +15,11 @@ export class LoginComponent {
     constructor(private authService: AuthService) { }
 
     public userLogin: UserLogin = new UserLogin();
-    public loginErrorMessage: string = null;
+    public errorMessage: string = null;
 
     public login(): void {
         this.authService.login(this.userLogin).subscribe(
             () => { },
-            (error: HttpErrorResponse) => this.loginErrorMessage = error.error || 'Invalid login.');
+            (error: HttpErrorResponse) => this.errorMessage = error.error || 'Invalid login.');
     }
 }

@@ -21,15 +21,12 @@ export class TodoItemsComponent implements OnInit {
         this.todoItemsDataService.getAll().subscribe((data: TodoItem[]) => this.todoItems = data);
     }
 
-    public markAsDone(id: number): void {
-        this.todoItemsDataService.markAsDone(id).subscribe(
+    public markAsDone(todoItem: TodoItem): void {
+        this.todoItemsDataService.markAsDone(todoItem.id).subscribe(
             () => {
                 this.errorMessage = null;
 
-                const todoItem = this.todoItems.find(t => t.id == id);
-                if (todoItem) {
-                    todoItem.isDone = true;
-                }
+                todoItem.isDone = true;
             },
             (error: HttpErrorResponse) => this.errorMessage = error.error || 'Mark TODO as done failed.');
     }

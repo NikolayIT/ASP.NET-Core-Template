@@ -3,7 +3,7 @@
 <form class="form-horizontal" ngNativeValidate #registerForm="ngForm">
     <h4>Create a new account.</h4>
     <hr />
-    <div *ngIf="registerErrorMessage" class="text-danger">{{registerErrorMessage}}</div>
+    <div *ngIf="errorMessage" class="text-danger">{{errorMessage}}</div>
     <div class="form-group">
         <label for="email" class="col-md-2 control-label">Email</label>
         <div class="col-md-10">

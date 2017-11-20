@@ -4,6 +4,8 @@
     <a routerLink="/user/todo-item-create">Create New</a>
 </p>
 
+<div *ngIf="errorMessage" class="text-danger">{{errorMessage}}</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -26,7 +28,7 @@
                 <span *ngIf="!todoItem.isDone" class="label label-warning">No</span>
             </td>
             <td>
-                <button *ngIf="!todoItem.isDone" (click)="markAsDone(todoItem.id)" class="btn btn-sm btn-success">
+                <button *ngIf="!todoItem.isDone" (click)="markAsDone(todoItem)" class="btn btn-sm btn-success">
                     Mark as Done
                 </button>
             </td>
