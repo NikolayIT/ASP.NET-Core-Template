@@ -43,6 +43,10 @@ export class RouterService {
         this.navigateByUrl('/');
     }
 
+    public reloadApp(): void {
+        this.windowRefService.nativeWindow.location.reload(true);
+    }
+
     public subscribeOnStart(observerOrNext): Subscription {
         return this.onStart.subscribe(observerOrNext);
     }

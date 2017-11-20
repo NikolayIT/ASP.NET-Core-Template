@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators/catchError';
 import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { EmptyObservable } from 'rxjs/observable/EmptyObservable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { IdentityService } from './identity.service';
 import { RouterService } from './router.service';
@@ -26,6 +27,10 @@ export class AuthService {
         private routerService: RouterService,
         private loggerService: LoggerService)
     { }
+
+    private isAuthorizedSubject = new BehaviorSubject<boolean>(this.isAuthorized());
+
+    public isAuthorized$ = this.isAuthorizedSubject.asObservable();
 
     public register(userRegister: UserRegister) {
         return this.httpClient.post(AuthService.URLS.REGISTER, userRegister, { responseType: 'text' }).pipe(
@@ -55,6 +60,8 @@ export class AuthService {
                 this.identityService.setRoles(data['roles']);
                 this.identityService.setEmail(userLogin.email);
 
+                this.isAuthorizedSubject.next(true);
+
                 this.routerService.redirectToHome();
 
                 return EmptyObservable.create();
@@ -64,6 +71,8 @@ export class AuthService {
 
     public logout() {
         this.identityService.removeIdentity();
+
+        this.isAuthorizedSubject.next(false);
     }
 
     public isAuthorized(): boolean {
