@@ -11,7 +11,6 @@
 
     using AutoMapper;
 
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class TodoItemsController : BaseController
@@ -24,10 +23,11 @@
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult All()
         {
-            var todoItems = this.repository.All().To<TodoItemViewModel>().ToList();
+            var userId = this.User.GetId();
+            var todoItems = this.repository.All().Where(t => t.AuthorId == userId).To<TodoItemViewModel>().ToList();
+
             return this.Ok(todoItems);
         }
 
@@ -40,10 +40,31 @@
             }
 
             var todoItem = Mapper.Map<TodoItem>(model);
+            todoItem.AuthorId = this.User.GetId();
+
             this.repository.Add(todoItem);
             await this.repository.SaveChangesAsync();
 
-            return this.Json(Mapper.Map<TodoItemViewModel>(todoItem));
+            return this.Ok(Mapper.Map<TodoItemViewModel>(todoItem));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> MarkAsDone(int id)
+        {
+            var userId = this.User.GetId();
+            var todoItem = this.repository.All().FirstOrDefault(t => t.Id == id && t.AuthorId == userId);
+
+            if (todoItem == null)
+            {
+                return this.NotFound();
+            }
+
+            todoItem.IsDone = true;
+
+            this.repository.Update(todoItem);
+            await this.repository.SaveChangesAsync();
+
+            return this.Ok();
         }
     }
 }

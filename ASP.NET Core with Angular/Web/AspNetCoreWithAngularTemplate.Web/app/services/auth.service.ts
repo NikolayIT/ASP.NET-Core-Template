@@ -73,6 +73,8 @@ export class AuthService {
         this.identityService.removeIdentity();
 
         this.isAuthorizedSubject.next(false);
+
+        this.routerService.redirectToHome();
     }
 
     public isAuthorized(): boolean {

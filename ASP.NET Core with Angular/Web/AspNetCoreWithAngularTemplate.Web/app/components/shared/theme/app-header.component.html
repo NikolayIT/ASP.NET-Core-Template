@@ -12,9 +12,13 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a routerLink="/">Home</a></li>
+                <li *ngIf="isUserAuthorized"><a routerLink="/user/todo-items">TODO Items</a></li>
             </ul>
 
             <ul *ngIf="isUserAuthorized" class="nav navbar-nav navbar-right">
+                <li *ngIf="userEmail">
+                    <a>Hello, {{userEmail}}!</a>
+                </li>
                 <li>
                     <button (click)="logout()" class="btn btn-link navbar-btn navbar-link">Log out</button>
                 </li>

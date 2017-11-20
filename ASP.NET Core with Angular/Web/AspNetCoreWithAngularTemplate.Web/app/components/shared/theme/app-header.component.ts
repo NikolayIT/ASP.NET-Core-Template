@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core';
 
-import { AuthService } from '../../../services/index';
+import { AuthService, IdentityService } from '../../../services/index';
 
 import { BaseSubscriptionsComponent } from '../../base/base-subscriptions.component';
 
@@ -11,11 +11,12 @@ import { BaseSubscriptionsComponent } from '../../base/base-subscriptions.compon
 })
 
 export class AppHeaderComponent extends BaseSubscriptionsComponent {
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService, private identityService: IdentityService) {
         super();
     }
 
     public isUserAuthorized: boolean = false;
+    public userEmail: string = null;
 
     public logout(): void {
         this.authService.logout();
@@ -23,6 +24,9 @@ export class AppHeaderComponent extends BaseSubscriptionsComponent {
 
     protected onInit(): void {
         this.subscriptions.push(this.authService.isAuthorized$.subscribe(
-            (isAuthorized: boolean) => this.isUserAuthorized = isAuthorized));
+            (isAuthorized: boolean) => {
+                this.isUserAuthorized = isAuthorized;
+                this.userEmail = isAuthorized ? this.identityService.getEmail() : null;
+            }));
     }
 }

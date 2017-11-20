@@ -3,7 +3,7 @@
 @Component({
     moduleId: module.id,
     selector: 'account',
-    templateUrl: 'account.component.html',
+    templateUrl: 'account.component.html'
 })
 
 export class AccountComponent { }
