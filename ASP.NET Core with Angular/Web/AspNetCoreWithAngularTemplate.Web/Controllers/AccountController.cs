@@ -1,6 +1,5 @@
 ﻿namespace AspNetCoreWithAngularTemplate.Web.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
 
     using AspNetCoreWithAngularTemplate.Data.Models;

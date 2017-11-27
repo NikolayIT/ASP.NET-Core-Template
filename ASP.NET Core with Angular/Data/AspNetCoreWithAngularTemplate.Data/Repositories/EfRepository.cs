@@ -21,7 +21,7 @@
 
         protected ApplicationDbContext Context { get; set; }
 
-        public virtual IQueryable<TEntity> All() => this.DbSet.AsQueryable();
+        public virtual IQueryable<TEntity> All() => this.DbSet;
 
         public virtual IQueryable<TEntity> AllAsNoTracking() => this.DbSet.AsNoTracking();
 
