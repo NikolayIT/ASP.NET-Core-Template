@@ -6,7 +6,7 @@
     },
     "namingRules": {
       "allowCommonHungarianPrefixes": true,
-      "allowedHungarianPrefixes": [ "db", "at", "or", "up", "it", "un", "x", "y", "id", "ip", "bg" ]
+      "allowedHungarianPrefixes": [ "db", "at", "or", "up", "it", "un", "x", "y", "id", "ip", "bg", "by" ]
     },
     "documentationRules": {
       "companyName": "AspNetCoreWithAngularTemplate",

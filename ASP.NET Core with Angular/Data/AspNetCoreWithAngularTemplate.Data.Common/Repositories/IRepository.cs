@@ -19,6 +19,12 @@
 
         void Delete(TEntity entity);
 
+        void Detach(TEntity entity);
+
+        void DetachAll();
+
+        void RunQuery(string query, params object[] parameters);
+
         Task<int> SaveChangesAsync();
     }
 }

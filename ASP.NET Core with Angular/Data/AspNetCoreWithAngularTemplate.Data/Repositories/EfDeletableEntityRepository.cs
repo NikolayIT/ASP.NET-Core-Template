@@ -23,6 +23,8 @@
 
         public IQueryable<TEntity> AllWithDeleted() => base.All().IgnoreQueryFilters();
 
+        public IQueryable<TEntity> AllAsNoTrackingWithDeleted() => base.AllAsNoTracking().IgnoreQueryFilters();
+
         public override async Task<TEntity> GetByIdAsync(params object[] id)
         {
             var entity = await base.GetByIdAsync(id);

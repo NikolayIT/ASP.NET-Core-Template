@@ -4,7 +4,7 @@
 
     using AspNetCoreWithAngularTemplate.Data.Common.Models;
 
-    public class TodoItem : BaseModel<int>
+    public class TodoItem : BaseDeletableModel<int>
     {
         [Required]
         public string Title { get; set; }
