@@ -2,7 +2,7 @@
 {
     using AspNetCoreTemplate.Data.Common.Models;
 
-    public class Setting : BaseModel<int>
+    public class Setting : BaseDeletableModel<int>
     {
         public string Name { get; set; }
 
