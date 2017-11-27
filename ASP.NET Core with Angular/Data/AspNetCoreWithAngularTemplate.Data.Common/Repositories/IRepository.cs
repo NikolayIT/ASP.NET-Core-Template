@@ -19,8 +19,6 @@
 
         void Delete(TEntity entity);
 
-        void DetachAll();
-
         Task<int> SaveChangesAsync();
     }
 }

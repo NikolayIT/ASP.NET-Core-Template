@@ -48,17 +48,6 @@
             this.DbSet.Remove(entity);
         }
 
-        public void DetachAll()
-        {
-            foreach (var dbEntityEntry in this.Context.ChangeTracker.Entries().ToList())
-            {
-                if (dbEntityEntry.Entity != null)
-                {
-                    dbEntityEntry.State = EntityState.Detached;
-                }
-            }
-        }
-
         public Task<int> SaveChangesAsync() => this.Context.SaveChangesAsync();
 
         public void Dispose() => this.Context.Dispose();
