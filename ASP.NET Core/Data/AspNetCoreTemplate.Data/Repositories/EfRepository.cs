@@ -48,27 +48,6 @@
             this.DbSet.Remove(entity);
         }
 
-        public void Detach(TEntity entity)
-        {
-            this.Context.Entry(entity).State = EntityState.Detached;
-        }
-
-        public void DetachAll()
-        {
-            foreach (var dbEntityEntry in this.Context.ChangeTracker.Entries().ToList())
-            {
-                if (dbEntityEntry.Entity != null)
-                {
-                    dbEntityEntry.State = EntityState.Detached;
-                }
-            }
-        }
-
-        public void RunQuery(string query, params object[] parameters)
-        {
-            this.Context.Database.ExecuteSqlCommand(query, parameters);
-        }
-
         public Task<int> SaveChangesAsync() => this.Context.SaveChangesAsync();
 
         public void Dispose() => this.Context.Dispose();
