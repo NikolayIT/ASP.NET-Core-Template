@@ -12,3 +12,8 @@ A ready-to-use templates for ASP.NET MVC 5, ASP.NET Core and ASP.NET Core with A
 ## Video
 
 Video with template creating (in Bulgarian) can be seen on YouTube: [https://www.youtube.com/watch?v=xhoBt9MscrY](https://www.youtube.com/watch?v=xhoBt9MscrY)
+
+## Authors
+
+- [Nikolay Kostov](https://github.com/NikolayIT)
+- [Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
