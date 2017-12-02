@@ -163,7 +163,13 @@ gulp.task('setup-libs-fonts', function (done) {
         'node_modules/**/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2'
     ];
 
-    return gulp.src(fonts).pipe(gulp.dest(paths.lib.fonts));
+    return gulp
+        .src(fonts)
+        .pipe(rename(function (path) {
+            var libName = path.dirname.split('\\')[0];
+            path.dirname = libName + '\\fonts';
+        }))
+        .pipe(gulp.dest(paths.lib.fonts));
 });
 
 gulp.task('setup-libs', ['setup-libs-app', 'setup-libs-js', 'setup-libs-css', 'setup-libs-fonts']);
