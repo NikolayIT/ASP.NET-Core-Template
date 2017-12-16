@@ -24,6 +24,6 @@ export class TodoItemsDataService {
     }
 
     public markAsDone(id: number): Observable<any> {
-        return this.httpClient.post(`${TodoItemsDataService.URLS.MARK_AS_DONE}${id}`, null, { responseType: 'text' });
+        return this.httpClient.post(`${TodoItemsDataService.URLS.MARK_AS_DONE}${id}`, null);
     }
 }

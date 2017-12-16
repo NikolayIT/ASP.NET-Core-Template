@@ -33,7 +33,7 @@ export class AuthService {
     public isAuthorized$ = this.isAuthorizedSubject.asObservable();
 
     public register(userRegister: UserRegister) {
-        return this.httpClient.post(AuthService.URLS.REGISTER, userRegister, { responseType: 'text' }).pipe(
+        return this.httpClient.post(AuthService.URLS.REGISTER, userRegister).pipe(
             map(() => {
                 const userLogin = new UserLogin();
                 userLogin.email = userRegister.email;
