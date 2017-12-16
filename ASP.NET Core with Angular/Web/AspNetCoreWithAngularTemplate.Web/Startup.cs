@@ -10,13 +10,13 @@
     using System.Threading.Tasks;
 
     using AspNetCoreWithAngularTemplate.Common;
+    using AspNetCoreWithAngularTemplate.Common.Mapping;
     using AspNetCoreWithAngularTemplate.Data;
     using AspNetCoreWithAngularTemplate.Data.Common.Repositories;
     using AspNetCoreWithAngularTemplate.Data.Models;
     using AspNetCoreWithAngularTemplate.Data.Repositories;
     using AspNetCoreWithAngularTemplate.Data.Seeding;
     using AspNetCoreWithAngularTemplate.Services.Messaging;
-    using AspNetCoreWithAngularTemplate.Web.Infrastructure.Mapping;
     using AspNetCoreWithAngularTemplate.Web.Infrastructure.Middlewares.Auth;
     using AspNetCoreWithAngularTemplate.Web.ViewModels.TodoItems;
 

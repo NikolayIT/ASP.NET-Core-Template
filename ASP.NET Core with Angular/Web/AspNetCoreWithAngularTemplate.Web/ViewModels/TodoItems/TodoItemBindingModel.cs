@@ -2,8 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using AspNetCoreWithAngularTemplate.Common.Mapping;
     using AspNetCoreWithAngularTemplate.Data.Models;
-    using AspNetCoreWithAngularTemplate.Web.Infrastructure.Mapping;
 
     public class TodoItemBindingModel : IMapTo<TodoItem>
     {
