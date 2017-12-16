@@ -1,10 +1,11 @@
-﻿namespace MvcTemplate.Services.Data
+﻿namespace MvcTemplate.Services.Data.Common
 {
     using System;
     using System.Linq;
-    using Common.Contracts;
+
     using MvcTemplate.Data.Common;
     using MvcTemplate.Data.Common.Models;
+    using MvcTemplate.Services.Data.Common.Contracts;
 
     public abstract class BaseDataService<T> : IBaseDataService<T>
         where T : class, IDeletableEntity, IAuditInfo
