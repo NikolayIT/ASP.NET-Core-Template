@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Web.Infrastructure.Mapping
+﻿namespace AspNetCoreTemplate.Common.Mapping
 {
     using AutoMapper;
 
