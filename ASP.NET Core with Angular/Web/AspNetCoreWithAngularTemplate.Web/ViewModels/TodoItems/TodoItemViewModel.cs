@@ -1,7 +1,7 @@
 ﻿namespace AspNetCoreWithAngularTemplate.Web.ViewModels.TodoItems
 {
+    using AspNetCoreWithAngularTemplate.Common.Mapping;
     using AspNetCoreWithAngularTemplate.Data.Models;
-    using AspNetCoreWithAngularTemplate.Web.Infrastructure.Mapping;
 
     public class TodoItemViewModel : IMapFrom<TodoItem>
     {

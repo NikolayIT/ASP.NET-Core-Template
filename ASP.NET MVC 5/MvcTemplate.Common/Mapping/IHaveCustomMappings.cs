@@ -1,4 +1,4 @@
-﻿namespace MvcTemplate.Web.Infrastructure.Mapping
+﻿namespace MvcTemplate.Common.Mapping
 {
     using AutoMapper;
 

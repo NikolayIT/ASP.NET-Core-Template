@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Web.Infrastructure.Mapping
+﻿namespace AspNetCoreWithAngularTemplate.Common.Mapping
 {
     using System;
     using System.Collections.Generic;

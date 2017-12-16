@@ -6,7 +6,7 @@
     using System.Web.Optimization;
     using System.Web.Routing;
 
-    using Infrastructure.Mapping;
+    using MvcTemplate.Common.Mapping;
 
 #pragma warning disable SA1649 // File name must match first type name
 

@@ -4,9 +4,9 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using AspNetCoreTemplate.Common.Mapping;
     using AspNetCoreTemplate.Data.Common.Repositories;
     using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Web.Infrastructure.Mapping;
     using AspNetCoreTemplate.Web.ViewModels.Settings;
 
     using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Web.Infrastructure.Mapping
+﻿namespace AspNetCoreWithAngularTemplate.Common.Mapping
 {
     using System;
     using System.Linq;
@@ -6,7 +6,7 @@
 
     using AutoMapper.QueryableExtensions;
 
-    public static class QueryableExtensions
+    public static class QueryableMappingExtensions
     {
         public static IQueryable<TDestination> To<TDestination>(
             this IQueryable source,
