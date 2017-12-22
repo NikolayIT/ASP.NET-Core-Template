@@ -4,10 +4,10 @@ A ready-to-use templates for ASP.NET MVC 5, ASP.NET Core and ASP.NET Core with A
 ## Build status
 
 ### ASP.NET MVC 5
-[![Build status](https://ci.appveyor.com/api/projects/status/8dskbn908e27vevx?svg=true)](https://ci.appveyor.com/project/NikolayIT/asp-net-mvc-template)
+[![Build status](https://ci.appveyor.com/api/projects/status/8dskbn908e27vevx/branch/master?svg=true)](https://ci.appveyor.com/project/NikolayIT/asp-net-mvc-template/branch/master)
 
 ### ASP.NET Core
-[![Build status](https://ci.appveyor.com/api/projects/status/vwf51pxftk8xpa68?svg=true)](https://ci.appveyor.com/project/NikolayIT/asp-net-mvc-template-ls0el)
+[![Build status](https://ci.appveyor.com/api/projects/status/vwf51pxftk8xpa68/branch/master?svg=true)](https://ci.appveyor.com/project/NikolayIT/asp-net-mvc-template-ls0el/branch/master)
 
 ## Video
 
