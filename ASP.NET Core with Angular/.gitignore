@@ -26,27 +26,6 @@ bld/
 
 # Visual Studio 2015 cache/options directory
 .vs/
-# Uncomment if you have tasks that create the project's static files in wwwroot
-**/wwwroot/
-
-**/app/components/**/*.js
-**/app/components/**/*.js.map
-
-**/app/directives/**/*.js
-**/app/directives/**/*.js.map
-
-**/app/services/**/*.js
-**/app/services/**/*.js.map
-
-**/app/domain/**/*.js
-**/app/domain/**/*.js.map
-
-**/app/pipes/**/*.js
-**/app/pipes/**/*.js.map
-
-**/app/*.js
-**/app/*.js.map
-!**/app/systemjs.config.js
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -305,3 +284,27 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+# JavaScript Files
+**/wwwroot/
+
+**/app/components/**/*.js
+**/app/components/**/*.js.map
+
+**/app/directives/**/*.js
+**/app/directives/**/*.js.map
+
+**/app/services/**/*.js
+**/app/services/**/*.js.map
+
+**/app/domain/**/*.js
+**/app/domain/**/*.js.map
+
+**/app/pipes/**/*.js
+**/app/pipes/**/*.js.map
+
+**/app/*.js
+**/app/*.js.map
+!**/app/systemjs.config.js
+
+package-lock.json
