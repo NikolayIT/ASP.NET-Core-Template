@@ -14,7 +14,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta004" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta004" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
