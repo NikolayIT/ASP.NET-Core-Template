@@ -34,18 +34,12 @@
         public enum ManageMessageId
         {
             AddPhoneSuccess,
-
             ChangePasswordSuccess,
-
             SetTwoFactorSuccess,
-
             SetPasswordSuccess,
-
             RemoveLoginSuccess,
-
             RemovePhoneSuccess,
-
-            Error
+            Error,
         }
 
         public ApplicationSignInManager SignInManager
@@ -102,7 +96,7 @@
                                 Logins = await this.UserManager.GetLoginsAsync(userId),
                                 BrowserRemembered =
                                     await
-                                    this.AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                                    this.AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
                             };
             return this.View(model);
         }
@@ -160,7 +154,7 @@
                 var message = new IdentityMessage
                                   {
                                       Destination = model.Number,
-                                      Body = "Your security code is: " + code
+                                      Body = "Your security code is: " + code,
                                   };
                 await this.UserManager.SmsService.SendAsync(message);
             }

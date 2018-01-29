@@ -34,7 +34,7 @@
                         select new
                         {
                             Source = i.GetGenericArguments()[0],
-                            Destination = t
+                            Destination = t,
                         }).ToArray();
 
             foreach (var map in maps)
@@ -54,7 +54,7 @@
                         select new
                         {
                             Source = i.GetGenericArguments()[0],
-                            Destination = t
+                            Destination = t,
                         }).ToArray();
 
             foreach (var map in maps)
@@ -73,7 +73,7 @@
                         select new
                         {
                             Destination = i.GetGenericArguments()[0],
-                            Source = t
+                            Source = t,
                         }).ToArray();
 
             foreach (var map in maps)

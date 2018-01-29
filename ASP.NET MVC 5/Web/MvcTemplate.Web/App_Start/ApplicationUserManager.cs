@@ -23,7 +23,7 @@
             this.UserValidator = new UserValidator<ApplicationUser>(this)
             {
                 AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
+                RequireUniqueEmail = true,
             };
 
             // Configure validation logic for passwords
@@ -55,7 +55,7 @@
         {
             var provider = new PhoneNumberTokenProvider<ApplicationUser>
             {
-                MessageFormat = "Your security code is {0}"
+                MessageFormat = "Your security code is {0}",
             };
             this.RegisterTwoFactorProvider("Phone Code", provider);
         }
@@ -65,7 +65,7 @@
             var provider = new EmailTokenProvider<ApplicationUser>
             {
                 Subject = "Security Code",
-                BodyFormat = "Your security code is {0}"
+                BodyFormat = "Your security code is {0}",
             };
             this.RegisterTwoFactorProvider("Email Code", provider);
         }

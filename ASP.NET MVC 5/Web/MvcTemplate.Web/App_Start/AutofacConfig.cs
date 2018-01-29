@@ -63,7 +63,7 @@
             builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).As<IAuthenticationManager>();
             builder.Register(c => new IdentityFactoryOptions<ApplicationUserManager>
             {
-                DataProtectionProvider = new Microsoft.Owin.Security.DataProtection.DpapiDataProtectionProvider("Application​")
+                DataProtectionProvider = new Microsoft.Owin.Security.DataProtection.DpapiDataProtectionProvider("Application​"),
             });
 
             builder.Register(x => new HttpCacheService())
