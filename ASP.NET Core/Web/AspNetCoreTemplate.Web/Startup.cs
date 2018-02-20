@@ -32,7 +32,8 @@
         public void ConfigureServices(IServiceCollection services)
         {
             // Framework services
-            services.AddDbContextPool<ApplicationDbContext>(
+            // TODO: Add pooling when this bug is fixed: https://github.com/aspnet/EntityFrameworkCore/issues/9741
+            services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, ApplicationRole>(
