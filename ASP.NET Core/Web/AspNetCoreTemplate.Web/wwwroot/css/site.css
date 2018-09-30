@@ -41,6 +41,11 @@ textarea {
     width: 100%;
 }
 
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
