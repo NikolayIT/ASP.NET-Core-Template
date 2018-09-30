@@ -3,6 +3,8 @@
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Models;
+    using AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.Manage.InputModels;
+
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;

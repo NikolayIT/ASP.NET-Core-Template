@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Web.Areas.Identity.Pages.Account
+﻿namespace AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.InputModels
 {
     using System.ComponentModel.DataAnnotations;
 

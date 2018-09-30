@@ -5,6 +5,8 @@
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Models;
+    using AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.InputModels;
+
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
