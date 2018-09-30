@@ -1,7 +1,6 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.Manage
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
 
@@ -11,7 +10,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
 
-    public partial class IndexModel : PageModel
+    public class IndexModel : PageModel
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
@@ -35,18 +34,7 @@
         public string StatusMessage { get; set; }
 
         [BindProperty]
-        public InputModel Input { get; set; }
-
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
-
-            [Phone]
-            [Display(Name = "Phone number")]
-            public string PhoneNumber { get; set; }
-        }
+        public IndexInputModel Input { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -62,7 +50,7 @@
 
             this.Username = userName;
 
-            this.Input = new InputModel
+            this.Input = new IndexInputModel
             {
                 Email = email,
                 PhoneNumber = phoneNumber
@@ -125,7 +113,6 @@
             {
                 return this.NotFound($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
             }
-
 
             var userId = await this.userManager.GetUserIdAsync(user);
             var email = await this.userManager.GetEmailAsync(user);

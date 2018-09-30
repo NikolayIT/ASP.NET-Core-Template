@@ -1,6 +1,5 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Identity.Pages.Account
 {
-    using System.ComponentModel.DataAnnotations;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
 
@@ -24,14 +23,7 @@
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
-
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
-        }
+        public ForgotPasswordInputModel Input { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -44,7 +36,7 @@
                     return this.RedirectToPage("./ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please 
+                // For more information on how to enable account confirmation and password reset please
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var code = await this.userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = this.Url.Page(

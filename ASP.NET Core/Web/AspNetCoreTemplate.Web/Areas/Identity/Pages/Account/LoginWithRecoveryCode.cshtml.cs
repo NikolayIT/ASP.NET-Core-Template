@@ -1,7 +1,6 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Identity.Pages.Account
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Models;
@@ -24,18 +23,9 @@
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public LoginWithRecoveryCodeInputModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
-
-        public class InputModel
-        {
-            [BindProperty]
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Recovery Code")]
-            public string RecoveryCode { get; set; }
-        }
 
         public async Task<IActionResult> OnGetAsync(string returnUrl = null)
         {
@@ -67,7 +57,7 @@
             var recoveryCode = this.Input.RecoveryCode.Replace(" ", string.Empty);
 
             var result = await this.signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
-                
+
             if (result.Succeeded)
             {
                 this.logger.LogInformation("User with ID '{UserId}' logged in with a recovery code.", user.Id);

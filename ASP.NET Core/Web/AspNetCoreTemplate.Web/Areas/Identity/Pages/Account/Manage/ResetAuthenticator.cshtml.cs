@@ -10,9 +10,11 @@
 
     public class ResetAuthenticatorModel : PageModel
     {
-        UserManager<ApplicationUser> userManager;
+        private readonly UserManager<ApplicationUser> userManager;
+
         private readonly SignInManager<ApplicationUser> signInManager;
-        ILogger<ResetAuthenticatorModel> logger;
+
+        private readonly ILogger<ResetAuthenticatorModel> logger;
 
         public ResetAuthenticatorModel(
             UserManager<ApplicationUser> userManager,

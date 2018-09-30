@@ -1,7 +1,6 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.Manage
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Models;
@@ -27,14 +26,7 @@
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
-
-        public class InputModel
-        {
-            [Required]
-            [DataType(DataType.Password)]
-            public string Password { get; set; }
-        }
+        public DeletePersonalDataInputModel Input { get; set; }
 
         public bool RequirePassword { get; set; }
 

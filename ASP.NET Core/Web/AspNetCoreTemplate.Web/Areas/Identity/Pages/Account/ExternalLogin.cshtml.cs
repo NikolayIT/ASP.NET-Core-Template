@@ -1,6 +1,5 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Identity.Pages.Account
 {
-    using System.ComponentModel.DataAnnotations;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
@@ -29,7 +28,7 @@
         }
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public ErrorLoginInputModel Input { get; set; }
 
         public string LoginProvider { get; set; }
 
@@ -37,13 +36,6 @@
 
         [TempData]
         public string ErrorMessage { get; set; }
-
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
-        }
 
         public IActionResult OnGetAsync()
         {
@@ -64,7 +56,7 @@
             if (remoteError != null)
             {
                 this.ErrorMessage = $"Error from external provider: {remoteError}";
-                return this.RedirectToPage("./Login", new {ReturnUrl = returnUrl });
+                return this.RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
 
             var info = await this.signInManager.GetExternalLoginInfoAsync();
@@ -75,7 +67,7 @@
             }
 
             // Sign in the user with this external login provider if the user already has a login.
-            var result = await this.signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor : true);
+            var result = await this.signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
                 this.logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
@@ -93,7 +85,7 @@
                 this.LoginProvider = info.LoginProvider;
                 if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
                 {
-                    this.Input = new InputModel
+                    this.Input = new ErrorLoginInputModel
                     {
                         Email = info.Principal.FindFirstValue(ClaimTypes.Email)
                     };
@@ -106,6 +98,7 @@
         public async Task<IActionResult> OnPostConfirmationAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? this.Url.Content("~/");
+
             // Get the information about the user from the external login provider
             var info = await this.signInManager.GetExternalLoginInfoAsync();
             if (info == null)
