@@ -35,4 +35,10 @@
     <ProjectReference Include="..\..\Services\AspNetCoreTemplate.Services\AspNetCoreTemplate.Services.csproj" />
     <ProjectReference Include="..\AspNetCoreTemplate.Web.Infrastructure\AspNetCoreTemplate.Web.Infrastructure.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Identity\Pages\Account\Manage\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
 </Project>
