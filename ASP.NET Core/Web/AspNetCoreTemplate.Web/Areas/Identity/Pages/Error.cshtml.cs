@@ -7,7 +7,9 @@
     using Microsoft.AspNetCore.Mvc.RazorPages;
 
     [AllowAnonymous]
+#pragma warning disable SA1649 // File name should match first type name
     public class ErrorModel : PageModel
+#pragma warning restore SA1649 // File name should match first type name
     {
         public string RequestId { get; set; }
 

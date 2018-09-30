@@ -8,7 +8,9 @@
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Logging;
 
+#pragma warning disable SA1649 // File name should match first type name
     public class TwoFactorAuthenticationModel : PageModel
+#pragma warning restore SA1649 // File name should match first type name
     {
         private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}";
 
