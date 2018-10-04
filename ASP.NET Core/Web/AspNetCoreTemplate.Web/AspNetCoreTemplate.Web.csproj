@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta009" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
@@ -34,11 +33,5 @@
     <ProjectReference Include="..\..\Services\AspNetCoreTemplate.Services.Messaging\AspNetCoreTemplate.Services.Messaging.csproj" />
     <ProjectReference Include="..\..\Services\AspNetCoreTemplate.Services\AspNetCoreTemplate.Services.csproj" />
     <ProjectReference Include="..\AspNetCoreTemplate.Web.Infrastructure\AspNetCoreTemplate.Web.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="Areas\Identity\Pages\Account\Manage\_ViewStart.cshtml">
-      <Pack>$(IncludeRazorContentInPack)</Pack>
-    </Content>
   </ItemGroup>
 </Project>
