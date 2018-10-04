@@ -39,8 +39,8 @@
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, ApplicationRole>(
-                options =>
+            services
+                .AddIdentity<ApplicationUser, ApplicationRole>(options =>
                 {
                     options.Password.RequireDigit = false;
                     options.Password.RequireLowercase = false;
@@ -53,7 +53,9 @@
                 .AddRoleStore<ApplicationRoleStore>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+            services
+                .AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddRazorPagesOptions(options =>
                 {
                     options.AllowAreas = true;
@@ -61,14 +63,16 @@
                     options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
                 });
 
-            services.ConfigureApplicationCookie(options =>
+            services
+                .ConfigureApplicationCookie(options =>
                 {
                     options.LoginPath = "/Identity/Account/Login";
                     options.LogoutPath = "/Identity/Account/Logout";
                     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 });
 
-            services.Configure<CookiePolicyOptions>(options =>
+            services
+                .Configure<CookiePolicyOptions>(options =>
                 {
                     // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                     options.CheckConsentNeeded = context => true;
