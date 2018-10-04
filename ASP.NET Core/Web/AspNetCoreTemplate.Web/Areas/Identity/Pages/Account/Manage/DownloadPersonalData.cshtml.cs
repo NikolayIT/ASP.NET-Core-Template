@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Models;
+
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
