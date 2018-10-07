@@ -8,6 +8,7 @@
 
     using AspNetCoreTemplate.Services.Messaging.SendGrid;
 
+    using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.Extensions.Logging;
 
     using Newtonsoft.Json;
