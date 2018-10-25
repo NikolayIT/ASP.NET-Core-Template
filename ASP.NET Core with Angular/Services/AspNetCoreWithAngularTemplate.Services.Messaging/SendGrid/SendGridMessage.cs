@@ -27,8 +27,8 @@
                 {
                     To = new List<SendGridEmail> { to },
                     Bcc = bcc,
-                    Subject = subject
-                }
+                    Subject = subject,
+                },
             };
             this.From = from;
             this.Content = new List<SendGridContent> { new SendGridContent(type, message) };

@@ -81,7 +81,7 @@
             {
                 new Claim(JwtRegisteredClaimNames.Sub, principal.Identity.Name),
                 new Claim(JwtRegisteredClaimNames.Jti, await this.options.NonceGenerator()),
-                new Claim(JwtRegisteredClaimNames.Iat, unixTimeSeconds.ToString(), ClaimValueTypes.Integer64)
+                new Claim(JwtRegisteredClaimNames.Iat, unixTimeSeconds.ToString(), ClaimValueTypes.Integer64),
             };
 
             foreach (var systemClaim in systemClaims)
@@ -111,7 +111,7 @@
             {
                 access_token = encodedJwt,
                 expires_in = (int)this.options.Expiration.TotalMilliseconds,
-                roles = existingClaims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value)
+                roles = existingClaims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value),
             };
 
             context.Response.ContentType = GlobalConstants.JsonContentType;

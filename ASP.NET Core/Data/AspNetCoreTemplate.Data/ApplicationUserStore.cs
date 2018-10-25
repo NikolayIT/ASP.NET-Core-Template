@@ -41,7 +41,7 @@
                 UserId = user.Id,
                 ProviderKey = login.ProviderKey,
                 LoginProvider = login.LoginProvider,
-                ProviderDisplayName = login.ProviderDisplayName
+                ProviderDisplayName = login.ProviderDisplayName,
             };
 
         protected override IdentityUserToken<string> CreateUserToken(
@@ -55,7 +55,7 @@
                 UserId = user.Id,
                 LoginProvider = loginProvider,
                 Name = name,
-                Value = value
+                Value = value,
             };
             return token;
         }

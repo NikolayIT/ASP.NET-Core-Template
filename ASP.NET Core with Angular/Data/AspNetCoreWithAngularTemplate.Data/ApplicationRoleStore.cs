@@ -24,7 +24,7 @@
             {
                 RoleId = role.Id,
                 ClaimType = claim.Type,
-                ClaimValue = claim.Value
+                ClaimValue = claim.Value,
             };
     }
 }
