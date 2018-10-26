@@ -74,7 +74,7 @@
                         ValidIssuer = this.configuration["JwtTokenValidation:Issuer"],
                         ValidateAudience = true,
                         ValidAudience = this.configuration["JwtTokenValidation:Audience"],
-                        ValidateLifetime = true
+                        ValidateLifetime = true,
                     };
                 });
 

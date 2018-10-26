@@ -90,7 +90,7 @@
                 {
                     this.Input = new ErrorLoginInputModel
                     {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        Email = info.Principal.FindFirstValue(ClaimTypes.Email),
                     };
                 }
 

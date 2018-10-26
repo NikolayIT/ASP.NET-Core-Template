@@ -67,7 +67,7 @@
                            select new TypesMap
                            {
                                Source = i.GetTypeInfo().GetGenericArguments()[0],
-                               Destination = t
+                               Destination = t,
                            };
 
             return fromMaps;
@@ -84,7 +84,7 @@
                          select new TypesMap
                          {
                              Source = t,
-                             Destination = i.GetTypeInfo().GetGenericArguments()[0]
+                             Destination = i.GetTypeInfo().GetGenericArguments()[0],
                          };
 
             return toMaps;

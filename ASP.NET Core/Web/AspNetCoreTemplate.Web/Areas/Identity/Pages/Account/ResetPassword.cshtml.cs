@@ -34,7 +34,7 @@
 
             this.Input = new ResetPasswordInputModel
             {
-                Code = code
+                Code = code,
             };
 
             return this.Page();
