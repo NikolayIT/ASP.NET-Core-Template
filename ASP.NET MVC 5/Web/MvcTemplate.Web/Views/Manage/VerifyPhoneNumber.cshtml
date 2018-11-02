@@ -1,27 +1,27 @@
 ﻿@model MvcTemplate.Web.ViewModels.Manage.VerifyPhoneNumberViewModel
 @{
-    ViewBag.Title = "Verify Phone Number";
+    this.ViewBag.Title = "Verify Phone Number";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@(this.ViewBag.Title).</h2>
 
-@using (Html.BeginForm("VerifyPhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (this.Html.BeginForm("VerifyPhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    @Html.AntiForgeryToken()
-    @Html.Hidden("phoneNumber", @Model.PhoneNumber)
+    @(this.Html.AntiForgeryToken())
+    @(this.Html.Hidden("phoneNumber", this.Model.PhoneNumber))
     <h4>Enter verification code</h4>
-    <h5>@ViewBag.Status</h5>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <h5>@(this.ViewBag.Status)</h5>
+    <hr/>
+    @(this.Html.ValidationSummary(string.Empty, new { @class = "text-danger" }))
     <div class="form-group">
-        @Html.LabelFor(m => m.Code, new { @class = "col-md-2 control-label" })
+        @(this.Html.LabelFor(m => m.Code, new { @class = "col-md-2 control-label" }))
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Code, new { @class = "form-control" })
+            @(this.Html.TextBoxFor(m => m.Code, new { @class = "form-control" }))
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Submit" />
+            <input type="submit" class="btn btn-default" value="Submit"/>
         </div>
     </div>
 }

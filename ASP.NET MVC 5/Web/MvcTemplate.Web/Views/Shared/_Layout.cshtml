@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - MvcTemplate</title>
+    <title>@(this.ViewBag.Title) - MvcTemplate</title>
     @Styles.Render("~/Content/css")
 </head>
 <body>
@@ -15,18 +15,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("MvcTemplate", "Index", "Home", new { area = string.Empty }, new { @class = "navbar-brand" })
+                @(this.Html.ActionLink("MvcTemplate", "Index", "Home", new { area = string.Empty }, new { @class = "navbar-brand" }))
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
+                    <li>@(this.Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null))</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @(this.Html.Partial("_LoginPartial"))
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
+        @(this.RenderBody())
         <hr />
         <footer>
             <p>&copy; @DateTime.UtcNow.Year - MvcTemplate</p>
@@ -35,6 +35,6 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @(this.RenderSection("scripts", required: false))
 </body>
 </html>
