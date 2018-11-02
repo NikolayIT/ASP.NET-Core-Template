@@ -4,10 +4,9 @@
     using System.Data.Entity;
     using System.Linq;
 
-    using Common.Models;
-
     using Microsoft.AspNet.Identity.EntityFramework;
 
+    using MvcTemplate.Data.Common.Models;
     using MvcTemplate.Data.Models;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

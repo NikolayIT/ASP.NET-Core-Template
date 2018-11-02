@@ -8,18 +8,15 @@
     using Autofac;
     using Autofac.Integration.Mvc;
 
-    using Controllers;
-
-    using Data;
-    using Data.Common;
-
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
 
+    using MvcTemplate.Data;
+    using MvcTemplate.Data.Common;
     using MvcTemplate.Data.Models;
-
-    using Services.Web;
+    using MvcTemplate.Services.Web;
+    using MvcTemplate.Web.Controllers;
 
     public static class AutofacConfig
     {

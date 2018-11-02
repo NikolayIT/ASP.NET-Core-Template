@@ -1,8 +1,8 @@
 ﻿namespace MvcTemplate.Web
 {
     using System.Data.Entity;
-    using Data;
-    using Data.Migrations;
+    using MvcTemplate.Data;
+    using MvcTemplate.Data.Migrations;
 
     public static class DatabaseConfig
     {
