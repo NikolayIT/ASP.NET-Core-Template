@@ -7,6 +7,7 @@
     using System.Web.Routing;
 
     using MvcTemplate.Common.Mapping;
+    using MvcTemplate.Web.ViewModels.Account;
 
 #pragma warning disable SA1649 // File name must match first type name
 
@@ -24,8 +25,7 @@
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            var autoMapperConfig = new AutoMapperConfig();
-            autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
+            AutoMapperConfig.RegisterMappings(typeof(LoginViewModel).GetTypeInfo().Assembly);
         }
     }
 }
