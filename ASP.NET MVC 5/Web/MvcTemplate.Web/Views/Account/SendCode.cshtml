@@ -5,7 +5,7 @@
 
 <h2>@(this.ViewBag.Title).</h2>
 
-@using (this.Html.BeginForm("SendCode", "Account", new { this.Model.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (this.Html.BeginForm("SendCode", "Account", new { this.Model.ReturnUrl }, FormMethod.Post, new { role = "form" }))
 {
     @(this.Html.AntiForgeryToken())
     @(this.Html.Hidden("rememberMe", this.Model.RememberMe))
@@ -15,7 +15,7 @@
         <div class="col-md-8">
             Select Two-Factor Authentication Provider:
             @(this.Html.DropDownListFor(model => model.SelectedProvider, this.Model.Providers))
-            <input type="submit" value="Submit" class="btn btn-default"/>
+            <input type="submit" value="Submit" class="btn btn-primary"/>
         </div>
     </div>
 }

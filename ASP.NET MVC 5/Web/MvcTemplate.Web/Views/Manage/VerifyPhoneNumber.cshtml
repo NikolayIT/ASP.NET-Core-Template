@@ -5,7 +5,7 @@
 
 <h2>@(this.ViewBag.Title).</h2>
 
-@using (this.Html.BeginForm("VerifyPhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (this.Html.BeginForm("VerifyPhoneNumber", "Manage", FormMethod.Post, new { role = "form" }))
 {
     @(this.Html.AntiForgeryToken())
     @(this.Html.Hidden("phoneNumber", this.Model.PhoneNumber))
@@ -13,15 +13,15 @@
     <h5>@(this.ViewBag.Status)</h5>
     <hr/>
     @(this.Html.ValidationSummary(string.Empty, new { @class = "text-danger" }))
-    <div class="form-group">
-        @(this.Html.LabelFor(m => m.Code, new { @class = "col-md-2 control-label" }))
+    <div class="form-group row">
+        @(this.Html.LabelFor(m => m.Code, new { @class = "col-md-2 col-form-label" }))
         <div class="col-md-10">
             @(this.Html.TextBoxFor(m => m.Code, new { @class = "form-control" }))
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Submit"/>
+    <div class="form-group row">
+        <div class="offset-md-2 col-md-10">
+            <input type="submit" class="btn btn-primary" value="Submit"/>
         </div>
     </div>
 }

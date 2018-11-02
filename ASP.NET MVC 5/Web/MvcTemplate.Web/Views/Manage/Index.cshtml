@@ -37,7 +37,7 @@
                 {
                     <br />
                     <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { role = "form" }))
                     {
                         @Html.AntiForgeryToken()
                         <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
@@ -57,7 +57,7 @@
             </p>
             @*@if (Model.TwoFactor)
                 {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { role = "form" }))
                     {
                         @Html.AntiForgeryToken()
                         <text>Enabled
@@ -67,7 +67,7 @@
                 }
                 else
                 {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { role = "form" }))
                     {
                         @Html.AntiForgeryToken()
                         <text>Disabled
