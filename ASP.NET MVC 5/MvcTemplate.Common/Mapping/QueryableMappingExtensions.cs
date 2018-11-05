@@ -12,7 +12,24 @@
             this IQueryable source,
             params Expression<Func<TDestination, object>>[] membersToExpand)
         {
-            return source.ProjectTo(AutoMapperConfig.Configuration, membersToExpand);
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            return source.ProjectTo(membersToExpand);
+        }
+
+        public static IQueryable<TDestination> To<TDestination>(
+            this IQueryable source,
+            object parameters)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            return source.ProjectTo<TDestination>(parameters);
         }
     }
 }

@@ -2,11 +2,12 @@
 {
     using System;
     using System.Linq;
-    using Contracts;
+
     using MvcTemplate.Common;
     using MvcTemplate.Data.Common;
     using MvcTemplate.Data.Common.Models;
     using MvcTemplate.Data.Models;
+    using MvcTemplate.Services.Data.Common.Contracts;
 
     public class BaseDataWithCreatorService<T> : BaseDataService<T>, IBaseDataWithCreatorService<T>
         where T : class, IDeletableEntity, IAuditInfo, IEntityWithCreator
