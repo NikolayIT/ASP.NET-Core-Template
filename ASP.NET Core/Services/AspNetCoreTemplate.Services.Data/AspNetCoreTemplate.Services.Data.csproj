@@ -18,4 +18,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\AspNetCoreTemplate.Data.Common\AspNetCoreTemplate.Data.Common.csproj" />
+    <ProjectReference Include="..\..\Data\AspNetCoreTemplate.Data.Models\AspNetCoreTemplate.Data.Models.csproj" />
+  </ItemGroup>
+
 </Project>

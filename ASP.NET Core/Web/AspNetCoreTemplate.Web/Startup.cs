@@ -3,10 +3,12 @@
     using System.Reflection;
 
     using AspNetCoreTemplate.Data;
+    using AspNetCoreTemplate.Data.Common;
     using AspNetCoreTemplate.Data.Common.Repositories;
     using AspNetCoreTemplate.Data.Models;
     using AspNetCoreTemplate.Data.Repositories;
     using AspNetCoreTemplate.Data.Seeding;
+    using AspNetCoreTemplate.Services.Data;
     using AspNetCoreTemplate.Services.Mapping;
     using AspNetCoreTemplate.Services.Messaging;
     using AspNetCoreTemplate.Web.ViewModels.Account;
@@ -82,17 +84,19 @@
 
             services.AddSingleton(this.configuration);
 
+            // Identity stores
+            services.AddTransient<IUserStore<ApplicationUser>, ApplicationUserStore>();
+            services.AddTransient<IRoleStore<ApplicationRole>, ApplicationRoleStore>();
+
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISmsSender, NullMessageSender>();
-
-            // Identity stores
-            services.AddTransient<IUserStore<ApplicationUser>, ApplicationUserStore>();
-            services.AddTransient<IRoleStore<ApplicationRole>, ApplicationRoleStore>();
+            services.AddTransient<ISettingsService, SettingsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
