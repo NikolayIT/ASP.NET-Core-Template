@@ -2,12 +2,12 @@
 {
     using System.Reflection;
 
-    using AspNetCoreTemplate.Common.Mapping;
     using AspNetCoreTemplate.Data;
     using AspNetCoreTemplate.Data.Common.Repositories;
     using AspNetCoreTemplate.Data.Models;
     using AspNetCoreTemplate.Data.Repositories;
     using AspNetCoreTemplate.Data.Seeding;
+    using AspNetCoreTemplate.Services.Mapping;
     using AspNetCoreTemplate.Services.Messaging;
     using AspNetCoreTemplate.Web.ViewModels.Account;
 

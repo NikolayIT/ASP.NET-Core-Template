@@ -1,7 +1,7 @@
 ﻿namespace AspNetCoreTemplate.Web.ViewModels.Settings
 {
-    using AspNetCoreTemplate.Common.Mapping;
     using AspNetCoreTemplate.Data.Models;
+    using AspNetCoreTemplate.Services.Mapping;
 
     public class SettingViewModel : IMapFrom<Setting>
     {

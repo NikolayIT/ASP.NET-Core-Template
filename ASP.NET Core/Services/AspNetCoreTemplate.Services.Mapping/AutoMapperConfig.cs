@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Common.Mapping
+﻿namespace AspNetCoreTemplate.Services.Mapping
 {
     using System;
     using System.Collections.Generic;
