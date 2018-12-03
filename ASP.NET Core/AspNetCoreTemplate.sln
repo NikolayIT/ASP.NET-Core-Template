@@ -5,29 +5,31 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{E389DEB6-5F90-444B-A054-12A10D39C76F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Web", "Web\AspNetCoreTemplate.Web\AspNetCoreTemplate.Web.csproj", "{B90D1067-FE4C-400E-BA78-5413E30AB9ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTemplate.Web", "Web\AspNetCoreTemplate.Web\AspNetCoreTemplate.Web.csproj", "{B90D1067-FE4C-400E-BA78-5413E30AB9ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{ACBE44C4-E198-45E2-BA02-6655250A0006}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Data.Models", "Data\AspNetCoreTemplate.Data.Models\AspNetCoreTemplate.Data.Models.csproj", "{E9FDB52F-52DC-48B2-86E1-0176377BB53F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTemplate.Data.Models", "Data\AspNetCoreTemplate.Data.Models\AspNetCoreTemplate.Data.Models.csproj", "{E9FDB52F-52DC-48B2-86E1-0176377BB53F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{516E002B-9E6E-4456-B7F6-EAA353966DE6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7A731632-6714-44E2-A9E4-069EBA9E666C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Services", "Services\AspNetCoreTemplate.Services\AspNetCoreTemplate.Services.csproj", "{8522212F-F01E-4E20-9975-FCF5E10D71DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTemplate.Services", "Services\AspNetCoreTemplate.Services\AspNetCoreTemplate.Services.csproj", "{8522212F-F01E-4E20-9975-FCF5E10D71DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Services.Messaging", "Services\AspNetCoreTemplate.Services.Messaging\AspNetCoreTemplate.Services.Messaging.csproj", "{43FDC0C4-F250-45DE-93F8-3CA8A9247CC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTemplate.Services.Messaging", "Services\AspNetCoreTemplate.Services.Messaging\AspNetCoreTemplate.Services.Messaging.csproj", "{43FDC0C4-F250-45DE-93F8-3CA8A9247CC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Data", "Data\AspNetCoreTemplate.Data\AspNetCoreTemplate.Data.csproj", "{4B844ECB-E845-49A6-8B31-85E577933598}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTemplate.Data", "Data\AspNetCoreTemplate.Data\AspNetCoreTemplate.Data.csproj", "{4B844ECB-E845-49A6-8B31-85E577933598}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Data.Common", "Data\AspNetCoreTemplate.Data.Common\AspNetCoreTemplate.Data.Common.csproj", "{D0D59508-CF8B-4656-A344-396C530BB9DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTemplate.Data.Common", "Data\AspNetCoreTemplate.Data.Common\AspNetCoreTemplate.Data.Common.csproj", "{D0D59508-CF8B-4656-A344-396C530BB9DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Common", "AspNetCoreTemplate.Common\AspNetCoreTemplate.Common.csproj", "{A2288C46-0FBF-43B6-80B6-3072FD65BC32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTemplate.Common", "AspNetCoreTemplate.Common\AspNetCoreTemplate.Common.csproj", "{A2288C46-0FBF-43B6-80B6-3072FD65BC32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Web.Infrastructure", "Web\AspNetCoreTemplate.Web.Infrastructure\AspNetCoreTemplate.Web.Infrastructure.csproj", "{7A7A7986-1F5B-4EBD-9B17-8B41F8FABA58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTemplate.Web.Infrastructure", "Web\AspNetCoreTemplate.Web.Infrastructure\AspNetCoreTemplate.Web.Infrastructure.csproj", "{7A7A7986-1F5B-4EBD-9B17-8B41F8FABA58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Services.Data", "Services\AspNetCoreTemplate.Services.Data\AspNetCoreTemplate.Services.Data.csproj", "{4D39C126-3FB5-4B26-B08C-1BF48EFFA23E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTemplate.Services.Data", "Services\AspNetCoreTemplate.Services.Data\AspNetCoreTemplate.Services.Data.csproj", "{4D39C126-3FB5-4B26-B08C-1BF48EFFA23E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Services.Mapping", "Services\AspNetCoreTemplate.Services.Mapping\AspNetCoreTemplate.Services.Mapping.csproj", "{415FD7FA-0453-4FE1-9A29-C6E1D8B45C3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{4D39C126-3FB5-4B26-B08C-1BF48EFFA23E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D39C126-3FB5-4B26-B08C-1BF48EFFA23E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D39C126-3FB5-4B26-B08C-1BF48EFFA23E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{415FD7FA-0453-4FE1-9A29-C6E1D8B45C3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{415FD7FA-0453-4FE1-9A29-C6E1D8B45C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{415FD7FA-0453-4FE1-9A29-C6E1D8B45C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{415FD7FA-0453-4FE1-9A29-C6E1D8B45C3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,5 +90,9 @@ Global
 		{D0D59508-CF8B-4656-A344-396C530BB9DF} = {ACBE44C4-E198-45E2-BA02-6655250A0006}
 		{7A7A7986-1F5B-4EBD-9B17-8B41F8FABA58} = {E389DEB6-5F90-444B-A054-12A10D39C76F}
 		{4D39C126-3FB5-4B26-B08C-1BF48EFFA23E} = {516E002B-9E6E-4456-B7F6-EAA353966DE6}
+		{415FD7FA-0453-4FE1-9A29-C6E1D8B45C3D} = {516E002B-9E6E-4456-B7F6-EAA353966DE6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {384484BE-4680-4529-9CC2-AD37BA4D12D1}
 	EndGlobalSection
 EndGlobal
