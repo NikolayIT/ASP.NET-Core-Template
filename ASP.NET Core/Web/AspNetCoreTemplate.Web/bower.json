@@ -2,9 +2,9 @@
   "name": "AspNetCoreTemplate",
   "private": true,
   "dependencies": {
-    "jquery": "3.2.1",
+    "jquery": "3.3.1",
     "bootstrap": "3.3.7",
-    "jquery-validation": "1.17.0",
-    "jquery-validation-unobtrusive": "3.2.6"
+    "jquery-validation": "1.19.0",
+    "jquery-validation-unobtrusive": "3.2.11"
   }
 }
