@@ -57,7 +57,7 @@
 
             services
                 .AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddRazorPagesOptions(options =>
                 {
                     options.AllowAreas = true;
@@ -116,9 +116,6 @@
 
                 ApplicationDbContextSeeder.Seed(dbContext, serviceScope.ServiceProvider);
             }
-
-            loggerFactory.AddConsole(this.configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
 
             if (env.IsDevelopment())
             {
