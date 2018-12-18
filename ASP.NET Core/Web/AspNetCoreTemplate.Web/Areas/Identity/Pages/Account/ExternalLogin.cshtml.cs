@@ -1,10 +1,10 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Identity.Pages.Account
 {
+    using System.ComponentModel.DataAnnotations;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.InputModels;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -32,7 +32,7 @@
         }
 
         [BindProperty]
-        public ErrorLoginInputModel Input { get; set; }
+        public InputModel Input { get; set; }
 
         public string LoginProvider { get; set; }
 
@@ -40,6 +40,13 @@
 
         [TempData]
         public string ErrorMessage { get; set; }
+
+        public class InputModel
+        {
+            [Required]
+            [EmailAddress]
+            public string Email { get; set; }
+        }
 
         public IActionResult OnGetAsync()
         {
@@ -74,7 +81,10 @@
             var result = await this.signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
-                this.logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
+                this.logger.LogInformation(
+                    "{Name} logged in with {LoginProvider} provider.",
+                    info.Principal.Identity.Name,
+                    info.LoginProvider);
                 return this.LocalRedirect(returnUrl);
             }
 
@@ -89,7 +99,7 @@
                 this.LoginProvider = info.LoginProvider;
                 if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
                 {
-                    this.Input = new ErrorLoginInputModel
+                    this.Input = new InputModel
                     {
                         Email = info.Principal.FindFirstValue(ClaimTypes.Email),
                     };
@@ -121,7 +131,9 @@
                     if (result.Succeeded)
                     {
                         await this.signInManager.SignInAsync(user, isPersistent: false);
-                        this.logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
+                        this.logger.LogInformation(
+                            "User created an account using {Name} provider.",
+                            info.LoginProvider);
                         return this.LocalRedirect(returnUrl);
                     }
                 }
