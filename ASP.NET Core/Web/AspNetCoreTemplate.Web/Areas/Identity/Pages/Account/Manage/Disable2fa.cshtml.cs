@@ -11,15 +11,15 @@
     using Microsoft.Extensions.Logging;
 
 #pragma warning disable SA1649 // File name should match first type name
-    public class Disable2FaModel : PageModel
+    public class Disable2faModel : PageModel
 #pragma warning restore SA1649 // File name should match first type name
     {
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly ILogger<Disable2FaModel> logger;
+        private readonly ILogger<Disable2faModel> logger;
 
-        public Disable2FaModel(
+        public Disable2faModel(
             UserManager<ApplicationUser> userManager,
-            ILogger<Disable2FaModel> logger)
+            ILogger<Disable2faModel> logger)
         {
             this.userManager = userManager;
             this.logger = logger;
@@ -52,8 +52,8 @@
                 return this.NotFound($"Unable to load user with ID '{this.userManager.GetUserId(this.User)}'.");
             }
 
-            var disable2FaResult = await this.userManager.SetTwoFactorEnabledAsync(user, false);
-            if (!disable2FaResult.Succeeded)
+            var disable2faResult = await this.userManager.SetTwoFactorEnabledAsync(user, false);
+            if (!disable2faResult.Succeeded)
             {
                 throw new InvalidOperationException($"Unexpected error occurred disabling 2FA for user with ID '{this.userManager.GetUserId(this.User)}'.");
             }

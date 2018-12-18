@@ -1,12 +1,12 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.Manage
 {
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Text;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.Manage.InputModels;
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -44,7 +44,7 @@
         public string StatusMessage { get; set; }
 
         [BindProperty]
-        public EnableAuthenticatorInputModel Input { get; set; }
+        public InputModel Input { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -76,10 +76,10 @@
             // Strip spaces and hypens
             var verificationCode = this.Input.Code.Replace(" ", string.Empty).Replace("-", string.Empty);
 
-            var is2FaTokenValid = await this.userManager.VerifyTwoFactorTokenAsync(
+            var is2faTokenValid = await this.userManager.VerifyTwoFactorTokenAsync(
                 user, this.userManager.Options.Tokens.AuthenticatorTokenProvider, verificationCode);
 
-            if (!is2FaTokenValid)
+            if (!is2faTokenValid)
             {
                 this.ModelState.AddModelError("Input.Code", "Verification code is invalid.");
                 await this.LoadSharedKeyAndQrCodeUriAsync(user);
@@ -145,6 +145,15 @@
                 this.urlEncoder.Encode("AspNetCoreTemplate.Web"),
                 this.urlEncoder.Encode(email),
                 unformattedKey);
+        }
+
+        public class InputModel
+        {
+            [Required]
+            [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [DataType(DataType.Text)]
+            [Display(Name = "Verification Code")]
+            public string Code { get; set; }
         }
     }
 }
