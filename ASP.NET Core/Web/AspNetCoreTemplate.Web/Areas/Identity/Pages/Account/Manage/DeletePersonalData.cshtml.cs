@@ -1,10 +1,10 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.Manage
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.Manage.InputModels;
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -30,7 +30,7 @@
         }
 
         [BindProperty]
-        public DeletePersonalDataInputModel Input { get; set; }
+        public InputModel Input { get; set; }
 
         public bool RequirePassword { get; set; }
 
@@ -68,7 +68,7 @@
             var userId = await this.userManager.GetUserIdAsync(user);
             if (!result.Succeeded)
             {
-                throw new InvalidOperationException($"Unexpected error occurred deleteing user with ID '{userId}'.");
+                throw new InvalidOperationException($"Unexpected error occurred deleting user with ID '{userId}'.");
             }
 
             await this.signInManager.SignOutAsync();
@@ -76,6 +76,13 @@
             this.logger.LogInformation("User with ID '{UserId}' deleted themselves.", userId);
 
             return this.Redirect("~/");
+        }
+
+        public class InputModel
+        {
+            [Required]
+            [DataType(DataType.Password)]
+            public string Password { get; set; }
         }
     }
 }
