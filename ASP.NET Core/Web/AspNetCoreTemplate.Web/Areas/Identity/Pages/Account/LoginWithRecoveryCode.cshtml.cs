@@ -1,10 +1,10 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Identity.Pages.Account
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.InputModels;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -27,7 +27,7 @@
         }
 
         [BindProperty]
-        public LoginWithRecoveryCodeInputModel Input { get; set; }
+        public InputModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
 
@@ -79,6 +79,15 @@
                 this.ModelState.AddModelError(string.Empty, "Invalid recovery code entered.");
                 return this.Page();
             }
+        }
+
+        public class InputModel
+        {
+            [BindProperty]
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Recovery Code")]
+            public string RecoveryCode { get; set; }
         }
     }
 }
