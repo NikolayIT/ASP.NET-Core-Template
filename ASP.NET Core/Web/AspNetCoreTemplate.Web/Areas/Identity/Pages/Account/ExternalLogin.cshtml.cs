@@ -41,13 +41,6 @@
         [TempData]
         public string ErrorMessage { get; set; }
 
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
-        }
-
         public IActionResult OnGetAsync()
         {
             return this.RedirectToPage("./Login");
@@ -147,6 +140,13 @@
             this.LoginProvider = info.LoginProvider;
             this.ReturnUrl = returnUrl;
             return this.Page();
+        }
+
+        public class InputModel
+        {
+            [Required]
+            [EmailAddress]
+            public string Email { get; set; }
         }
     }
 }
