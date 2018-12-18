@@ -5,7 +5,7 @@
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
 
-<partial name="_StatusMessage" model="this.Model.StatusMessage" />
+<partial name="_StatusMessage" for="StatusMessage" />
 <h4>@ViewData["Title"]</h4>
 <div>
     <p>To use an authenticator app go through the following steps:</p>
@@ -25,7 +25,7 @@
             <p>Scan the QR Code or enter this key <kbd>@Model.SharedKey</kbd> into your two factor authenticator app. Spaces and casing do not matter.</p>
             <div class="alert alert-info">To enable QR code generation please read our <a href="https://go.microsoft.com/fwlink/?Linkid=852423">documentation</a>.</div>
             <div id="qrCode"></div>
-            <div id="qrCodeData" data-url="@Html.Raw(Model.AuthenticatorUri)"></div>
+            <div id="qrCodeData" data-url="@Html.Raw(@Model.AuthenticatorUri)"></div>
         </li>
         <li>
             <p>
@@ -34,13 +34,13 @@
             </p>
             <div class="row">
                 <div class="col-md-6">
-                    <form method="post">
+                    <form id="send-code" method="post">
                         <div class="form-group">
                             <label asp-for="Input.Code" class="control-label">Verification Code</label>
                             <input asp-for="Input.Code" class="form-control" autocomplete="off" />
                             <span asp-validation-for="Input.Code" class="text-danger"></span>
                         </div>
-                        <button type="submit" class="btn btn-default">Verify</button>
+                        <button type="submit" class="btn btn-primary">Verify</button>
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     </form>
                 </div>
