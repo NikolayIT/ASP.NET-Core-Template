@@ -34,7 +34,7 @@
         public int RecoveryCodesLeft { get; set; }
 
         [BindProperty]
-        public bool Is2FaEnabled { get; set; }
+        public bool Is2faEnabled { get; set; }
 
         public bool IsMachineRemembered { get; set; }
 
@@ -50,7 +50,7 @@
             }
 
             this.HasAuthenticator = await this.userManager.GetAuthenticatorKeyAsync(user) != null;
-            this.Is2FaEnabled = await this.userManager.GetTwoFactorEnabledAsync(user);
+            this.Is2faEnabled = await this.userManager.GetTwoFactorEnabledAsync(user);
             this.IsMachineRemembered = await this.signInManager.IsTwoFactorClientRememberedAsync(user);
             this.RecoveryCodesLeft = await this.userManager.CountRecoveryCodesAsync(user);
 
@@ -66,8 +66,7 @@
             }
 
             await this.signInManager.ForgetTwoFactorClientAsync();
-            this.StatusMessage =
-                "The current browser has been forgotten. When you login again from this browser you will be prompted for your 2fa code.";
+            this.StatusMessage = "The current browser has been forgotten. When you login again from this browser you will be prompted for your 2fa code.";
             return this.RedirectToPage();
         }
     }

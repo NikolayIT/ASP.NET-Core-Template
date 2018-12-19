@@ -1,10 +1,10 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Identity.Pages.Account
 {
+    using System.ComponentModel.DataAnnotations;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.InputModels;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -27,7 +27,7 @@
         }
 
         [BindProperty]
-        public ForgotPasswordInputModel Input { get; set; }
+        public InputModel Input { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -58,6 +58,13 @@
             }
 
             return this.Page();
+        }
+
+        public class InputModel
+        {
+            [Required]
+            [EmailAddress]
+            public string Email { get; set; }
         }
     }
 }

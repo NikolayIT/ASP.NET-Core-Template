@@ -1,11 +1,11 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.Manage
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.Manage.InputModels;
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.UI.Services;
@@ -38,7 +38,7 @@
         public string StatusMessage { get; set; }
 
         [BindProperty]
-        public IndexInputModel Input { get; set; }
+        public InputModel Input { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -54,7 +54,7 @@
 
             this.Username = userName;
 
-            this.Input = new IndexInputModel
+            this.Input = new InputModel
             {
                 Email = email,
                 PhoneNumber = phoneNumber,
@@ -133,6 +133,17 @@
 
             this.StatusMessage = "Verification email sent. Please check your email.";
             return this.RedirectToPage();
+        }
+
+        public class InputModel
+        {
+            [Required]
+            [EmailAddress]
+            public string Email { get; set; }
+
+            [Phone]
+            [Display(Name = "Phone number")]
+            public string PhoneNumber { get; set; }
         }
     }
 }

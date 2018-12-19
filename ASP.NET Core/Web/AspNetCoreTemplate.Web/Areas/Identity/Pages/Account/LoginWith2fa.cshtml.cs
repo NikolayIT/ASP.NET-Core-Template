@@ -1,10 +1,10 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Identity.Pages.Account
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Models;
-    using AspNetCoreTemplate.Web.Areas.Identity.Pages.Account.InputModels;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -14,20 +14,20 @@
 
     [AllowAnonymous]
 #pragma warning disable SA1649 // File name should match first type name
-    public class LoginWith2FaModel : PageModel
+    public class LoginWith2faModel : PageModel
 #pragma warning restore SA1649 // File name should match first type name
     {
         private readonly SignInManager<ApplicationUser> signInManager;
-        private readonly ILogger<LoginWith2FaModel> logger;
+        private readonly ILogger<LoginWith2faModel> logger;
 
-        public LoginWith2FaModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginWith2FaModel> logger)
+        public LoginWith2faModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginWith2faModel> logger)
         {
             this.signInManager = signInManager;
             this.logger = logger;
         }
 
         [BindProperty]
-        public LoginWith2faInputModel Input { get; set; }
+        public InputModel Input { get; set; }
 
         public bool RememberMe { get; set; }
 
@@ -84,6 +84,18 @@
                 this.ModelState.AddModelError(string.Empty, "Invalid authenticator code.");
                 return this.Page();
             }
+        }
+
+        public class InputModel
+        {
+            [Required]
+            [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [DataType(DataType.Text)]
+            [Display(Name = "Authenticator code")]
+            public string TwoFactorCode { get; set; }
+
+            [Display(Name = "Remember this machine")]
+            public bool RememberMachine { get; set; }
         }
     }
 }

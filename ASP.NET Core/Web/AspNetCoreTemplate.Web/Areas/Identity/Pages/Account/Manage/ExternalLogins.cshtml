@@ -2,9 +2,10 @@
 @model ExternalLoginsModel
 @{
     ViewData["Title"] = "Manage your external logins";
+    ViewData["ActivePage"] = ManageNavPages.ExternalLogins;
 }
 
-<partial name="_StatusMessage" model="this.Model.StatusMessage" />
+<partial name="_StatusMessage" for="StatusMessage" />
 @if (Model.CurrentLogins?.Count > 0)
 {
     <h4>Registered Logins</h4>
@@ -13,21 +14,21 @@
             @foreach (var login in Model.CurrentLogins)
             {
                 <tr>
-                    <td>@login.LoginProvider</td>
+                    <td>@login.ProviderDisplayName</td>
                     <td>
                         @if (Model.ShowRemoveButton)
                         {
-                        <form id="remove-login" asp-page-handler="RemoveLogin" method="post">
-                            <div>
-                                <input asp-for="@login.LoginProvider" name="LoginProvider" type="hidden" />
-                                <input asp-for="@login.ProviderKey" name="ProviderKey" type="hidden" />
-                                <button type="submit" class="btn btn-default" title="Remove this @login.LoginProvider login from your account">Remove</button>
-                            </div>
-                        </form>
+                            <form id="remove-login" asp-page-handler="RemoveLogin" method="post">
+                                <div>
+                                    <input asp-for="@login.LoginProvider" name="LoginProvider" type="hidden" />
+                                    <input asp-for="@login.ProviderKey" name="ProviderKey" type="hidden" />
+                                    <button type="submit" class="btn btn-primary" title="Remove this @login.ProviderDisplayName login from your account">Remove</button>
+                                </div>
+                            </form>
                         }
                         else
                         {
-                        @: &nbsp;
+                            @: &nbsp;
                         }
                     </td>
                 </tr>
@@ -44,7 +45,7 @@
             <p>
                 @foreach (var provider in Model.OtherLogins)
                 {
-                    <button id="link-login-button" type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                    <button id="link-login-button" type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
                 }
             </p>
         </div>
