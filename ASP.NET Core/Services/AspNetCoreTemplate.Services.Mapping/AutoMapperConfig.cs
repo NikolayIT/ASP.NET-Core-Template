@@ -9,8 +9,17 @@
 
     public static class AutoMapperConfig
     {
+        private static bool initialized;
+
         public static void RegisterMappings(params Assembly[] assemblies)
         {
+            if (initialized)
+            {
+                return;
+            }
+
+            initialized = true;
+
             var types = assemblies.SelectMany(a => a.GetExportedTypes()).ToList();
 
             Mapper.Initialize(configuration =>

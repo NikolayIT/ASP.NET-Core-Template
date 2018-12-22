@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTemplate.Services
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTemplate.Services.Mapping", "Services\AspNetCoreTemplate.Services.Mapping\AspNetCoreTemplate.Services.Mapping.csproj", "{415FD7FA-0453-4FE1-9A29-C6E1D8B45C3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Tests\Sandbox\Sandbox.csproj", "{8AB6B92A-0837-4BDE-B950-10BE3FF2B6A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox", "Tests\Sandbox\Sandbox.csproj", "{8AB6B92A-0837-4BDE-B950-10BE3FF2B6A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Services.Data.Tests", "Tests\AspNetCoreTemplate.Services.Data.Tests\AspNetCoreTemplate.Services.Data.Tests.csproj", "{901AB2DA-6E52-4FB2-91F0-58EB0115F2F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,10 @@ Global
 		{8AB6B92A-0837-4BDE-B950-10BE3FF2B6A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AB6B92A-0837-4BDE-B950-10BE3FF2B6A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AB6B92A-0837-4BDE-B950-10BE3FF2B6A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{901AB2DA-6E52-4FB2-91F0-58EB0115F2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{901AB2DA-6E52-4FB2-91F0-58EB0115F2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{901AB2DA-6E52-4FB2-91F0-58EB0115F2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{901AB2DA-6E52-4FB2-91F0-58EB0115F2F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,6 +104,7 @@ Global
 		{4D39C126-3FB5-4B26-B08C-1BF48EFFA23E} = {516E002B-9E6E-4456-B7F6-EAA353966DE6}
 		{415FD7FA-0453-4FE1-9A29-C6E1D8B45C3D} = {516E002B-9E6E-4456-B7F6-EAA353966DE6}
 		{8AB6B92A-0837-4BDE-B950-10BE3FF2B6A8} = {7A731632-6714-44E2-A9E4-069EBA9E666C}
+		{901AB2DA-6E52-4FB2-91F0-58EB0115F2F7} = {7A731632-6714-44E2-A9E4-069EBA9E666C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {384484BE-4680-4529-9CC2-AD37BA4D12D1}
