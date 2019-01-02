@@ -1,6 +1,7 @@
 ﻿namespace AspNetCoreTemplate.Data
 {
     using System;
+    using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Common;
 
@@ -15,9 +16,9 @@
 
         public ApplicationDbContext Context { get; set; }
 
-        public void RunQuery(string query, params object[] parameters)
+        public Task RunQueryAsync(string query, params object[] parameters)
         {
-            this.Context.Database.ExecuteSqlCommand(query, parameters);
+            return this.Context.Database.ExecuteSqlCommandAsync(query, parameters);
         }
 
         public void Dispose()

@@ -1,9 +1,10 @@
 ﻿namespace AspNetCoreTemplate.Data.Common
 {
     using System;
+    using System.Threading.Tasks;
 
     public interface IDbQueryRunner : IDisposable
     {
-        void RunQuery(string query, params object[] parameters);
+        Task RunQueryAsync(string query, params object[] parameters);
     }
 }
