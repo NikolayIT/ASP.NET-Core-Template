@@ -1,26 +1,22 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Administration.Controllers
 {
-    using System.Linq;
-
-    using AspNetCoreTemplate.Data.Common.Repositories;
-    using AspNetCoreTemplate.Data.Models;
+    using AspNetCoreTemplate.Services.Data;
     using AspNetCoreTemplate.Web.Areas.Administration.ViewModels.Dashboard;
 
     using Microsoft.AspNetCore.Mvc;
 
     public class DashboardController : AdministrationController
     {
-        private readonly IDeletableEntityRepository<Setting> settingsRepository;
+        private readonly ISettingsService settingsService;
 
-        public DashboardController(
-            IDeletableEntityRepository<Setting> settingsRepository)
+        public DashboardController(ISettingsService settingsService)
         {
-            this.settingsRepository = settingsRepository;
+            this.settingsService = settingsService;
         }
 
         public IActionResult Index()
         {
-            var viewModel = new IndexViewModel { SettingsCount = this.settingsRepository.All().Count(), };
+            var viewModel = new IndexViewModel { SettingsCount = this.settingsService.GetCount(), };
             return this.View(viewModel);
         }
     }

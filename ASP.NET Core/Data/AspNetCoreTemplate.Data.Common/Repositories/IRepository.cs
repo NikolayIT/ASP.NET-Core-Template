@@ -11,9 +11,7 @@
 
         IQueryable<TEntity> AllAsNoTracking();
 
-        Task<TEntity> GetByIdAsync(params object[] id);
-
-        void Add(TEntity entity);
+        Task AddAsync(TEntity entity);
 
         void Update(TEntity entity);
 
