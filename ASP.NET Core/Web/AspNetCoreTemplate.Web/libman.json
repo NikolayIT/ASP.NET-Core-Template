@@ -13,7 +13,7 @@
     },
     {
       "provider": "unpkg",
-      "library": "bootstrap@4.1.3",
+      "library": "bootstrap@4.2.1",
       "destination": "wwwroot/lib/bootstrap/",
       "files": [
         "dist/css/bootstrap.css",
