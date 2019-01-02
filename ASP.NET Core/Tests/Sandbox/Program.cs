@@ -44,7 +44,7 @@
                 serviceProvider = serviceScope.ServiceProvider;
 
                 return Parser.Default.ParseArguments<SandboxOptions>(args).MapResult(
-                    (SandboxOptions opts) => SandboxCode(opts, serviceProvider),
+                    opts => SandboxCode(opts, serviceProvider),
                     _ => 255);
             }
         }

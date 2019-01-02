@@ -21,7 +21,7 @@
         {
             this.ClientOptions.BaseAddress = new Uri("https://localhost"); // will follow redirects by default
 
-            this.process = new Process()
+            this.process = new Process
                        {
                            StartInfo = new ProcessStartInfo
                                        {
