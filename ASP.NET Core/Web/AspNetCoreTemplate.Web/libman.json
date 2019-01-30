@@ -3,7 +3,6 @@
   "defaultProvider": "unpkg",
   "libraries": [
     {
-      "provider": "unpkg",
       "library": "jquery@3.3.1",
       "destination": "wwwroot/lib/jquery/",
       "files": [
@@ -12,7 +11,6 @@
       ]
     },
     {
-      "provider": "unpkg",
       "library": "bootstrap@4.2.1",
       "destination": "wwwroot/lib/bootstrap/",
       "files": [
@@ -23,7 +21,6 @@
       ]
     },
     {
-      "provider": "unpkg",
       "library": "jquery-validation@1.19.0",
       "destination": "wwwroot/lib/jquery-validation/",
       "files": [
@@ -32,7 +29,6 @@
       ]
     },
     {
-      "provider": "unpkg",
       "library": "jquery-validation-unobtrusive@3.2.11",
       "destination": "wwwroot/lib/jquery-validation-unobtrusive/",
       "files": [

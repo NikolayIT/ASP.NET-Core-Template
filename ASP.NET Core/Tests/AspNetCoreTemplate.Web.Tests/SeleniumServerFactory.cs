@@ -10,7 +10,7 @@
     using Microsoft.AspNetCore.TestHost;
     using Microsoft.Extensions.DependencyInjection;
 
-    public class SeleniumServerFactory<TStartup> : WebApplicationFactory<Startup>
+    public class SeleniumServerFactory<TStartup> : WebApplicationFactory<TStartup>
         where TStartup : class
     {
         private readonly Process process;
