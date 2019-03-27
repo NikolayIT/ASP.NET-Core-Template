@@ -13,6 +13,9 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+# Mono auto generated files
+mono_crash.*
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -206,6 +209,8 @@ BundleArtifacts/
 Package.StoreAssociation.xml
 _pkginfo.txt
 *.appx
+*.appxbundle
+*.appxupload
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
@@ -257,6 +262,7 @@ ServiceFabricBackup/
 *.bim.layout
 *.bim_*.settings
 *.rptproj.rsuser
+*- Backup*.rdl
 
 # Microsoft Fakes
 FakesAssemblies/
@@ -291,10 +297,6 @@ paket-files/
 
 # FAKE - F# Make
 .fake/
-
-# JetBrains Rider
-.idea/
-*.sln.iml
 
 # CodeRush personal settings
 .cr/personal
@@ -336,3 +338,14 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+
+# BeatPulse healthcheck temp database
+healthchecksdb
+
+# Backup folder for Package Reference Convert tool in Visual Studio 2017
+MigrationBackup/
+
+# Custom ignores
+appsettings.Production.json
+*.min.css
+*.min.js
