@@ -33,9 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTemplate.Services
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox", "Tests\Sandbox\Sandbox.csproj", "{8AB6B92A-0837-4BDE-B950-10BE3FF2B6A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Services.Data.Tests", "Tests\AspNetCoreTemplate.Services.Data.Tests\AspNetCoreTemplate.Services.Data.Tests.csproj", "{901AB2DA-6E52-4FB2-91F0-58EB0115F2F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTemplate.Services.Data.Tests", "Tests\AspNetCoreTemplate.Services.Data.Tests\AspNetCoreTemplate.Services.Data.Tests.csproj", "{901AB2DA-6E52-4FB2-91F0-58EB0115F2F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Web.Tests", "Tests\AspNetCoreTemplate.Web.Tests\AspNetCoreTemplate.Web.Tests.csproj", "{3EE06C6E-C8F3-418A-A309-8AC81976A074}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreTemplate.Web.Tests", "Tests\AspNetCoreTemplate.Web.Tests\AspNetCoreTemplate.Web.Tests.csproj", "{3EE06C6E-C8F3-418A-A309-8AC81976A074}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTemplate.Web.ViewModels", "Web\AspNetCoreTemplate.Web.ViewModels\AspNetCoreTemplate.Web.ViewModels.csproj", "{13B7AACB-9C85-4409-8D4B-95A67D0DFFF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +97,10 @@ Global
 		{3EE06C6E-C8F3-418A-A309-8AC81976A074}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EE06C6E-C8F3-418A-A309-8AC81976A074}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EE06C6E-C8F3-418A-A309-8AC81976A074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13B7AACB-9C85-4409-8D4B-95A67D0DFFF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13B7AACB-9C85-4409-8D4B-95A67D0DFFF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13B7AACB-9C85-4409-8D4B-95A67D0DFFF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13B7AACB-9C85-4409-8D4B-95A67D0DFFF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,6 +118,7 @@ Global
 		{8AB6B92A-0837-4BDE-B950-10BE3FF2B6A8} = {7A731632-6714-44E2-A9E4-069EBA9E666C}
 		{901AB2DA-6E52-4FB2-91F0-58EB0115F2F7} = {7A731632-6714-44E2-A9E4-069EBA9E666C}
 		{3EE06C6E-C8F3-418A-A309-8AC81976A074} = {7A731632-6714-44E2-A9E4-069EBA9E666C}
+		{13B7AACB-9C85-4409-8D4B-95A67D0DFFF7} = {E389DEB6-5F90-444B-A054-12A10D39C76F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {384484BE-4680-4529-9CC2-AD37BA4D12D1}
