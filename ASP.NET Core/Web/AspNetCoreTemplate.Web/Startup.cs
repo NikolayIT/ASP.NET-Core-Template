@@ -13,6 +13,9 @@
     using AspNetCoreTemplate.Services.Messaging;
     using AspNetCoreTemplate.Web.ViewModels;
 
+    using AutoMapper;
+    using AutoMapper.Configuration;
+
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -24,6 +27,8 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+
+    using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
     public class Startup
     {
@@ -56,6 +61,11 @@
                 .AddRoleStore<ApplicationRoleStore>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI(UIFramework.Bootstrap4);
+
+            services.AddAutoMapper(typeof(AutoMapperReflectionProfile));
+            var config = new MapperConfigurationExpression();
+            config.AddProfile<AutoMapperReflectionProfile>();
+            Mapper.Initialize(config);
 
             services
                 .AddMvc()
@@ -104,8 +114,6 @@
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
             // Seed data on application startup
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {

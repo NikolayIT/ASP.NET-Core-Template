@@ -7,41 +7,29 @@
 
     using AutoMapper;
 
-    public static class AutoMapperConfig
+    public class AutoMapperReflectionProfile : Profile
     {
-        private static bool initialized;
-
-        public static void RegisterMappings(params Assembly[] assemblies)
+        public AutoMapperReflectionProfile()
         {
-            if (initialized)
+            var types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetExportedTypes()).ToList();
+
+            // IMapFrom<>
+            foreach (var map in GetFromMaps(types))
             {
-                return;
+                this.CreateMap(map.Source, map.Destination);
             }
 
-            initialized = true;
-
-            var types = assemblies.SelectMany(a => a.GetExportedTypes()).ToList();
-
-            Mapper.Initialize(configuration =>
+            // IMapTo<>
+            foreach (var map in GetToMaps(types))
             {
-                // IMapFrom<>
-                foreach (var map in GetFromMaps(types))
-                {
-                    configuration.CreateMap(map.Source, map.Destination);
-                }
+                this.CreateMap(map.Source, map.Destination);
+            }
 
-                // IMapTo<>
-                foreach (var map in GetToMaps(types))
-                {
-                    configuration.CreateMap(map.Source, map.Destination);
-                }
-
-                // IHaveCustomMappings
-                foreach (var map in GetCustomMappings(types))
-                {
-                    map.CreateMappings(configuration);
-                }
-            });
+            // IHaveCustomMappings
+            foreach (var map in GetCustomMappings(types))
+            {
+                map.CreateMappings(this);
+            }
         }
 
         private static IEnumerable<TypesMap> GetFromMaps(IEnumerable<Type> types)
