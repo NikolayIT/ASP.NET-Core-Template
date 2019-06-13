@@ -8,7 +8,7 @@
 
 @foreach (var setting in this.Model.Settings)
 {
-    <div>@setting.Id: @setting.Name = @setting.Value</div>
+    <div>@setting.Id: @setting.NameAndValue</div>
 }
 
 <a asp-action="InsertSetting" class="btn btn-primary">Insert new</a>
