@@ -12,6 +12,8 @@
     {
         private static bool initialized;
 
+        public static IMapper MapperInstance { get; set; }
+
         public static void RegisterMappings(params Assembly[] assemblies)
         {
             if (initialized)
@@ -46,7 +48,7 @@
                         map.CreateMappings(configuration);
                     }
                 });
-            Mapper.Initialize(config);
+            MapperInstance = new Mapper(new MapperConfiguration(config));
         }
 
         private static IEnumerable<TypesMap> GetFromMaps(IEnumerable<Type> types)
