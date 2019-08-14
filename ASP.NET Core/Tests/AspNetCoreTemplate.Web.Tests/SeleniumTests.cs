@@ -22,7 +22,7 @@
             this.browser = new RemoteWebDriver(opts);
         }
 
-        [Fact]
+        [Fact(Skip = "Example test. Disabled for CI.")]
         public void FooterOfThePageContainsPrivacyLink()
         {
             this.browser.Navigate().GoToUrl(this.server.RootUri);

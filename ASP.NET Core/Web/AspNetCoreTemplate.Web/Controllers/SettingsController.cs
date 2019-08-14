@@ -6,6 +6,7 @@
 
     using AspNetCoreTemplate.Data.Common.Repositories;
     using AspNetCoreTemplate.Data.Models;
+    using AspNetCoreTemplate.Services.Data;
     using AspNetCoreTemplate.Services.Mapping;
     using AspNetCoreTemplate.Web.ViewModels.Settings;
 
@@ -13,16 +14,19 @@
 
     public class SettingsController : BaseController
     {
+        private readonly ISettingsService settingsService;
+
         private readonly IDeletableEntityRepository<Setting> repository;
 
-        public SettingsController(IDeletableEntityRepository<Setting> repository)
+        public SettingsController(ISettingsService settingsService, IDeletableEntityRepository<Setting> repository)
         {
+            this.settingsService = settingsService;
             this.repository = repository;
         }
 
         public IActionResult Index()
         {
-            var settings = this.repository.All().To<SettingViewModel>().ToList();
+            var settings = this.settingsService.GetAll<SettingViewModel>();
             var model = new SettingsListViewModel { Settings = settings };
             return this.View(model);
         }

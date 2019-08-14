@@ -16,7 +16,7 @@
             this.server = server;
         }
 
-        [Fact]
+        [Fact(Skip = "Example test. Disabled for CI.")]
         public async Task IndexPageShouldReturnStatusCode200WithTitle()
         {
             var client = this.server.CreateClient();
@@ -26,7 +26,7 @@
             Assert.Contains("<title>", responseContent);
         }
 
-        [Fact]
+        [Fact(Skip = "Example test. Disabled for CI.")]
         public async Task AccountManagePageRequiresAuthorization()
         {
             var client = this.server.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false });
