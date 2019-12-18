@@ -3,7 +3,7 @@
   "defaultProvider": "unpkg",
   "libraries": [
     {
-      "library": "jquery@3.3.1",
+      "library": "jquery@3.4.1",
       "destination": "wwwroot/lib/jquery/",
       "files": [
         "dist/jquery.min.js",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "library": "bootstrap@4.3.1",
+      "library": "bootstrap@4.4.1",
       "destination": "wwwroot/lib/bootstrap/",
       "files": [
         "dist/css/bootstrap.css",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "library": "jquery-validation@1.19.0",
+      "library": "jquery-validation@1.19.1",
       "destination": "wwwroot/lib/jquery-validation/",
       "files": [
         "dist/jquery.validate.js",
