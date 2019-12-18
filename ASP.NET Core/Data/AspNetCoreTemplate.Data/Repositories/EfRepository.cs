@@ -25,7 +25,7 @@
 
         public virtual IQueryable<TEntity> AllAsNoTracking() => this.DbSet.AsNoTracking();
 
-        public virtual Task AddAsync(TEntity entity) => this.DbSet.AddAsync(entity);
+        public virtual async Task AddAsync(TEntity entity) => await this.DbSet.AddAsync(entity);
 
         public virtual void Update(TEntity entity)
         {
@@ -42,6 +42,18 @@
 
         public Task<int> SaveChangesAsync() => this.Context.SaveChangesAsync();
 
-        public void Dispose() => this.Context.Dispose();
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.Context?.Dispose();
+            }
+        }
     }
 }
