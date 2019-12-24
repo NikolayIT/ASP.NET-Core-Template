@@ -15,6 +15,7 @@
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +33,6 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Framework services
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(this.configuration.GetConnectionString("DefaultConnection")));
 
@@ -45,6 +45,14 @@
                             options.Password.RequireNonAlphanumeric = false;
                             options.Password.RequiredLength = 6;
                         }).AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+            services.Configure<CookiePolicyOptions>(
+                options =>
+                    {
+                        options.CheckConsentNeeded = context => true;
+                        options.MinimumSameSitePolicy = SameSiteMode.None;
+                    });
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -92,10 +100,10 @@
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseRouting();
 
-            app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();
 
