@@ -16,9 +16,9 @@
             this.settingsService = settingsService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var viewModel = new IndexViewModel { SettingsCount = await this.settingsService.GetCountAsync(), };
+            var viewModel = new IndexViewModel { SettingsCount = this.settingsService.GetCount(), };
             return this.View(viewModel);
         }
     }
