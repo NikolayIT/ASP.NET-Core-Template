@@ -1,13 +1,11 @@
 ﻿namespace AspNetCoreTemplate.Web.Controllers
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Common.Repositories;
     using AspNetCoreTemplate.Data.Models;
     using AspNetCoreTemplate.Services.Data;
-    using AspNetCoreTemplate.Services.Mapping;
     using AspNetCoreTemplate.Web.ViewModels.Settings;
 
     using Microsoft.AspNetCore.Mvc;

@@ -1,101 +1,52 @@
 ﻿namespace AspNetCoreTemplate.Services.Messaging
 {
     using System;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Text;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
-    using AspNetCoreTemplate.Services.Messaging.SendGrid;
+    using SendGrid;
+    using SendGrid.Helpers.Mail;
 
-    using Microsoft.AspNetCore.Identity.UI.Services;
-    using Microsoft.Extensions.Logging;
-
-    using Newtonsoft.Json;
-
-    // Documentation: https://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/index.html
     public class SendGridEmailSender : IEmailSender
     {
-        private const string AuthenticationScheme = "Bearer";
-        private const string BaseUrl = "https://api.sendgrid.com/v3/";
-        private const string SendEmailUrlPath = "mail/send";
+        private readonly SendGridClient client;
 
-        private readonly string fromAddress;
-        private readonly string fromName;
-        private readonly HttpClient httpClient;
-        private readonly ILogger logger;
+        private readonly EmailAddress from;
 
-        public SendGridEmailSender(ILoggerFactory loggerFactory, string apiKey, string fromAddress, string fromName)
+        public SendGridEmailSender(string apiKey, string fromAddress, string fromName)
         {
-            if (loggerFactory == null)
-            {
-                throw new ArgumentNullException(nameof(loggerFactory));
-            }
-
-            if (string.IsNullOrWhiteSpace(apiKey))
-            {
-                throw new ArgumentOutOfRangeException(nameof(apiKey));
-            }
-
-            if (string.IsNullOrWhiteSpace(fromAddress))
-            {
-                throw new ArgumentOutOfRangeException(nameof(fromAddress));
-            }
-
-            if (string.IsNullOrWhiteSpace(fromName))
-            {
-                throw new ArgumentOutOfRangeException(nameof(fromName));
-            }
-
-            this.logger = loggerFactory.CreateLogger<SendGridEmailSender>();
-            this.httpClient = new HttpClient();
-            this.httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue(AuthenticationScheme, apiKey);
-            this.httpClient.BaseAddress = new Uri(BaseUrl);
-            this.fromAddress = fromAddress;
-            this.fromName = fromName;
+            this.client = new SendGridClient(apiKey);
+            this.from = new EmailAddress(fromAddress, fromName);
         }
 
-        public async Task SendEmailAsync(string email, string subject, string message)
+        public async Task SendEmailAsync(string to, string subject, string htmlContent, IEnumerable<EmailAttachment> attachments = null)
         {
-            if (string.IsNullOrWhiteSpace(this.fromAddress))
+            if (string.IsNullOrWhiteSpace(subject) && string.IsNullOrWhiteSpace(htmlContent))
             {
-                throw new ArgumentOutOfRangeException(nameof(this.fromAddress));
+                throw new ArgumentException("Subject and message should be provided.");
             }
 
-            if (string.IsNullOrWhiteSpace(email))
+            var toAddress = new EmailAddress(to);
+            var message = MailHelper.CreateSingleEmail(this.from, toAddress, subject, null, htmlContent);
+            if (attachments?.Any() == true)
             {
-                throw new ArgumentOutOfRangeException(nameof(email));
-            }
-
-            if (string.IsNullOrWhiteSpace(subject) && string.IsNullOrWhiteSpace(message))
-            {
-                throw new ArgumentException("Subject and/or message must be provided.");
-            }
-
-            var msg = new SendGridMessage(
-                new SendGridEmail(email),
-                subject,
-                new SendGridEmail(this.fromAddress, this.fromName),
-                message);
-            try
-            {
-                var json = JsonConvert.SerializeObject(msg);
-                var response = await this.httpClient.PostAsync(
-                    SendEmailUrlPath,
-                    new StringContent(json, Encoding.UTF8, "application/json"));
-
-                if (!response.IsSuccessStatusCode)
+                foreach (var attachment in attachments)
                 {
-                    // See if we can read the response for more information, then log the error
-                    var errorJson = await response.Content.ReadAsStringAsync();
-                    throw new Exception(
-                        $"SendGrid indicated failure! Code: {response.StatusCode}, reason: {errorJson}");
+                    message.AddAttachment(attachment.FileName, Convert.ToBase64String(attachment.Content), attachment.MimeType);
                 }
             }
-            catch (Exception ex)
+
+            try
             {
-                this.logger.LogError($"Exception during sending email: {ex}");
+                var response = await this.client.SendEmailAsync(message);
+                Console.WriteLine(response.StatusCode);
+                Console.WriteLine(await response.Body.ReadAsStringAsync());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
             }
         }
     }

@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data;
     using AspNetCoreTemplate.Data.Common;
@@ -15,8 +16,6 @@
 
     using CommandLine;
 
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -44,18 +43,20 @@
                 serviceProvider = serviceScope.ServiceProvider;
 
                 return Parser.Default.ParseArguments<SandboxOptions>(args).MapResult(
-                    opts => SandboxCode(opts, serviceProvider),
+                    opts => SandboxCode(opts, serviceProvider).GetAwaiter().GetResult(),
                     _ => 255);
             }
         }
 
-        private static int SandboxCode(SandboxOptions options, IServiceProvider serviceProvider)
+        private static async Task<int> SandboxCode(SandboxOptions options, IServiceProvider serviceProvider)
         {
             var sw = Stopwatch.StartNew();
+
             var settingsService = serviceProvider.GetService<ISettingsService>();
-            Console.WriteLine($"Count of settings: {settingsService.GetCount()}");
+            Console.WriteLine($"Count of settings: {await settingsService.GetCountAsync()}");
+
             Console.WriteLine(sw.Elapsed);
-            return 0;
+            return await Task.FromResult(0);
         }
 
         private static void ConfigureServices(ServiceCollection services)
@@ -66,19 +67,13 @@
                 .Build();
 
             services.AddSingleton<IConfiguration>(configuration);
+
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
                     .UseLoggerFactory(new LoggerFactory()));
 
-            services.AddDefaultIdentity<ApplicationUser>(
-                options =>
-                    {
-                        options.Password.RequireDigit = false;
-                        options.Password.RequireLowercase = false;
-                        options.Password.RequireUppercase = false;
-                        options.Password.RequireNonAlphanumeric = false;
-                        options.Password.RequiredLength = 6;
-                    }).AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<ApplicationUser>(IdentityOptionsProvider.GetIdentityOptions)
+                .AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
@@ -86,7 +81,6 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISmsSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
         }
     }

@@ -1,5 +1,7 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Administration.Controllers
 {
+    using System.Threading.Tasks;
+
     using AspNetCoreTemplate.Services.Data;
     using AspNetCoreTemplate.Web.Areas.Administration.ViewModels.Dashboard;
 
@@ -14,9 +16,9 @@
             this.settingsService = settingsService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var viewModel = new IndexViewModel { SettingsCount = this.settingsService.GetCount(), };
+            var viewModel = new IndexViewModel { SettingsCount = await this.settingsService.GetCountAsync(), };
             return this.View(viewModel);
         }
     }

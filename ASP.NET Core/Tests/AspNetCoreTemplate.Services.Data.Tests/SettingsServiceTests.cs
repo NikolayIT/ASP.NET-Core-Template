@@ -18,7 +18,7 @@
     public class SettingsServiceTests
     {
         [Fact]
-        public void GetCountShouldReturnCorrectNumber()
+        public async Task GetCountShouldReturnCorrectNumber()
         {
             var repository = new Mock<IDeletableEntityRepository<Setting>>();
             repository.Setup(r => r.All()).Returns(new List<Setting>
@@ -28,7 +28,7 @@
                                                             new Setting(),
                                                         }.AsQueryable());
             var service = new SettingsService(repository.Object);
-            Assert.Equal(3, service.GetCount());
+            Assert.Equal(3, await service.GetCountAsync());
             repository.Verify(x => x.All(), Times.Once);
         }
 
@@ -36,8 +36,7 @@
         public async Task GetCountShouldReturnCorrectNumberUsingDbContext()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: "Find_User_Database") // Give a Unique name to the DB
-                .Options;
+                .UseInMemoryDatabase(databaseName: "SettingsTestDb").Options;
             var dbContext = new ApplicationDbContext(options);
             dbContext.Settings.Add(new Setting());
             dbContext.Settings.Add(new Setting());
@@ -46,8 +45,7 @@
 
             var repository = new EfDeletableEntityRepository<Setting>(dbContext);
             var service = new SettingsService(repository);
-            var count = service.GetCount();
-            Assert.Equal(3, count);
+            Assert.Equal(3, await service.GetCountAsync());
         }
     }
 }
