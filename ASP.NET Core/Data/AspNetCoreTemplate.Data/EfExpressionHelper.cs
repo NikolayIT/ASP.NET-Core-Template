@@ -31,11 +31,8 @@
             }
 
             var entityType = typeof(TEntity);
-
             var entityParameter = Expression.Parameter(entityType, "e");
-
             var keyProperties = dbContext.Model.FindEntityType(entityType).FindPrimaryKey().Properties;
-
             var predicate = BuildPredicate(keyProperties, new ValueBuffer(id), entityParameter);
 
             return Expression.Lambda<Func<TEntity, bool>>(predicate, entityParameter);
@@ -52,18 +49,14 @@
             for (var i = 0; i < keyProperties.Count; i++)
             {
                 var property = keyProperties[i];
-                var equalsExpression =
-                    Expression.Equal(
-                        Expression.Call(
-                            EfPropertyMethod.MakeGenericMethod(property.ClrType),
-                            entityParameter,
-                            Expression.Constant(property.Name, StringType)),
-                        Expression.Convert(
-                            Expression.Call(
-                                keyValuesConstant,
-                                ValueBufferGetValueMethod,
-                                Expression.Constant(i)),
-                            property.ClrType));
+                var equalsExpression = Expression.Equal(
+                    Expression.Call(
+                        EfPropertyMethod.MakeGenericMethod(property.ClrType),
+                        entityParameter,
+                        Expression.Constant(property.Name, StringType)),
+                    Expression.Convert(
+                        Expression.Call(keyValuesConstant, ValueBufferGetValueMethod, Expression.Constant(i)),
+                        property.ClrType));
 
                 predicate = predicate == null ? equalsExpression : Expression.AndAlso(predicate, equalsExpression);
             }
