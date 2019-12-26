@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Web.Areas.Administration.ViewModels.Dashboard
+﻿namespace AspNetCoreTemplate.Web.ViewModels.Administration.Dashboard
 {
     public class IndexViewModel
     {

@@ -1,9 +1,7 @@
 ﻿namespace AspNetCoreTemplate.Web.Areas.Administration.Controllers
 {
-    using System.Threading.Tasks;
-
     using AspNetCoreTemplate.Services.Data;
-    using AspNetCoreTemplate.Web.Areas.Administration.ViewModels.Dashboard;
+    using AspNetCoreTemplate.Web.ViewModels.Administration.Dashboard;
 
     using Microsoft.AspNetCore.Mvc;
 
