@@ -12,23 +12,21 @@
     {
         private readonly SendGridClient client;
 
-        private readonly EmailAddress from;
-
-        public SendGridEmailSender(string apiKey, string fromAddress, string fromName)
+        public SendGridEmailSender(string apiKey)
         {
             this.client = new SendGridClient(apiKey);
-            this.from = new EmailAddress(fromAddress, fromName);
         }
 
-        public async Task SendEmailAsync(string to, string subject, string htmlContent, IEnumerable<EmailAttachment> attachments = null)
+        public async Task SendEmailAsync(string from, string fromName, string to, string subject, string htmlContent, IEnumerable<EmailAttachment> attachments = null)
         {
             if (string.IsNullOrWhiteSpace(subject) && string.IsNullOrWhiteSpace(htmlContent))
             {
                 throw new ArgumentException("Subject and message should be provided.");
             }
 
+            var fromAddress = new EmailAddress(from, fromName);
             var toAddress = new EmailAddress(to);
-            var message = MailHelper.CreateSingleEmail(this.from, toAddress, subject, null, htmlContent);
+            var message = MailHelper.CreateSingleEmail(fromAddress, toAddress, subject, null, htmlContent);
             if (attachments?.Any() == true)
             {
                 foreach (var attachment in attachments)
