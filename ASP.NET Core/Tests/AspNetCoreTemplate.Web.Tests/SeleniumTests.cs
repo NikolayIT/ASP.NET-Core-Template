@@ -17,8 +17,7 @@
             this.server = server;
             server.CreateClient();
             var opts = new ChromeOptions();
-            opts.AddArgument("--headless"); // Optional, comment this out if you want to SEE the browser window
-            opts.AddArgument("no-sandbox");
+            opts.AddArguments("--headless", "--ignore-certificate-errors");
             this.browser = new RemoteWebDriver(opts);
         }
 
