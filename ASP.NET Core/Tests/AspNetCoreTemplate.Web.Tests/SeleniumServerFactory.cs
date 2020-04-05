@@ -15,7 +15,6 @@
         where TStartup : class
     {
         private readonly Process process;
-
         private IWebHost host;
 
         public SeleniumServerFactory()
