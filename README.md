@@ -4,7 +4,7 @@ A ready-to-use template for ASP.NET Core with repositories, services, models map
 
 ## Build status
 
-[![Build Status](https://nikolayit.visualstudio.com/AspNetCoreTemplate/_apis/build/status/AspNetCoreTemplate?branchName=master)](https://nikolayit.visualstudio.com/AspNetCoreTemplate/_build/latest?definitionId=2&branchName=master)
+[![Build Status](https://nikolayit.visualstudio.com/AspNetCoreTemplate/_apis/build/status/NikolayIT.ASP.NET-Core-Template?branchName=master)](https://nikolayit.visualstudio.com/AspNetCoreTemplate/_build/latest?definitionId=15&branchName=master)
 
 ## Authors
 
