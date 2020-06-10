@@ -8,20 +8,25 @@
     {
         public static void Main()
         {
-            Console.WriteLine("ASP.NET MVC Template Renamer v1.0");
+            Console.WriteLine(new string('=', 40));
+            Console.WriteLine("Template Renamer");
+            Console.WriteLine(new string('-', 40));
             Console.WriteLine("Working in: " + Environment.CurrentDirectory);
+            Console.WriteLine(new string('=', 40));
+            Console.WriteLine();
 
-            var oldName = string.Empty;
+
+            var oldName = "AspNetCoreTemplate";
             while (string.IsNullOrWhiteSpace(oldName))
             {
-                Console.Write("What is your project's old name ([a-zA-z]): ");
+                Console.Write("What is your project's old name ([A-Z][a-z]): ");
                 oldName = Console.ReadLine();
             }
 
             var newName = string.Empty;
             while (string.IsNullOrWhiteSpace(newName))
             {
-                Console.Write("What is your project's name ([a-zA-z]): ");
+                Console.Write("What is your project's name ([A-Z][a-z]): ");
                 newName = Console.ReadLine();
             }
 
