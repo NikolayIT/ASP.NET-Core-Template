@@ -43,7 +43,7 @@
             dbContext.Settings.Add(new Setting());
             await dbContext.SaveChangesAsync();
 
-            var repository = new EfDeletableEntityRepository<Setting>(dbContext);
+            using var repository = new EfDeletableEntityRepository<Setting>(dbContext);
             var service = new SettingsService(repository);
             Assert.Equal(3, service.GetCount());
         }
