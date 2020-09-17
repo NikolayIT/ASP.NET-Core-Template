@@ -27,5 +27,7 @@ namespace AspNetCoreTemplate.Data.Models
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        public Tenant Tenant { get; set; }
     }
 }
