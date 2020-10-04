@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\AspNetCoreTemplate.Common\AspNetCoreTemplate.Common.csproj" />
     <ProjectReference Include="..\..\Data\AspNetCoreTemplate.Data.Models\AspNetCoreTemplate.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\AspNetCoreTemplate.Data\AspNetCoreTemplate.Data.csproj" />
     <ProjectReference Include="..\..\Services\AspNetCoreTemplate.Services.Data\AspNetCoreTemplate.Services.Data.csproj" />
