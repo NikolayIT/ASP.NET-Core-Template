@@ -3,7 +3,7 @@
   <PropertyGroup>
     <PackageType>Template</PackageType>
     <PackageVersion>1.0</PackageVersion>
-    <PackageId>AspNetCore.Template</PackageId>
+    <PackageId>AspNetCoreTemplate</PackageId>
     <Title>ASP.NET-Core-Template</Title>
     <Authors>Nikolay Kostov</Authors>
     <Description>A ready-to-use template for ASP.NET Core with repositories, services, models mapping, DI and StyleCop warnings fixed.</Description>
