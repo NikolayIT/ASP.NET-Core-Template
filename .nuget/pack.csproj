@@ -13,6 +13,7 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
     <EnableDefaultItems>false</EnableDefaultItems>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
   </PropertyGroup>
   
   <PropertyGroup>
@@ -26,7 +27,6 @@
 
   <ItemGroup>
     <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
-    <Content Remove="templates\tools\**\*" />
     <Compile Remove="**\*" />
   </ItemGroup>
   

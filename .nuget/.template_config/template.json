@@ -21,13 +21,7 @@
     {
       "modifiers": [
         {
-          "exclude": [ "src/.vs/**", ".template_config/**" ],
-          "include": [
-            "VisualStudio.gitignore"
-          ],
-          "rename": {
-            "VisualStudio.gitignore": ".gitignore"
-          }
+          "exclude": [ "src/.vs/**", ".template_config/**" ]
         }
       ]
     }
