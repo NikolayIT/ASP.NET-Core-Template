@@ -16,7 +16,7 @@ A ready-to-use template for ASP.NET Core with repositories, services, models map
 You can install this template using [NuGet](https://www.nuget.org/packages/AspNetCoreTemplate):
 
 ```powershell
-Install-Package AspNetCoreTemplate
+dotnet new --install AspNetCoreTemplate
 ```
 
 ```powershell
