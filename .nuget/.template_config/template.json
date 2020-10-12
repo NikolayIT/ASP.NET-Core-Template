@@ -5,8 +5,8 @@
   "tags": {
     "language": "C#"
   },
-  "identity": "AspNetCore.Temaplate",
-  "name": "ASP.NET Core Temaplate",
+  "identity": "AspNetCore.Template",
+  "name": "ASP.NET Core Template",
   "shortName": "aspnet-core-template",
   "sourceName": "AspNetCoreTemplate",
   "symbols": {
