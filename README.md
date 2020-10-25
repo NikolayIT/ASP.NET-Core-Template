@@ -25,15 +25,13 @@ dotnet new aspnet-core-template -n YourProjectName
 
 ## Project Overview
 
-![image](https://user-images.githubusercontent.com/25417032/97107962-056ef380-16d3-11eb-96a7-1a7dd7f859f6.png)
-
 ![Dependencies Graph](https://user-images.githubusercontent.com/25417032/97107966-0e5fc500-16d3-11eb-9b9c-c73012ff97ac.png)
-
+![image](https://user-images.githubusercontent.com/25417032/97108063-9fcf3700-16d3-11eb-8225-32eac21c4542.png)
 
 ### Common
 
 **AspNetCoreTemplate.Common** contains common things for the project solution. For example: 
-- [GlobalConstants.cs](https://github.com/NikolayIT/ASP.NET-Core-Template/blob/master/src/AspNetCoreTemplate.Common/GlobalConstants.cs). 
+- [GlobalConstants.cs](https://github.com/NikolayIT/ASP.NET-Core-Template/blob/master/src/AspNetCoreTemplate.Common/GlobalConstants.cs).
 
 ### Data
 This solution folder contains three subfolders:
@@ -42,6 +40,7 @@ This solution folder contains three subfolders:
 - AspNetCoreTemplate.Data
 
 ##### AspNetCoreTemplate.Data.Common
+
 [AspNetCoreTemplate.Data.Common.Models](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Data/AspNetCoreTemplate.Data.Common/Models) provides abstract generics classes and interfaces, which holds information about our entities. For example when the object is Created, Modified, Deleted or IsDeleted. It contains a property for the primary key as well.
 
 [AspNetCoreTemplate.Data.Common.Repositories](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Data/AspNetCoreTemplate.Data.Common/Repositories) provides two interfaces IDeletableEntityRepository and IRepository, which are part of the **repository pattern**.
