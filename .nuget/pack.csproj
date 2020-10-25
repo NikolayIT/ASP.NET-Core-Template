@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <PackageVersion>1.0</PackageVersion>
+    <PackageId>AspNetCoreTemplate</PackageId>
+    <Title>ASP.NET-Core-Template</Title>
+    <Authors>Nikolay Kostov</Authors>
+    <Description>A ready-to-use template for ASP.NET Core with repositories, services, models mapping, DI and StyleCop warnings fixed.</Description>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageOutputPath>./ASP.NET Core Template</PackageOutputPath>    
+
+    <PackageTags>c#;asp.net;core;template</PackageTags>
+    <PackageCopyright>Nikolay Kostov</PackageCopyright>
+    <PackageProjectUrl>https://github.com/NikolayIT/ASP.NET-Core-Template</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
+    <Compile Remove="**\*" />
+  </ItemGroup>
+  
+</Project>

@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Nikolay Kostov",
+  "classifications": [ "ASP.NET Core", "Core", "MVC", "Template" ],
+  "tags": {
+    "language": "C#"
+  },
+  "identity": "AspNetCore.Template",
+  "name": "ASP.NET Core Template",
+  "shortName": "aspnet-core-template",
+  "sourceName": "AspNetCoreTemplate",
+  "symbols": {
+    "skipRestore": {
+      "type": "parameter",
+      "datatype": "bool",
+      "description": "If specified, skips the automatic restore of the project on create.",
+      "defaultValue": "false"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [ "src/.vs/**", ".template_config/**" ]
+        }
+      ]
+    }
+  ]
+}
