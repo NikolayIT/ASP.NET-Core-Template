@@ -88,7 +88,7 @@
             var files = Directory.GetFiles(currentDirectory);
             foreach (var file in files)
             {
-                if (!file.EndsWith(".exe") && !file.EndsWith(".dll"))
+                if (!file.EndsWith(".exe") && !file.EndsWith(".dll") && !file.EndsWith(".runtimeconfig.json"))
                 {
                     var contents = File.ReadAllText(file);
                     contents = contents.Replace(originalName, newName);
