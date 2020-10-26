@@ -1,13 +1,13 @@
 {
   "$schema": "http://json.schemastore.org/template",
-  "author": "Nikolay Kostov",
+  "author": "Nikolay.IT",
   "classifications": [ "ASP.NET Core", "Core", "MVC", "Template" ],
   "tags": {
     "language": "C#"
   },
   "identity": "AspNetCore.Template",
   "name": "ASP.NET Core Template",
-  "shortName": "aspnet-core-template",
+  "shortName": "aspnet-core",
   "sourceName": "AspNetCoreTemplate",
   "symbols": {
     "skipRestore": {
