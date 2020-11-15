@@ -1,12 +1,14 @@
 ﻿namespace AspNetCoreTemplate.Web.Tests
 {
+    using System;
+
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
     using OpenQA.Selenium.Remote;
 
     using Xunit;
 
-    public class SeleniumTests : IClassFixture<SeleniumServerFactory<Startup>>
+    public class SeleniumTests : IClassFixture<SeleniumServerFactory<Startup>>, IDisposable
     {
         private readonly SeleniumServerFactory<Startup> server;
         private readonly IWebDriver browser;
@@ -28,6 +30,21 @@
             Assert.Contains(
                 this.browser.FindElements(By.CssSelector("footer a")),
                 x => x.GetAttribute("href").EndsWith("/Home/Privacy"));
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.server?.Dispose();
+                this.browser?.Dispose();
+            }
         }
     }
 }
