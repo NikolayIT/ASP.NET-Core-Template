@@ -15,8 +15,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0" />
-    <PackageReference Include="Selenium.Support" Version="3.141.0" />
-    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.0.0-alpha07" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="87.0.4280.2000" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
       <PrivateAssets>all</PrivateAssets>
