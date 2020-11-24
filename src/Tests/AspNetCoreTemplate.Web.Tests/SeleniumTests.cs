@@ -1,6 +1,7 @@
 ﻿namespace AspNetCoreTemplate.Web.Tests
 {
     using System;
+    using System.Linq;
 
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
@@ -17,7 +18,8 @@
             this.server = server;
             server.CreateClient();
             var opts = new ChromeOptions();
-            opts.AddArguments("--headless", "--ignore-certificate-errors");
+            opts.AddArguments("--headless");
+            opts.AcceptInsecureCertificates = true;
             this.browser = new ChromeDriver(opts);
         }
 
@@ -25,9 +27,9 @@
         public void FooterOfThePageContainsPrivacyLink()
         {
             this.browser.Navigate().GoToUrl(this.server.RootUri);
-            Assert.Contains(
-                this.browser.FindElements(By.CssSelector("footer a")),
-                x => x.GetAttribute("href").EndsWith("/Home/Privacy"));
+            Assert.EndsWith(
+                "/Home/Privacy",
+                this.browser.FindElements(By.CssSelector("footer a")).First().GetAttribute("href"));
         }
 
         public void Dispose()
