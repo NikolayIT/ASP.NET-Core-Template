@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Nikolay.IT",
-  "classifications": [ "ASP.NET Core", "Core", "MVC", "Template" ],
+  "classifications": [ "ASP.NET Core", "Core", "MVC", "Template", "Web" ],
   "tags": {
     "language": "C#"
   },
