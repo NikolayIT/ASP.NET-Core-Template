@@ -1,7 +1,6 @@
 ﻿namespace AspNetCoreTemplate.Data.Common.Repositories
 {
     using System.Linq;
-    using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data.Common.Models;
 
@@ -11,8 +10,6 @@
         IQueryable<TEntity> AllWithDeleted();
 
         IQueryable<TEntity> AllAsNoTrackingWithDeleted();
-
-        Task<TEntity> GetByIdWithDeletedAsync(params object[] id);
 
         void HardDelete(TEntity entity);
 
