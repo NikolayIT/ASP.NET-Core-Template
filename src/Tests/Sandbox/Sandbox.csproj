@@ -27,7 +27,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.0" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.261" PrivateAssets="all">
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.304" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
