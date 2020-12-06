@@ -10,6 +10,7 @@ A ready-to-use template for ASP.NET Core with repositories, services, models map
 
 - [Nikolay Kostov](https://github.com/NikolayIT)
 - [Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
+- [Stoyan Shopov](https://github.com/StoyanShopov)
 
 ## Package Installation
 
@@ -21,7 +22,7 @@ dotnet new -i AspNetCoreTemplate
 
 ```powershell
 dotnet new aspnet-core -n YourProjectName
-``` 
+```
 
 ## Project Overview
 
@@ -30,11 +31,14 @@ dotnet new aspnet-core -n YourProjectName
 
 ### Common
 
-**AspNetCoreTemplate.Common** contains common things for the project solution. For example: 
+**AspNetCoreTemplate.Common** contains common things for the project solution. For example:
+
 - [GlobalConstants.cs](https://github.com/NikolayIT/ASP.NET-Core-Template/blob/master/src/AspNetCoreTemplate.Common/GlobalConstants.cs).
 
 ### Data
+
 This solution folder contains three subfolders:
+
 - AspNetCoreTemplate.Data.Common
 - AspNetCoreTemplate.Data.Models
 - AspNetCoreTemplate.Data
@@ -46,22 +50,28 @@ This solution folder contains three subfolders:
 [AspNetCoreTemplate.Data.Common.Repositories](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Data/AspNetCoreTemplate.Data.Common/Repositories) provides two interfaces IDeletableEntityRepository and IRepository, which are part of the **repository pattern**.
 
 #### AspNetCoreTemplate.Data.Models
+
 [AspNetCoreTemplate.Data.Models](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Data/AspNetCoreTemplate.Data.Models) contains ApplicationUser and ApplicationRole classes, which inherits IdentityRole and IdentityUsers.
 
 #### AspNetCoreTemplate.Data
+
 [AspNetCoreTemplate.Data](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Data/AspNetCoreTemplate.Data) contains DbContext, Migrations and Configuraitons for the EF Core.There is Seeding and Repository functionality as well.
 
 ### Services
+
 This solution folder contains four subfolders:
+
 - AspNetCoreTemplate.Services.Data
 - AspNetCoreTemplate.Services.Mapping
 - AspNetCoreTemplate.Services.Messaging
 - AspNetCoreTemplate.Services
 
 #### AspNetCoreTemplate.Services.Data
+
 [AspNetCoreTemplate.Services.Data](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Services/AspNetCoreTemplate.Services.Data) wil contains service layer logic.
 
 #### AspNetCoreTemplate.Services.Mapping
+
 [AspNetCoreTemplate.Services.Mapping](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Services/AspNetCoreTemplate.Services.Mapping) provides simplified functionlity for auto mapping. For example:
 
 ```csharp
@@ -113,10 +123,13 @@ public class IndexPostViewModel : IMapFrom<Post>, IHaveCustomMappings
 [AspNetCoreTemplate.Services.Messaging](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Services/AspNetCoreTemplate.Services.Messaging) a ready to use integration with [SendGrid](https://sendgrid.com/).
 
 #### AspNetCoreTemplate.Services
-[AspNetCoreTemplate.Services](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Services/AspNetCoreTemplate.Services) 
+
+[AspNetCoreTemplate.Services](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Services/AspNetCoreTemplate.Services)
 
 ### Tests
+
 This solution folder contains three subfolders:
+
 - AspNetCoreTemplate.Services.Data.Tests
 - AspNetCoreTemplate.Web.Tests
 - Sandbox
@@ -130,10 +143,13 @@ This solution folder contains three subfolders:
 [AspNetCoreTemplate.Web.Tests](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Tests/AspNetCoreTemplate.Web.Tests) setted up Selenuim tests.
 
 #### Sandbox
+
 [Sandbox](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Tests/Sandbox) can be used to test your logic.
 
 ### Web
+
 This solution folder contains three subfolders:
+
 - AspNetCoreTemplate.Web.Infrastructure
 - AspNetCoreTemplate.Web.ViewModels
 - AspNetCoreTemplate.Web
@@ -154,12 +170,10 @@ This solution folder contains three subfolders:
 
 If you are having problems, please let us know by [raising a new issue](https://github.com/NikolayIT/ASP.NET-Core-Template/issues).
 
-## Contributors
-- [Stoyan Shopov](https://github.com/StoyanShopov)
-
 ## Example Projects
-- https://github.com/NikolayIT/PressCenters.com
-- https://github.com/NikolayIT/nikolay.it
+
+- <https://github.com/NikolayIT/PressCenters.com>
+- <https://github.com/NikolayIT/nikolay.it>
 
 ## License
 
