@@ -17,7 +17,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <Version>5.0.0</Version>
+    <Version>5.0.1</Version>
     <PackageId>AspNetCoreTemplate</PackageId>
     <Title>ASP.NET Core Template</Title>
     <Company>Nikolay.IT</Company>
