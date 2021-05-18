@@ -17,15 +17,15 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <Version>5.0.1</Version>
+    <Version>5.0.6</Version>
     <PackageId>AspNetCoreTemplate</PackageId>
     <Title>ASP.NET Core Template</Title>
     <Company>Nikolay.IT</Company>
     <Authors>Nikolay.IT</Authors>
-    <Copyright>Nikolay.IT © 2020</Copyright>
+    <Copyright>Nikolay.IT © 2017-2021</Copyright>
     <Description>A ready-to-use template for ASP.NET Core 5 with repositories, services, models mapping, DI and StyleCop warnings fixed.</Description>
     <PackageTags>c#;asp.net;core;template;web</PackageTags>
-    <PackageCopyright>Nikolay.IT © 2020</PackageCopyright>
+    <PackageCopyright>Nikolay.IT © 2017-2021</PackageCopyright>
     <PackageProjectUrl>https://github.com/NikolayIT/ASP.NET-Core-Template</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
