@@ -9,9 +9,13 @@
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="..\..\stylecop.json" />
-  </ItemGroup>
+	<ItemGroup>
+		<AdditionalFiles Include="..\..\stylecop.json" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<InternalsVisibleTo Include="AspNetCoreTemplate.Web.Tests" />
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.5" />
