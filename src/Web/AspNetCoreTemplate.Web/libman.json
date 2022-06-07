@@ -11,7 +11,7 @@
       ]
     },
     {
-      "library": "bootstrap@4.6.1",
+      "library": "bootstrap@5.1.3",
       "destination": "wwwroot/lib/bootstrap/",
       "files": [
         "dist/css/bootstrap.css",
