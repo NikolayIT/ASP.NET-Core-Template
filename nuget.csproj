@@ -13,6 +13,7 @@
   <ItemGroup>
     <Content Include="src\**\*" Exclude="**\bin\**\*;**\obj\**\*" />
     <Compile Remove="**\*" />
+    <None Include="README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
   <PropertyGroup>
@@ -30,5 +31,6 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/NikolayIT/ASP.NET-Core-Template</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 </Project>
