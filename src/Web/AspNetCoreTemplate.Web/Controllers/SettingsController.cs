@@ -10,17 +10,13 @@
 
     using Microsoft.AspNetCore.Mvc;
 
-    public class SettingsController : BaseController
+    public class SettingsController(
+        ISettingsService settingsService,
+        IDeletableEntityRepository<Setting> repository) : BaseController
     {
-        private readonly ISettingsService settingsService;
+        private readonly ISettingsService settingsService = settingsService;
 
-        private readonly IDeletableEntityRepository<Setting> repository;
-
-        public SettingsController(ISettingsService settingsService, IDeletableEntityRepository<Setting> repository)
-        {
-            this.settingsService = settingsService;
-            this.repository = repository;
-        }
+        private readonly IDeletableEntityRepository<Setting> repository = repository;
 
         public IActionResult Index()
         {

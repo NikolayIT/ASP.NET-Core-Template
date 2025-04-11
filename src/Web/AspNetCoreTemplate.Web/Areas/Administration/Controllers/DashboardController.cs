@@ -5,14 +5,9 @@
 
     using Microsoft.AspNetCore.Mvc;
 
-    public class DashboardController : AdministrationController
+    public class DashboardController(ISettingsService settingsService) : AdministrationController
     {
-        private readonly ISettingsService settingsService;
-
-        public DashboardController(ISettingsService settingsService)
-        {
-            this.settingsService = settingsService;
-        }
+        private readonly ISettingsService settingsService = settingsService;
 
         public IActionResult Index()
         {

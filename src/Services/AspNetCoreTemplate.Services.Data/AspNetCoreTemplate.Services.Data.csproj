@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\Data\AspNetCoreTemplate.Data.Common\AspNetCoreTemplate.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\AspNetCoreTemplate.Data.Models\AspNetCoreTemplate.Data.Models.csproj" />
     <ProjectReference Include="..\AspNetCoreTemplate.Services.Mapping\AspNetCoreTemplate.Services.Mapping.csproj" />
+    <ProjectReference Include="..\AspNetCoreTemplate.Services\AspNetCoreTemplate.Services.csproj" />
   </ItemGroup>
 
 </Project>

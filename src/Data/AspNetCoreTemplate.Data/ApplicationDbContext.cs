@@ -12,17 +12,13 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : IdentityDbContext<ApplicationUser, ApplicationRole, string>(options)
     {
         private static readonly MethodInfo SetIsDeletedQueryFilterMethod =
             typeof(ApplicationDbContext).GetMethod(
                 nameof(SetIsDeletedQueryFilter),
                 BindingFlags.NonPublic | BindingFlags.Static);
-
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
 
         public DbSet<Setting> Settings { get; set; }
 
@@ -76,34 +72,30 @@
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
             where T : class, IDeletableEntity
-        {
-            builder.Entity<T>().HasQueryFilter(e => !e.IsDeleted);
-        }
+            => builder.Entity<T>().HasQueryFilter(e => !e.IsDeleted);
 
         // Applies configurations
         private void ConfigureUserIdentityRelations(ModelBuilder builder)
              => builder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
 
         private void ApplyAuditInfoRules()
-        {
-            var changedEntries = this.ChangeTracker
+            => this.ChangeTracker
                 .Entries()
                 .Where(e =>
                     e.Entity is IAuditInfo &&
-                    (e.State == EntityState.Added || e.State == EntityState.Modified));
-
-            foreach (var entry in changedEntries)
-            {
-                var entity = (IAuditInfo)entry.Entity;
-                if (entry.State == EntityState.Added && entity.CreatedOn == default)
+                    (e.State == EntityState.Added || e.State == EntityState.Modified))
+                .ToList()
+                .ForEach(entry =>
                 {
-                    entity.CreatedOn = DateTime.UtcNow;
-                }
-                else
-                {
-                    entity.ModifiedOn = DateTime.UtcNow;
-                }
-            }
-        }
+                    var entity = (IAuditInfo)entry.Entity;
+                    if (entry.State == EntityState.Added && entity.CreatedOn == default)
+                    {
+                        entity.CreatedOn = DateTime.UtcNow;
+                    }
+                    else
+                    {
+                        entity.ModifiedOn = DateTime.UtcNow;
+                    }
+                });
     }
 }

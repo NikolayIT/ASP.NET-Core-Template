@@ -6,7 +6,6 @@
     using System.Reflection;
 
     using AutoMapper;
-    using AutoMapper.Configuration;
 
     public static class AutoMapperConfig
     {
@@ -51,51 +50,45 @@
             MapperInstance = new Mapper(new MapperConfiguration(config));
         }
 
-        private static IEnumerable<TypesMap> GetFromMaps(IEnumerable<Type> types)
-        {
-            var fromMaps = from t in types
-                           from i in t.GetTypeInfo().GetInterfaces()
-                           where i.GetTypeInfo().IsGenericType &&
-                                 i.GetGenericTypeDefinition() == typeof(IMapFrom<>) &&
-                                 !t.GetTypeInfo().IsAbstract &&
-                                 !t.GetTypeInfo().IsInterface
-                           select new TypesMap
-                           {
-                               Source = i.GetTypeInfo().GetGenericArguments()[0],
-                               Destination = t,
-                           };
+        private static IEnumerable<TypesMap> GetFromMaps(IEnumerable<Type> types) =>
+            types
+                .SelectMany(t => t
+                    .GetTypeInfo()
+                    .GetInterfaces()
+                    .Where(i =>
+                        i.GetTypeInfo().IsGenericType &&
+                        i.GetGenericTypeDefinition() == typeof(IMapFrom<>) &&
+                        !t.GetTypeInfo().IsAbstract &&
+                        !t.GetTypeInfo().IsInterface)
+                    .Select(i => new TypesMap
+                    {
+                        Source = i.GetTypeInfo().GetGenericArguments()[0],
+                        Destination = t,
+                    }));
 
-            return fromMaps;
-        }
+        private static IEnumerable<TypesMap> GetToMaps(IEnumerable<Type> types) =>
+            types
+                .SelectMany(t => t
+                    .GetTypeInfo()
+                    .GetInterfaces()
+                    .Where(i =>
+                        i.GetTypeInfo().IsGenericType &&
+                        i.GetGenericTypeDefinition() == typeof(IMapTo<>) &&
+                        !t.GetTypeInfo().IsAbstract &&
+                        !t.GetTypeInfo().IsInterface)
+                    .Select(i => new TypesMap
+                    {
+                        Source = t,
+                        Destination = i.GetTypeInfo().GetGenericArguments()[0],
+                    }));
 
-        private static IEnumerable<TypesMap> GetToMaps(IEnumerable<Type> types)
-        {
-            var toMaps = from t in types
-                         from i in t.GetTypeInfo().GetInterfaces()
-                         where i.GetTypeInfo().IsGenericType &&
-                               i.GetTypeInfo().GetGenericTypeDefinition() == typeof(IMapTo<>) &&
-                               !t.GetTypeInfo().IsAbstract &&
-                               !t.GetTypeInfo().IsInterface
-                         select new TypesMap
-                         {
-                             Source = t,
-                             Destination = i.GetTypeInfo().GetGenericArguments()[0],
-                         };
-
-            return toMaps;
-        }
-
-        private static IEnumerable<IHaveCustomMappings> GetCustomMappings(IEnumerable<Type> types)
-        {
-            var customMaps = from t in types
-                             from i in t.GetTypeInfo().GetInterfaces()
-                             where typeof(IHaveCustomMappings).GetTypeInfo().IsAssignableFrom(t) &&
-                                   !t.GetTypeInfo().IsAbstract &&
-                                   !t.GetTypeInfo().IsInterface
-                             select (IHaveCustomMappings)Activator.CreateInstance(t);
-
-            return customMaps;
-        }
+        private static IEnumerable<IHaveCustomMappings> GetCustomMappings(IEnumerable<Type> types) =>
+            types
+                .Where(t =>
+                    typeof(IHaveCustomMappings).GetTypeInfo().IsAssignableFrom(t) &&
+                    !t.GetTypeInfo().IsAbstract &&
+                    !t.GetTypeInfo().IsInterface)
+                .Select(t => (IHaveCustomMappings)Activator.CreateInstance(t)!);
 
         private class TypesMap
         {

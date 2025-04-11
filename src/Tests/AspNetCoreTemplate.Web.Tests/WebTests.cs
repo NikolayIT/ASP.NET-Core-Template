@@ -7,14 +7,9 @@
 
     using Xunit;
 
-    public class WebTests : IClassFixture<WebApplicationFactory<Program>>
+    public class WebTests(WebApplicationFactory<Program> server) : IClassFixture<WebApplicationFactory<Program>>
     {
-        private readonly WebApplicationFactory<Program> server;
-
-        public WebTests(WebApplicationFactory<Program> server)
-        {
-            this.server = server;
-        }
+        private readonly WebApplicationFactory<Program> server = server;
 
         [Fact]
         public async Task IndexPageShouldReturnStatusCode200WithTitle()

@@ -11,9 +11,6 @@
             string to,
             string subject,
             string htmlContent,
-            IEnumerable<EmailAttachment> attachments = null)
-        {
-            return Task.CompletedTask;
-        }
+            IEnumerable<EmailAttachment> attachments = null) => Task.CompletedTask;
     }
 }

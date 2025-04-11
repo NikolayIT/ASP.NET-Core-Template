@@ -43,12 +43,12 @@
                 serviceProvider = serviceScope.ServiceProvider;
 
                 return Parser.Default.ParseArguments<SandboxOptions>(args).MapResult(
-                    opts => SandboxCode(opts, serviceProvider).GetAwaiter().GetResult(),
+                    opts => SandboxCode(serviceProvider).GetAwaiter().GetResult(),
                     _ => 255);
             }
         }
 
-        private static async Task<int> SandboxCode(SandboxOptions options, IServiceProvider serviceProvider)
+        private static async Task<int> SandboxCode(IServiceProvider serviceProvider)
         {
             var sw = Stopwatch.StartNew();
 

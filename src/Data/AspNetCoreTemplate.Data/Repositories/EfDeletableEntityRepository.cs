@@ -8,14 +8,10 @@
 
     using Microsoft.EntityFrameworkCore;
 
-    public class EfDeletableEntityRepository<TEntity> : EfRepository<TEntity>, IDeletableEntityRepository<TEntity>
-        where TEntity : class, IDeletableEntity
+    public class EfDeletableEntityRepository<TEntity>(ApplicationDbContext context)
+        : EfRepository<TEntity>(context), IDeletableEntityRepository<TEntity>
+            where TEntity : class, IDeletableEntity
     {
-        public EfDeletableEntityRepository(ApplicationDbContext context)
-            : base(context)
-        {
-        }
-
         public override IQueryable<TEntity> All() => base.All().Where(x => !x.IsDeleted);
 
         public override IQueryable<TEntity> AllAsNoTracking() => base.AllAsNoTracking().Where(x => !x.IsDeleted);
