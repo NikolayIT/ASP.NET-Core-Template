@@ -2,7 +2,9 @@
 {
     using System.Collections.Generic;
 
-    public interface ISettingsService
+    using AspNetCoreTemplate.Services.ServiceLifetimes;
+
+    public interface ISettingsService : ITransientService
     {
         int GetCount();
 

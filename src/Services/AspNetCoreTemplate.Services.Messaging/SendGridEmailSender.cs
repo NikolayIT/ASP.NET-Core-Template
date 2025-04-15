@@ -8,16 +8,17 @@
     using SendGrid;
     using SendGrid.Helpers.Mail;
 
-    public class SendGridEmailSender : IEmailSender
+    public class SendGridEmailSender(string apiKey) : IEmailSender
     {
-        private readonly SendGridClient client;
+        private readonly SendGridClient client = new(apiKey);
 
-        public SendGridEmailSender(string apiKey)
-        {
-            this.client = new SendGridClient(apiKey);
-        }
-
-        public async Task SendEmailAsync(string from, string fromName, string to, string subject, string htmlContent, IEnumerable<EmailAttachment> attachments = null)
+        public async Task SendEmailAsync(
+            string from,
+            string fromName,
+            string to,
+            string subject,
+            string htmlContent,
+            IEnumerable<EmailAttachment> attachments = null)
         {
             if (string.IsNullOrWhiteSpace(subject) && string.IsNullOrWhiteSpace(htmlContent))
             {
