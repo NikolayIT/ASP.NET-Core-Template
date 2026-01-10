@@ -57,6 +57,13 @@
 
             services.AddSingleton(configuration);
 
+            // WebOptimizer (bundling and minification)
+            services.AddWebOptimizer(pipeline =>
+            {
+                pipeline.AddCssBundle("/css/site.min.css", "css/site.css");
+                pipeline.AddJavaScriptBundle("/js/site.min.js", "js/site.js");
+            });
+
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
@@ -77,7 +84,7 @@
                 new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
             }
 
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+            MappingConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
 
             if (app.Environment.IsDevelopment())
             {
@@ -91,6 +98,7 @@
             }
 
             app.UseHttpsRedirection();
+            app.UseWebOptimizer();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 

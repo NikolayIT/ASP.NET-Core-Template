@@ -3,8 +3,6 @@
     using AspNetCoreTemplate.Data.Models;
     using AspNetCoreTemplate.Services.Mapping;
 
-    using AutoMapper;
-
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {
         public int Id { get; set; }
@@ -15,11 +13,10 @@
 
         public string NameAndValue { get; set; }
 
-        public void CreateMappings(IProfileExpression configuration)
+        public void CreateMappings(Mapster.TypeAdapterConfig configuration)
         {
-            configuration.CreateMap<Setting, SettingViewModel>().ForMember(
-                m => m.NameAndValue,
-                opt => opt.MapFrom(x => x.Name + " = " + x.Value));
+            configuration.NewConfig<Setting, SettingViewModel>()
+                .Map(m => m.NameAndValue, x => x.Name + " = " + x.Value);
         }
     }
 }
