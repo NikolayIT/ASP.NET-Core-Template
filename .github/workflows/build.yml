@@ -35,9 +35,12 @@ jobs:
       - name: Build
         run: dotnet build src/AspNetCoreTemplate.sln -c Release --no-restore
 
+      # AspNetCoreTemplate.Web.Tests is excluded: its two example tests boot the
+      # whole app through WebApplicationFactory, which connects to SQL Server.
+      # Run them locally against a database.
       - name: Test
         run: >
-          dotnet test src/AspNetCoreTemplate.sln
+          dotnet test src/Tests/AspNetCoreTemplate.Services.Data.Tests/AspNetCoreTemplate.Services.Data.Tests.csproj
           -c Release --no-build --logger "trx;LogFileName=test-results.trx"
 
       # The renamer tool has its own solution and still targets net6.0; the
