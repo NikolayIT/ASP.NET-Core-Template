@@ -66,6 +66,10 @@
             {
                 pipeline.AddCssBundle("/css/site.min.css", "css/site.css");
                 pipeline.AddJavaScriptBundle("/js/site.min.js", "js/site.js");
+
+                // The only jQuery 4 compatible jquery-validation-unobtrusive build is an unreleased
+                // upstream commit that ships no .min.js file (see libman.json), so minify it here.
+                pipeline.MinifyJsFiles("lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js");
             });
 
             // Data repositories
