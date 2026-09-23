@@ -30,10 +30,10 @@ jobs:
             10.0.x
 
       - name: Restore
-        run: dotnet restore src/AspNetCoreTemplate.sln
+        run: dotnet restore src/AspNetCoreTemplate.slnx
 
       - name: Build
-        run: dotnet build src/AspNetCoreTemplate.sln -c Release --no-restore
+        run: dotnet build src/AspNetCoreTemplate.slnx -c Release --no-restore
 
       # AspNetCoreTemplate.Web.Tests is excluded: its two example tests boot the
       # whole app through WebApplicationFactory, which connects to SQL Server.
@@ -46,7 +46,7 @@ jobs:
       # The renamer tool has its own solution and still targets net6.0; the
       # current SDK builds it from the NuGet targeting pack.
       - name: Build the template renamer
-        run: dotnet build tools/TemplateRenamer/TemplateRenamer.sln -c Release
+        run: dotnet build tools/TemplateRenamer/TemplateRenamer.slnx -c Release
 
       - name: Upload test results
         if: always()
