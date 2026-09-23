@@ -67,6 +67,10 @@ dotnet_diagnostic.CA2241.severity = warning
 # CA2242: Test for NaN correctly
 dotnet_diagnostic.CA2242.severity = warning
 
+# Keep a blank line between groups of using directives, as stylecop.json requires. dotnet format
+# relies on this when the template's post-creation step reorders the using directives.
+dotnet_separate_import_directive_groups = true
+
 # IDE suggestions that conflict with the StyleCop rules (SA1101 requires the "this." prefix)
 # IDE0001: Simplify name
 dotnet_diagnostic.IDE0001.severity = none

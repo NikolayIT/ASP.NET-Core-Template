@@ -57,7 +57,9 @@ Create a project from it. Every `AspNetCoreTemplate` occurrence in file names, n
 dotnet new aspnet-core -n YourProjectName -o YourProjectName
 ```
 
-Alternatively, clone this repository and run the [TemplateRenamer](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/tools/TemplateRenamer) tool from the `src` folder to rename the solution in place.
+After creating the files, `dotnet new` asks whether to run `dotnet format`, which re-sorts the `using` directives for your project name so the StyleCop analyzers report no warnings. Answer yes, or pass `--allow-scripts yes` to skip the question.
+
+Alternatively, clone this repository and run the [TemplateRenamer](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/tools/TemplateRenamer) tool from the `src` folder to rename the solution in place, then run `dotnet format --diagnostics SA1210 --severity warn` there.
 
 ### Run the Application
 

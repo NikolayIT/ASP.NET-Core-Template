@@ -1,6 +1,7 @@
 ﻿namespace AspNetCoreTemplate.Data.Configurations
 {
     using AspNetCoreTemplate.Data.Models;
+
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

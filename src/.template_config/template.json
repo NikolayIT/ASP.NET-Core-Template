@@ -13,10 +13,29 @@
     "skipRestore": {
       "type": "parameter",
       "datatype": "bool",
-      "description": "If specified, skips the automatic restore of the project on create.",
+      "description": "If specified, skips the restore and the sorting of the using directives that run after the project is created.",
       "defaultValue": "false"
     }
   },
+  "postActions": [
+    {
+      "condition": "(!skipRestore)",
+      "description": "Sorts the using directives for the new project name (StyleCop rule SA1210).",
+      "manualInstructions": [
+        {
+          "text": "Run 'dotnet format --diagnostics SA1210 --severity warn' in the solution folder to sort the using directives for the new project name."
+        }
+      ],
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "dotnet",
+        "args": "format --diagnostics SA1210 --severity warn",
+        "redirectStandardOutput": true,
+        "redirectStandardError": false
+      },
+      "continueOnError": true
+    }
+  ],
   "sources": [
     {
       "modifiers": [
