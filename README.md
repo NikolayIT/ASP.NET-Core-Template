@@ -207,6 +207,8 @@ var posts = this.postsRepository.AllAsNoTracking().To<PostViewModel>().ToList();
 dotnet pack .\nuget.csproj
 ```
 
+Publishing a GitHub release whose tag matches the `Version` in `nuget.csproj` packs the template and publishes it to NuGet automatically ([publish.yml](https://github.com/NikolayIT/ASP.NET-Core-Template/blob/master/.github/workflows/publish.yml), using nuget.org Trusted Publishing).
+
 ## Authors
 
 - [Nikolay Kostov](https://github.com/NikolayIT)
