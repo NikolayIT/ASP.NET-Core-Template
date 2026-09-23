@@ -1,18 +1,21 @@
 name: Publish
 
-# Publishes the template package to nuget.org when a GitHub release is published.
-# nuget.org Trusted Publishing exchanges the workflow's OIDC token for a short-lived
-# API key, so no NuGet API key is stored in the repository. The run can also be
-# started by hand for an existing release tag.
+# Publishing to nuget.org is irreversible: a version that has been pushed can never be replaced, only
+# unlisted. So this runs only for a published GitHub release (or a deliberate manual dispatch for an
+# existing release tag), and it refuses to push a package whose solution does not build and pass its
+# tests. nuget.org Trusted Publishing exchanges the workflow's OIDC token for a short-lived API key,
+# so no NuGet API key is stored in the repository.
 on:
   release:
-    types:
-      - published
+    types: [published]
   workflow_dispatch:
     inputs:
       tag:
         description: Release tag to publish (for example 10.0.12)
         required: true
+
+permissions:
+  contents: read
 
 env:
   DOTNET_NOLOGO: true
@@ -25,21 +28,27 @@ jobs:
     name: Pack and publish to NuGet
     # Windows keeps the CRLF line endings that the previously published packages had.
     runs-on: windows-latest
+
+    # Gives you somewhere to require a manual approval before the push. The nuget.org Trusted
+    # Publishing policy is restricted to this environment, so keep them in sync.
+    environment: release
+
     permissions:
-      contents: write # upload the package to the GitHub release
-      id-token: write # request the OIDC token for nuget.org Trusted Publishing
+      # Required for Trusted Publishing: without it GitHub will not issue the OIDC token.
+      id-token: write
+      # Attaches the package to the GitHub release.
+      contents: write
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: refs/tags/${{ env.TAG }}
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: |
-            10.0.x
+          dotnet-version: 10.0.x
 
       - name: Check that the package version matches the tag
         shell: pwsh
@@ -49,12 +58,23 @@ jobs:
             throw "nuget.csproj has version $version but the release tag is $env:TAG."
           }
 
+      - name: Build
+        run: dotnet build src/AspNetCoreTemplate.slnx -c Release
+
+      # The web tests need SQL Server, so like the build workflow only the unit tests run here.
+      # src/global.json opts dotnet test into Microsoft Testing Platform, so this runs from src.
+      - name: Test
+        working-directory: src
+        run: dotnet test --project Tests/AspNetCoreTemplate.Services.Data.Tests/AspNetCoreTemplate.Services.Data.Tests.csproj -c Release --no-build
+
       - name: Pack
         run: dotnet pack nuget.csproj -c Release -o artifacts
 
-      - name: NuGet login (OIDC to a temporary API key)
-        uses: NuGet/login@v1
+      # The temporary key nuget.org issues is valid for one hour, so it is requested immediately
+      # before the push rather than at the start of the job.
+      - name: NuGet login
         id: login
+        uses: NuGet/login@v1
         with:
           user: ${{ secrets.NUGET_USER }}
 
