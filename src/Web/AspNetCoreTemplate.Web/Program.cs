@@ -62,15 +62,22 @@
             services.AddSingleton(configuration);
 
             // WebOptimizer (bundling and minification)
-            services.AddWebOptimizer(pipeline =>
-            {
-                pipeline.AddCssBundle("/css/site.min.css", "css/site.css");
-                pipeline.AddJavaScriptBundle("/js/site.min.js", "js/site.js");
+            services.AddWebOptimizer(
+                pipeline =>
+                {
+                    pipeline.AddCssBundle("/css/site.min.css", "css/site.css");
+                    pipeline.AddJavaScriptBundle("/js/site.min.js", "js/site.js");
 
-                // The only jQuery 4 compatible jquery-validation-unobtrusive build is an unreleased
-                // upstream commit that ships no .min.js file (see libman.json), so minify it here.
-                pipeline.MinifyJsFiles("lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js");
-            });
+                    // The only jQuery 4 compatible jquery-validation-unobtrusive build is an unreleased
+                    // upstream commit that ships no .min.js file (see libman.json), so minify it here.
+                    pipeline.MinifyJsFiles("lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js");
+                },
+                options =>
+                {
+                    // site.js starts with comments only, which minify to an empty bundle. Without this
+                    // WebOptimizer answers an empty bundle with 404 and the browser refuses the script.
+                    options.AllowEmptyBundle = true;
+                });
 
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
