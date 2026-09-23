@@ -21,7 +21,7 @@
     {
       "modifiers": [
         {
-          "exclude": [ "src/.vs/**", ".template_config/**" ]
+          "exclude": [ ".vs/**", ".template_config/**" ]
         }
       ]
     }

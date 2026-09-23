@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="src\**\*" Exclude="**\bin\**\*;**\obj\**\*" />
+    <Content Include="src\**\*" Exclude="**\bin\**\*;**\obj\**\*;**\.vs\**\*;**\*.user;**\TestResults\**\*;**\wwwroot\lib\**\*;**\*.min.css;**\*.min.js" />
     <Compile Remove="**\*" />
     <None Include="README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
