@@ -1,0 +1,71 @@
+name: Publish
+
+# Publishes the template package to nuget.org when a GitHub release is published.
+# nuget.org Trusted Publishing exchanges the workflow's OIDC token for a short-lived
+# API key, so no NuGet API key is stored in the repository. The run can also be
+# started by hand for an existing release tag.
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to publish (for example 10.0.12)
+        required: true
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  TAG: ${{ github.event.release.tag_name || inputs.tag }}
+
+jobs:
+  publish:
+    name: Pack and publish to NuGet
+    # Windows keeps the CRLF line endings that the previously published packages had.
+    runs-on: windows-latest
+    permissions:
+      contents: write # upload the package to the GitHub release
+      id-token: write # request the OIDC token for nuget.org Trusted Publishing
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: refs/tags/${{ env.TAG }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            10.0.x
+
+      - name: Check that the package version matches the tag
+        shell: pwsh
+        run: |
+          $version = (Select-Xml -Path nuget.csproj -XPath '//Version').Node.InnerText
+          if ($version -ne $env:TAG) {
+            throw "nuget.csproj has version $version but the release tag is $env:TAG."
+          }
+
+      - name: Pack
+        run: dotnet pack nuget.csproj -c Release -o artifacts
+
+      - name: NuGet login (OIDC to a temporary API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+
+      - name: Push to nuget.org
+        run: >
+          dotnet nuget push artifacts/AspNetCoreTemplate.${{ env.TAG }}.nupkg
+          --api-key ${{ steps.login.outputs.NUGET_API_KEY }}
+          --source https://api.nuget.org/v3/index.json
+          --skip-duplicate
+
+      - name: Attach the package to the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload ${{ env.TAG }} artifacts/AspNetCoreTemplate.${{ env.TAG }}.nupkg --clobber
