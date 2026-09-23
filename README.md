@@ -20,7 +20,7 @@ A ready-to-use, layered ASP.NET Core 10 MVC solution template with Identity, EF 
 - **SendGrid** e-mail sender (and a `NullMessageSender` for development)
 - **Bootstrap 5.3**, **jQuery 4** and **jQuery Validation**, restored with [LibMan](https://learn.microsoft.com/aspnet/core/client-side/libman/) at build time and bundled/minified with [WebOptimizer](https://github.com/ligershark/WebOptimizer)
 - **xUnit.net v3** unit tests (Moq and the EF Core in-memory provider) and integration tests with `WebApplicationFactory`, running on [Microsoft Testing Platform](https://learn.microsoft.com/dotnet/core/testing/microsoft-testing-platform-intro)
-- **StyleCop analyzers** with a ready-to-use rule set and **central package management** (`Directory.Packages.props`)
+- **StyleCop analyzers** and selected .NET code analysis rules configured in `.globalconfig` and `stylecop.json`, and **central package management** (`Directory.Packages.props`)
 - **GitHub Actions** workflow that builds the solution and runs the tests
 
 ## Screenshots
