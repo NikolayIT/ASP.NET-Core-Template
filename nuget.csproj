@@ -23,10 +23,10 @@
     <Title>ASP.NET Core Template</Title>
     <Company>Nikolay.IT</Company>
     <Authors>Nikolay.IT</Authors>
-    <Copyright>Nikolay.IT © 2017-2026</Copyright>
+    <Copyright>Nikolay.IT © 2016-2026</Copyright>
     <Description>A ready-to-use template for ASP.NET Core 10 with repositories, services, models mapping, DI and StyleCop warnings fixed.</Description>
     <PackageTags>c#;asp.net;core;template;web</PackageTags>
-    <PackageCopyright>Nikolay.IT © 2017-2026</PackageCopyright>
+    <PackageCopyright>Nikolay.IT © 2016-2026</PackageCopyright>
     <PackageProjectUrl>https://github.com/NikolayIT/ASP.NET-Core-Template</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
