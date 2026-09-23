@@ -1,88 +1,150 @@
 # ASP.NET Core Template
 
-A ready-to-use template for ASP.NET Core with repositories, services, models mapping, DI and StyleCop warnings fixed.
-
-## Build status
+A ready-to-use, layered ASP.NET Core 10 MVC solution template with Identity, EF Core, the repository pattern, Mapster mappings, dependency injection, tests and StyleCop warnings fixed.
 
 [![Build](https://github.com/NikolayIT/ASP.NET-Core-Template/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/NikolayIT/ASP.NET-Core-Template/actions/workflows/build.yml)
+[![NuGet](https://img.shields.io/nuget/v/AspNetCoreTemplate.svg)](https://www.nuget.org/packages/AspNetCoreTemplate)
+[![NuGet downloads](https://img.shields.io/nuget/dt/AspNetCoreTemplate.svg)](https://www.nuget.org/packages/AspNetCoreTemplate)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/NikolayIT/ASP.NET-Core-Template/blob/master/LICENSE)
 
-## Authors
+![Home page](https://raw.githubusercontent.com/NikolayIT/ASP.NET-Core-Template/master/docs/screenshots/home.png)
 
-- [Nikolay Kostov](https://github.com/NikolayIT)
-- [Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
-- [Stoyan Shopov](https://github.com/StoyanShopov)
+## What's Included
 
-## Package Installation
+- **.NET 10** solution in the new `.slnx` format, split into Common, Data, Services, Web and Tests layers
+- **ASP.NET Core MVC** with an `Administration` area restricted to the `Administrator` role
+- **ASP.NET Core Identity** (default UI) with custom `ApplicationUser` and `ApplicationRole`
+- **Entity Framework Core** with SQL Server, migrations applied on startup and data seeding
+- **Generic repositories** with audit info (`CreatedOn`, `ModifiedOn`) and soft delete (`IsDeleted`, `DeletedOn`) handled automatically
+- **Mapster** mappings declared on the view models via `IMapFrom<T>`, `IMapTo<T>` and `IHaveCustomMappings`
+- **SendGrid** e-mail sender (and a `NullMessageSender` for development)
+- **Bootstrap 5.3**, **jQuery 4** and **jQuery Validation**, restored with [LibMan](https://learn.microsoft.com/aspnet/core/client-side/libman/) at build time and bundled/minified with [WebOptimizer](https://github.com/ligershark/WebOptimizer)
+- **xUnit** unit tests (Moq and the EF Core in-memory provider) and integration tests with `WebApplicationFactory`
+- **StyleCop analyzers** with a ready-to-use rule set and **central package management** (`Directory.Packages.props`)
+- **GitHub Actions** workflow that builds the solution and runs the tests
 
-You can install this template using [NuGet](https://www.nuget.org/packages/AspNetCoreTemplate):
+## Screenshots
+
+| Registration with client-side validation | Settings (entities mapped with Mapster) |
+| --- | --- |
+| ![Registration with client-side validation](https://raw.githubusercontent.com/NikolayIT/ASP.NET-Core-Template/master/docs/screenshots/register-validation.png) | ![Settings page](https://raw.githubusercontent.com/NikolayIT/ASP.NET-Core-Template/master/docs/screenshots/settings.png) |
+| **Account management (ASP.NET Core Identity)** | **Administration area** |
+| ![Account management](https://raw.githubusercontent.com/NikolayIT/ASP.NET-Core-Template/master/docs/screenshots/manage-account.png) | ![Admin dashboard](https://raw.githubusercontent.com/NikolayIT/ASP.NET-Core-Template/master/docs/screenshots/admin-dashboard.png) |
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/NikolayIT/ASP.NET-Core-Template/master/docs/screenshots/mobile-menu.png" alt="Responsive layout on a phone" width="300" />
+</p>
+
+## Getting Started
+
+### Prerequisites
+
+- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
+- SQL Server (LocalDB, Express, Developer or a Docker container)
+- Visual Studio 2026, Visual Studio Code or JetBrains Rider (optional)
+
+### Create a New Project
+
+Install the template from [NuGet](https://www.nuget.org/packages/AspNetCoreTemplate):
 
 ```powershell
 dotnet new install AspNetCoreTemplate
 ```
 
+Create a project from it. Every `AspNetCoreTemplate` occurrence in file names, namespaces and the database name is replaced with your project name:
+
 ```powershell
-dotnet new aspnet-core -n YourProjectName
+dotnet new aspnet-core -n YourProjectName -o YourProjectName
 ```
 
-## Pack this Template
+Alternatively, clone this repository and run the [TemplateRenamer](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/tools/TemplateRenamer) tool from the `src` folder to rename the solution in place.
+
+### Run the Application
+
+1. Set the `DefaultConnection` connection string in `Web/YourProjectName.Web/appsettings.json` (it defaults to `Server=.;Database=YourProjectName;Trusted_Connection=True;...`). For LocalDB use `Server=(localdb)\\mssqllocaldb`.
+2. Run the web project from the solution folder:
+
+   ```powershell
+   cd YourProjectName
+   dotnet run --project Web/YourProjectName.Web
+   ```
+
+   The database is created and migrated on startup and the seeders add the `Administrator` role and a sample setting.
+3. Register a user and add it to the `Administrator` role to access the administration area, for example:
+
+   ```sql
+   INSERT INTO AspNetUserRoles (UserId, RoleId)
+   SELECT u.Id, r.Id FROM AspNetUsers u, AspNetRoles r
+   WHERE u.Email = 'you@example.com' AND r.Name = 'Administrator'
+   ```
+
+### Add a Migration
+
+The `Data` project contains a design-time `DbContext` factory that reads its own `appsettings.json`, so migrations are created from that folder with the [EF Core tools](https://learn.microsoft.com/ef/core/cli/dotnet):
 
 ```powershell
-dotnet pack .\nuget.csproj
+cd Data/YourProjectName.Data
+dotnet ef migrations add YourMigrationName
+```
+
+### Run the Tests
+
+```powershell
+dotnet test YourProjectName.slnx
+```
+
+The `Web.Tests` project starts the whole application with `WebApplicationFactory`, so it needs a reachable SQL Server. You can point it at a separate database with an environment variable:
+
+```powershell
+$env:ConnectionStrings__DefaultConnection = "Server=.;Database=YourProjectName_Tests;Trusted_Connection=True;TrustServerCertificate=True"
+dotnet test YourProjectName.slnx
 ```
 
 ## Project Overview
 
-![Dependencies Graph](https://user-images.githubusercontent.com/25417032/97107966-0e5fc500-16d3-11eb-9b9c-c73012ff97ac.png)
-![image](https://user-images.githubusercontent.com/25417032/97108063-9fcf3700-16d3-11eb-8225-32eac21c4542.png)
+```mermaid
+graph TD
+    Web[Web] --> ViewModels[Web.ViewModels]
+    Web --> Infrastructure[Web.Infrastructure]
+    Web --> Services[Services]
+    Web --> ServicesData[Services.Data]
+    Web --> Messaging[Services.Messaging]
+    Web --> Data[Data]
+    ViewModels --> Mapping[Services.Mapping]
+    ViewModels --> Models[Data.Models]
+    ServicesData --> Mapping
+    ServicesData --> Models
+    ServicesData --> DataCommon[Data.Common]
+    Data --> Models
+    Data --> DataCommon
+    Data --> Common[Common]
+    Models --> DataCommon
+```
 
 ### Common
 
-**AspNetCoreTemplate.Common** contains common things for the project solution. For example:
-
-- [GlobalConstants.cs](https://github.com/NikolayIT/ASP.NET-Core-Template/blob/master/src/AspNetCoreTemplate.Common/GlobalConstants.cs).
+**AspNetCoreTemplate.Common** contains things shared by the whole solution, for example [GlobalConstants.cs](https://github.com/NikolayIT/ASP.NET-Core-Template/blob/master/src/AspNetCoreTemplate.Common/GlobalConstants.cs) with the system name and the administrator role name.
 
 ### Data
 
-This solution folder contains three subfolders:
-
-- AspNetCoreTemplate.Data.Common
-- AspNetCoreTemplate.Data.Models
-- AspNetCoreTemplate.Data
-
-#### AspNetCoreTemplate.Data.Common
-
-[AspNetCoreTemplate.Data.Common.Models](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Data/AspNetCoreTemplate.Data.Common/Models) provides abstract generics classes and interfaces, which holds information about our entities. For example when the object is Created, Modified, Deleted or IsDeleted. It contains a property for the primary key as well.
-
-[AspNetCoreTemplate.Data.Common.Repositories](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Data/AspNetCoreTemplate.Data.Common/Repositories) provides two interfaces IDeletableEntityRepository and IRepository, which are part of the **repository pattern**.
-
-#### AspNetCoreTemplate.Data.Models
-
-[AspNetCoreTemplate.Data.Models](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Data/AspNetCoreTemplate.Data.Models) contains ApplicationUser and ApplicationRole classes, which inherits IdentityRole and IdentityUsers.
-
-#### AspNetCoreTemplate.Data
-
-[AspNetCoreTemplate.Data](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Data/AspNetCoreTemplate.Data) contains DbContext, Migrations and Configuraitons for the EF Core.There is Seeding and Repository functionality as well.
+- [**AspNetCoreTemplate.Data.Common**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Data/AspNetCoreTemplate.Data.Common) contains the base entity classes (`BaseModel<TKey>`, `BaseDeletableModel<TKey>`), the `IAuditInfo` and `IDeletableEntity` interfaces and the `IRepository<T>` and `IDeletableEntityRepository<T>` abstractions of the **repository pattern**.
+- [**AspNetCoreTemplate.Data.Models**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Data/AspNetCoreTemplate.Data.Models) contains the entities, including `ApplicationUser` and `ApplicationRole`, which extend the Identity user and role.
+- [**AspNetCoreTemplate.Data**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Data/AspNetCoreTemplate.Data) contains the `ApplicationDbContext`, the entity configurations, the migrations, the seeders and the EF Core repository implementations. The `DbContext` fills in the audit info on save and applies a global query filter that hides soft-deleted entities, while `Delete` in the deletable entity repository only marks entities as deleted (`HardDelete` and `Undelete` are also available).
 
 ### Services
 
-This solution folder contains four subfolders:
+- [**AspNetCoreTemplate.Services.Data**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Services/AspNetCoreTemplate.Services.Data) contains the business logic that works with the repositories.
+- [**AspNetCoreTemplate.Services.Mapping**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Services/AspNetCoreTemplate.Services.Mapping) registers the [Mapster](https://github.com/MapsterMapper/Mapster) mappings declared on your classes and provides the `To<T>()` projection for `IQueryable`.
+- [**AspNetCoreTemplate.Services.Messaging**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Services/AspNetCoreTemplate.Services.Messaging) contains the `IEmailSender` abstraction with a ready-to-use [SendGrid](https://sendgrid.com/) implementation.
+- [**AspNetCoreTemplate.Services**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Services/AspNetCoreTemplate.Services) is the place for services that do not depend on the database.
 
-- AspNetCoreTemplate.Services.Data
-- AspNetCoreTemplate.Services.Mapping
-- AspNetCoreTemplate.Services.Messaging
-- AspNetCoreTemplate.Services
+#### Mappings
 
-#### AspNetCoreTemplate.Services.Data
-
-[AspNetCoreTemplate.Services.Data](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Services/AspNetCoreTemplate.Services.Data) wil contains service layer logic.
-
-#### AspNetCoreTemplate.Services.Mapping
-
-[AspNetCoreTemplate.Services.Mapping](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Services/AspNetCoreTemplate.Services.Mapping) provides simplified functionlity for auto mapping. For example:
+Implement `IMapFrom<TSource>` (or `IMapTo<TDestination>`) and the mapping is registered on startup:
 
 ```csharp
-using Blog.Data.Models;
-using Blog.Services.Mapping;
+using AspNetCoreTemplate.Data.Models;
+using AspNetCoreTemplate.Services.Mapping;
 
 public class TagViewModel : IMapFrom<Tag>
 {
@@ -92,95 +154,70 @@ public class TagViewModel : IMapFrom<Tag>
 }
 ```
 
-Or if you have something specific:
+Implement `IHaveCustomMappings` when some members need custom configuration:
 
 ```csharp
-using System;
+using AspNetCoreTemplate.Data.Models;
+using AspNetCoreTemplate.Services.Mapping;
 
-using AutoMapper;
-using Blog.Data.Models;
-using Blog.Services.Mapping;
-
-public class IndexPostViewModel : IMapFrom<Post>, IHaveCustomMappings
+public class PostViewModel : IMapFrom<Post>, IHaveCustomMappings
 {
     public int Id { get; set; }
 
     public string Title { get; set; }
 
-    public string Author { get; set; }
+    public string AuthorName { get; set; }
 
-    public string ImageUrl { get; set; }
-
-    public DateTime CreatedOn { get; set; }
-
-    public void CreateMappings(IProfileExpression configuration)
+    public void CreateMappings(Mapster.TypeAdapterConfig configuration)
     {
-        configuration.CreateMap<Post, IndexPostViewModel>()
-            .ForMember(
-                source => source.Author,
-                destination => destination.MapFrom(member => member.ApplicationUser.UserName));
+        configuration.NewConfig<Post, PostViewModel>()
+            .Map(destination => destination.AuthorName, source => source.Author.UserName);
     }
 }
-
 ```
 
-#### AspNetCoreTemplate.Services.Messaging
+Then project queries straight to view models, so only the needed columns are selected:
 
-[AspNetCoreTemplate.Services.Messaging](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Services/AspNetCoreTemplate.Services.Messaging) a ready to use integration with [SendGrid](https://sendgrid.com/).
+```csharp
+var posts = this.postsRepository.AllAsNoTracking().To<PostViewModel>().ToList();
+```
 
-#### AspNetCoreTemplate.Services
-
-[AspNetCoreTemplate.Services](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Services/AspNetCoreTemplate.Services)
-
-### Tests
-
-This solution folder contains three subfolders:
-
-- AspNetCoreTemplate.Services.Data.Tests
-- AspNetCoreTemplate.Web.Tests
-- Sandbox
-
-#### AspNetCoreTemplate.Services.Data.Tests
-
-[AspNetCoreTemplate.Services.Data.Tests](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Tests/AspNetCoreTemplate.Services.Data.Tests) holds unit tests for our service layer with ready setted up xUnit.
-
-#### AspNetCoreTemplate.Web.Tests
-
-[AspNetCoreTemplate.Web.Tests](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Tests/AspNetCoreTemplate.Web.Tests) setted up Selenuim tests.
-
-#### Sandbox
-
-[Sandbox](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Tests/Sandbox) can be used to test your logic.
+> [!NOTE]
+> Mapster has its own `Mapster.IMapFrom<T>` interface, so avoid `using Mapster;` next to `using AspNetCoreTemplate.Services.Mapping;` and write `Mapster.TypeAdapterConfig` instead.
 
 ### Web
 
-This solution folder contains three subfolders:
+- [**AspNetCoreTemplate.Web**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Web/AspNetCoreTemplate.Web) is the ASP.NET Core MVC application (controllers, views, the `Administration` area, Identity and static files).
+- [**AspNetCoreTemplate.Web.ViewModels**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Web/AspNetCoreTemplate.Web.ViewModels) contains the view and input models, mapped from and to the entities.
+- [**AspNetCoreTemplate.Web.Infrastructure**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Web/AspNetCoreTemplate.Web.Infrastructure) is the place for middlewares, filters, tag helpers and other web infrastructure.
 
-- AspNetCoreTemplate.Web.Infrastructure
-- AspNetCoreTemplate.Web.ViewModels
-- AspNetCoreTemplate.Web
+### Tests
 
-#### AspNetCoreTemplate.Web.Infrastructure
+- [**AspNetCoreTemplate.Services.Data.Tests**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Tests/AspNetCoreTemplate.Services.Data.Tests) contains xUnit unit tests for the service layer and the mappings, using Moq and the EF Core in-memory provider.
+- [**AspNetCoreTemplate.Web.Tests**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Tests/AspNetCoreTemplate.Web.Tests) contains integration tests that host the application with `WebApplicationFactory`.
+- [**Sandbox**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Tests/Sandbox) is a console application with the full dependency injection setup, handy for trying out services and running one-off tasks.
 
-[AspNetCoreTemplate.Web.Infrastructure](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Web/AspNetCoreTemplate.Web.Infrastructure) contains functionality like Middlewares and Filters.
+## Pack the Template
 
-#### AspNetCoreTemplate.Web.ViewModels
+```powershell
+dotnet pack .\nuget.csproj
+```
 
-[AspNetCoreTemplate.Web.ViewModels](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Web/AspNetCoreTemplate.Web.ViewModels) contains objects, which will be mapped from/to our entities and used in the front-end/back-end.
+## Authors
 
-#### AspNetCoreTemplate.Web
-
-[AspNetCoreTemplate.Web](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Web/AspNetCoreTemplate.Web) self explanatory.
-
-## Support
-
-If you are having problems, please let us know by [raising a new issue](https://github.com/NikolayIT/ASP.NET-Core-Template/issues).
+- [Nikolay Kostov](https://github.com/NikolayIT)
+- [Vladislav Karamfilov](https://github.com/vladislav-karamfilov)
+- [Stoyan Shopov](https://github.com/StoyanShopov)
 
 ## Example Projects
 
 - <https://github.com/NikolayIT/PressCenters.com>
 - <https://github.com/NikolayIT/nikolay.it>
 
+## Support
+
+If you are having problems, please let us know by [raising a new issue](https://github.com/NikolayIT/ASP.NET-Core-Template/issues).
+
 ## License
 
-This project is licensed with the [MIT license](LICENSE).
+This project is licensed under the [MIT license](https://github.com/NikolayIT/ASP.NET-Core-Template/blob/master/LICENSE).
