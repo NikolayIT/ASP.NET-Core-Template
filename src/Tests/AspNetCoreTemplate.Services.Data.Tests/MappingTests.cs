@@ -27,7 +27,7 @@
             using var dbContext = new ApplicationDbContext(options);
             dbContext.Settings.Add(new Setting { Name = "Theme", Value = "Dark" });
             dbContext.Settings.Add(new Setting { Name = "Language", Value = "en" });
-            await dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync(TestContext.Current.CancellationToken);
 
             using var repository = new EfDeletableEntityRepository<Setting>(dbContext);
             var service = new SettingsService(repository);

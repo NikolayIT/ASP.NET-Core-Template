@@ -19,7 +19,7 @@ A ready-to-use, layered ASP.NET Core 10 MVC solution template with Identity, EF 
 - **Mapster** mappings declared on the view models via `IMapFrom<T>`, `IMapTo<T>` and `IHaveCustomMappings`
 - **SendGrid** e-mail sender (and a `NullMessageSender` for development)
 - **Bootstrap 5.3**, **jQuery 4** and **jQuery Validation**, restored with [LibMan](https://learn.microsoft.com/aspnet/core/client-side/libman/) at build time and bundled/minified with [WebOptimizer](https://github.com/ligershark/WebOptimizer)
-- **xUnit** unit tests (Moq and the EF Core in-memory provider) and integration tests with `WebApplicationFactory`
+- **xUnit.net v3** unit tests (Moq and the EF Core in-memory provider) and integration tests with `WebApplicationFactory`, running on [Microsoft Testing Platform](https://learn.microsoft.com/dotnet/core/testing/microsoft-testing-platform-intro)
 - **StyleCop analyzers** with a ready-to-use rule set and **central package management** (`Directory.Packages.props`)
 - **GitHub Actions** workflow that builds the solution and runs the tests
 
@@ -89,9 +89,13 @@ dotnet ef migrations add YourMigrationName
 
 ### Run the Tests
 
+The test projects use xUnit.net v3 on Microsoft Testing Platform, which `global.json` turns on for `dotnet test`, so run it from the solution folder:
+
 ```powershell
 dotnet test YourProjectName.slnx
 ```
+
+Each test project is also a standalone executable, so `dotnet run --project Tests/YourProjectName.Services.Data.Tests` works as well.
 
 The `Web.Tests` project starts the whole application with `WebApplicationFactory`, so it needs a reachable SQL Server. You can point it at a separate database with an environment variable:
 
@@ -193,7 +197,7 @@ var posts = this.postsRepository.AllAsNoTracking().To<PostViewModel>().ToList();
 
 ### Tests
 
-- [**AspNetCoreTemplate.Services.Data.Tests**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Tests/AspNetCoreTemplate.Services.Data.Tests) contains xUnit unit tests for the service layer and the mappings, using Moq and the EF Core in-memory provider.
+- [**AspNetCoreTemplate.Services.Data.Tests**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Tests/AspNetCoreTemplate.Services.Data.Tests) contains xUnit.net v3 unit tests for the service layer and the mappings, using Moq and the EF Core in-memory provider.
 - [**AspNetCoreTemplate.Web.Tests**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Tests/AspNetCoreTemplate.Web.Tests) contains integration tests that host the application with `WebApplicationFactory`.
 - [**Sandbox**](https://github.com/NikolayIT/ASP.NET-Core-Template/tree/master/src/Tests/Sandbox) is a console application with the full dependency injection setup, handy for trying out services and running one-off tasks.
 

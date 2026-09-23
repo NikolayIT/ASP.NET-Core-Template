@@ -20,9 +20,9 @@
         public async Task IndexPageShouldReturnStatusCode200WithTitle()
         {
             var client = this.server.CreateClient();
-            var response = await client.GetAsync("/");
+            var response = await client.GetAsync("/", TestContext.Current.CancellationToken);
             response.EnsureSuccessStatusCode();
-            var responseContent = await response.Content.ReadAsStringAsync();
+            var responseContent = await response.Content.ReadAsStringAsync(TestContext.Current.CancellationToken);
             Assert.Contains("<title>", responseContent);
         }
 
@@ -30,7 +30,7 @@
         public async Task AccountManagePageRequiresAuthorization()
         {
             var client = this.server.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false });
-            var response = await client.GetAsync("Identity/Account/Manage");
+            var response = await client.GetAsync("Identity/Account/Manage", TestContext.Current.CancellationToken);
             Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
         }
     }

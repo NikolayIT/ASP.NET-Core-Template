@@ -41,7 +41,7 @@
             dbContext.Settings.Add(new Setting());
             dbContext.Settings.Add(new Setting());
             dbContext.Settings.Add(new Setting());
-            await dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync(TestContext.Current.CancellationToken);
 
             using var repository = new EfDeletableEntityRepository<Setting>(dbContext);
             var service = new SettingsService(repository);
