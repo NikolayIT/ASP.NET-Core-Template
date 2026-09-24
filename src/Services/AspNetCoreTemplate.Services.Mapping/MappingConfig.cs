@@ -9,7 +9,7 @@
 
     public static class MappingConfig
     {
-        private static bool initialized;
+        private static readonly object SyncRoot = new object();
 
         public static TypeAdapterConfig GlobalConfig { get; private set; }
 
@@ -17,34 +17,38 @@
 
         public static void RegisterMappings(params Assembly[] assemblies)
         {
-            if (initialized)
+            // Callers running at the same time (for example parallel test classes) wait here for the first
+            // one to finish, so no caller returns before the mappings are ready. Only the first call's
+            // assemblies are registered; later calls return without changes.
+            lock (SyncRoot)
             {
-                return;
+                if (GlobalConfig != null)
+                {
+                    return;
+                }
+
+                var types = assemblies.SelectMany(a => a.GetExportedTypes()).ToList();
+
+                var config = new TypeAdapterConfig();
+
+                foreach (var map in GetFromMaps(types))
+                {
+                    config.NewConfig(map.Source, map.Destination);
+                }
+
+                foreach (var map in GetToMaps(types))
+                {
+                    config.NewConfig(map.Source, map.Destination);
+                }
+
+                foreach (var map in GetCustomMappings(types))
+                {
+                    map.CreateMappings(config);
+                }
+
+                MapperInstance = new MappingAdapter(config);
+                GlobalConfig = config;
             }
-
-            initialized = true;
-
-            var types = assemblies.SelectMany(a => a.GetExportedTypes()).ToList();
-
-            var config = new TypeAdapterConfig();
-
-            foreach (var map in GetFromMaps(types))
-            {
-                config.NewConfig(map.Source, map.Destination);
-            }
-
-            foreach (var map in GetToMaps(types))
-            {
-                config.NewConfig(map.Source, map.Destination);
-            }
-
-            foreach (var map in GetCustomMappings(types))
-            {
-                map.CreateMappings(config);
-            }
-
-            GlobalConfig = config;
-            MapperInstance = new MappingAdapter(config);
         }
 
         private static IEnumerable<TypesMap> GetFromMaps(IEnumerable<Type> types)

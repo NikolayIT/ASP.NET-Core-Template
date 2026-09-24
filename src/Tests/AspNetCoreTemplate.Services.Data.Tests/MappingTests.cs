@@ -1,6 +1,8 @@
 ﻿namespace AspNetCoreTemplate.Services.Data.Tests
 {
     using System.Linq;
+    using System.Runtime.Loader;
+    using System.Threading;
     using System.Threading.Tasks;
 
     using AspNetCoreTemplate.Data;
@@ -74,6 +76,48 @@
             Assert.True(setting.IsDeleted);
             Assert.Equal("Theme", setting.Name);
             Assert.Equal("Light", setting.Value);
+        }
+
+        [Fact]
+        public void RegisterMappingsShouldBeReadyForEveryConcurrentCaller()
+        {
+            // MappingConfig keeps its state in static properties that the other tests have already filled,
+            // so every iteration loads a separate copy of its assembly to get an unregistered MappingConfig.
+            const int ThreadsCount = 8;
+            var mappingAssemblyPath = typeof(MappingConfig).Assembly.Location;
+            var assembliesToScan = new[] { typeof(MappingTests).Assembly };
+
+            for (var iteration = 0; iteration < 20; iteration++)
+            {
+                var loadContext = new AssemblyLoadContext($"{nameof(MappingConfig)}-{iteration}", isCollectible: true);
+                try
+                {
+                    var mappingConfigType = loadContext.LoadFromAssemblyPath(mappingAssemblyPath).GetType(typeof(MappingConfig).FullName);
+                    var registerMappings = mappingConfigType.GetMethod(nameof(MappingConfig.RegisterMappings));
+                    var globalConfig = mappingConfigType.GetProperty(nameof(MappingConfig.GlobalConfig));
+                    var mapperInstance = mappingConfigType.GetProperty(nameof(MappingConfig.MapperInstance));
+
+                    var readyAfterRegistering = new bool[ThreadsCount];
+                    using var startTogether = new Barrier(ThreadsCount);
+                    var threads = Enumerable.Range(0, ThreadsCount)
+                        .Select(index => new Thread(() =>
+                        {
+                            startTogether.SignalAndWait();
+                            registerMappings.Invoke(null, new object[] { assembliesToScan });
+                            readyAfterRegistering[index] = globalConfig.GetValue(null) != null && mapperInstance.GetValue(null) != null;
+                        }))
+                        .ToList();
+
+                    threads.ForEach(thread => thread.Start());
+                    threads.ForEach(thread => thread.Join());
+
+                    Assert.All(readyAfterRegistering, Assert.True);
+                }
+                finally
+                {
+                    loadContext.Unload();
+                }
+            }
         }
 
         public class SettingTestViewModel : IMapFrom<Setting>, IHaveCustomMappings
